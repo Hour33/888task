@@ -3,98 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register | Task888</title>
+  <title>Register | task888</title>
 
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #ffffff;
+      background: #f4fff6;
+      margin: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* Banner */
     .banner {
       width: 100%;
       max-width: 500px;
-      margin-top: 15px;
+      margin-top: 20px;
     }
+
     .banner img {
       width: 100%;
       border-radius: 12px;
       display: block;
     }
 
-    /* Card */
     .card {
-      background: #ffffff;
+      background: #e8f9ee;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0, 128, 0, 0.2);
       width: 90%;
       max-width: 400px;
       margin-top: -25px;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      text-align: center;
+      border: 2px solid #2e7d32;
     }
 
     .card h2 {
-      margin: 0 0 20px;
-      text-align: center;
-      font-weight: 600;
-      color: #222;
+      color: #2e7d32;
+      margin-bottom: 20px;
     }
 
-    /* Inputs */
     input {
       width: 100%;
-      padding: 14px;
-      margin-bottom: 14px;
-      border: none;
-      border-bottom: 1px solid #ddd;
-      font-size: 15px;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #2e7d32;
+      box-sizing: border-box;
       outline: none;
     }
 
-    input::placeholder {
-      color: #999;
-    }
-
-    /* Button */
     button {
       width: 100%;
-      padding: 14px;
-      background: #0f7c3a;
-      color: #fff;
+      padding: 12px;
+      background: #2e7d32;
+      color: #ffffff;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       margin-top: 10px;
     }
 
     button:hover {
-      background: #0c6730;
+      background: #256628;
     }
 
-    /* Links */
-    .link-text {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 14px;
-      color: #666;
-    }
-
-    .link-text a {
-      color: #0f7c3a;
-      font-weight: bold;
+    a {
+      color: #2e7d32;
       text-decoration: none;
+      font-weight: bold;
     }
 
     #msg {
-      margin-top: 12px;
-      text-align: center;
+      margin-top: 10px;
       font-size: 14px;
     }
   </style>
@@ -102,25 +85,20 @@
 
 <body>
 
-  <!-- Banner -->
   <div class="banner">
-    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="Task888 Banner">
+    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="task888 banner">
   </div>
 
-  <!-- Card -->
   <div class="card">
-    <h2>Register</h2>
+    <h2>Create Account</h2>
 
-    <input id="phone" type="text" placeholder="Account">
-    <input id="password" type="password" placeholder="Password">
-    <input id="confirmPassword" type="password" placeholder="Confirm Password">
+    <input id="phone" type="text" placeholder="Account" />
+    <input id="password" type="password" placeholder="Password" />
+    <input id="confirmPassword" type="password" placeholder="Confirm Password" />
 
     <button id="registerBtn">Register</button>
 
-    <div class="link-text">
-      Already have an account?
-      <a href="login.html">Login</a>
-    </div>
+    <p>Already registered? <a href="login.html">Login</a></p>
 
     <div id="msg"></div>
   </div>
@@ -128,34 +106,34 @@
   <script>
     const SHEETY_URL = "https://api.sheety.co/063b7e80466382fc37a14b4f5ae358b1/code/code";
 
-    document.getElementById("registerBtn").onclick = async () => {
+    document.getElementById("registerBtn").onclick = async function () {
       const msg = document.getElementById("msg");
       msg.textContent = "";
-      msg.style.color = "#333";
 
-      const phone = phoneInput.value.trim();
-      const password = passwordInput.value.trim();
-      const confirm = confirmPassword.value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
 
-      if (!phone || !password || !confirm) {
+      if (!phone || !password || !confirmPassword) {
         msg.style.color = "red";
         msg.textContent = "Please fill all fields";
         return;
       }
 
-      if (password !== confirm) {
+      if (password !== confirmPassword) {
         msg.style.color = "red";
         msg.textContent = "Passwords do not match";
         return;
       }
 
+      msg.style.color = "#2e7d32";
       msg.textContent = "Checking account...";
 
       let users = [];
       try {
         const r = await fetch(SHEETY_URL);
         const j = await r.json();
-        users = j.code || [];
+        if (j && Array.isArray(j.code)) users = j.code;
       } catch {}
 
       if (users.some(u => String(u.phone) === phone)) {
@@ -171,26 +149,23 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           code: {
-            phone,
-            password,
+            phone: phone,
+            password: password,
             balance: 200
           }
         })
       });
 
-      if (res.ok) {
-        msg.style.color = "#0f7c3a";
-        msg.textContent = "Registered successfully!";
-        setTimeout(() => location.href = "login.html", 1000);
-      } else {
+      if (!res.ok) {
         msg.style.color = "red";
         msg.textContent = "Registration failed";
+        return;
       }
-    };
 
-    const phoneInput = document.getElementById("phone");
-    const passwordInput = document.getElementById("password");
-    const confirmPassword = document.getElementById("confirmPassword");
+      msg.style.color = "#2e7d32";
+      msg.textContent = "Registered successfully!";
+      setTimeout(() => location.href = "login.html", 1000);
+    };
   </script>
 
 </body>
