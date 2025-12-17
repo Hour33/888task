@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login | Hour33</title>
+  <title>Login | task888</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #ffffff; /* white background */
+      background: #f4fff6;
       margin: 0;
       display: flex;
       flex-direction: column;
@@ -22,25 +23,25 @@
 
     .banner img {
       width: 100%;
-      height: auto;
+      border-radius: 12px;
       display: block;
-      border-radius: 10px;
     }
 
     .card {
-      background: #ffffff;
+      background: #e8f9ee;
       padding: 25px;
-      border-radius: 20px 20px 10px 10px; /* rounded top */
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0, 128, 0, 0.2);
       width: 90%;
       max-width: 400px;
-      margin-top: -20px; /* slightly overlap banner */
+      margin-top: -25px;
       text-align: center;
+      border: 2px solid #2e7d32;
     }
 
     .card h2 {
+      color: #2e7d32;
       margin-bottom: 20px;
-      color: #222222;
     }
 
     input {
@@ -48,15 +49,16 @@
       padding: 12px;
       margin: 10px 0;
       border-radius: 8px;
-      border: 1px solid #ccc;
+      border: 1px solid #2e7d32;
       box-sizing: border-box;
+      outline: none;
     }
 
     button {
       width: 100%;
       padding: 12px;
-      background: #4caf50;
-      color: white;
+      background: #2e7d32;
+      color: #ffffff;
       border: none;
       border-radius: 8px;
       font-weight: bold;
@@ -64,23 +66,29 @@
       margin-top: 10px;
     }
 
-    a { color: #1e88e5; text-decoration: none; }
+    button:hover {
+      background: #256628;
+    }
 
-    #msg { margin-top: 10px; font-size: 14px; }
+    a {
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-    @media(max-width: 400px){
-      .card { padding: 20px; }
+    #msg {
+      margin-top: 10px;
+      font-size: 14px;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Banner -->
   <div class="banner">
-    <img src="https://i.postimg.cc/59KZmBNz/IMG-20251209-184828.jpg" alt="Hour33 Banner">
+    <img src="https://i.postimg.cc/Y9Zyb6XG/login-banner.png" alt="task888 login banner">
   </div>
 
-  <!-- White Form Card -->
   <div class="card">
     <h2>Login</h2>
 
@@ -94,51 +102,44 @@
     <div id="msg"></div>
   </div>
 
-  <!-- Your login JavaScript (unchanged) -->
   <script>
-    const SHEETY_URL = "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/usersDb3/usersDb3";
+    const SHEETY_URL = "https://api.sheety.co/063b7e80466382fc37a14b4f5ae358b1/code/code";
 
-    document.getElementById('loginBtn').addEventListener('click', async () => {
-      const phone = document.getElementById('phone').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const msg = document.getElementById('msg');
+    document.getElementById("loginBtn").onclick = async function () {
+      const msg = document.getElementById("msg");
+      msg.textContent = "";
+
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value.trim();
 
       if (!phone || !password) {
         msg.style.color = "red";
-        msg.textContent = "Please fill both fields";
+        msg.textContent = "Please fill all fields";
         return;
       }
 
-      msg.style.color = "white";
-      msg.textContent = "Logging in...";
+      msg.style.color = "#2e7d32";
+      msg.textContent = "Checking account...";
 
+      let users = [];
       try {
-        const res = await fetch(SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" }
-        });
-        const data = await res.json();
-        const user = data.usersdb3 && data.usersdb3.find(u => u.phone === phone);
+        const r = await fetch(SHEETY_URL);
+        const j = await r.json();
+        if (j && Array.isArray(j.code)) users = j.code;
+      } catch {}
 
-        if (!user) {
-          msg.style.color = "red";
-          msg.textContent = "No account found for that phone";
-          return;
-        }
-        if (user.password !== password) {
-          msg.style.color = "red";
-          msg.textContent = "Incorrect password";
-          return;
-        }
+      const user = users.find(u => String(u.phone) === phone && String(u.password) === password);
 
-        msg.style.color = "#aefcae";
-        msg.textContent = "Login successful! Redirecting...";
-        setTimeout(() => location.href = "dashboard.html", 1000);
-      } catch (err) {
+      if (!user) {
         msg.style.color = "red";
-        msg.textContent = "Network error: " + err.message;
+        msg.textContent = "Invalid account or password";
+        return;
       }
-    });
+
+      msg.style.color = "#2e7d32";
+      msg.textContent = "Login successful!";
+      setTimeout(() => location.href = "dashboard.html", 1000);
+    };
   </script>
 
 </body>
