@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Hour33</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff; /* white background */
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .banner {
+      width: 100%;
+      max-width: 500px;
+      margin-top: 20px;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 20px 20px 10px 10px; /* rounded top */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 400px;
+      margin-top: -20px; /* slightly overlap banner */
+      text-align: center;
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+      color: #222222;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    a { color: #1e88e5; text-decoration: none; }
+
+    #msg { margin-top: 10px; font-size: 14px; }
+
+    @media(max-width: 400px){
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Banner -->
+  <div class="banner">
+    <img src="https://i.postimg.cc/59KZmBNz/IMG-20251209-184828.jpg" alt="Hour33 Banner">
+  </div>
+
+  <!-- White Form Card -->
+  <div class="card">
+    <h2>Login</h2>
+
+    <input id="phone" type="text" placeholder="Account" />
+    <input id="password" type="password" placeholder="Password" />
+
+    <button id="loginBtn">Login</button>
+
+    <p>Don't have an account? <a href="register.html">Register</a></p>
+
+    <div id="msg"></div>
+  </div>
+
+  <!-- Your login JavaScript (unchanged) -->
+  <script>
+    const SHEETY_URL = "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/usersDb3/usersDb3";
+
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const phone = document.getElementById('phone').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const msg = document.getElementById('msg');
+
+      if (!phone || !password) {
+        msg.style.color = "red";
+        msg.textContent = "Please fill both fields";
+        return;
+      }
+
+      msg.style.color = "white";
+      msg.textContent = "Logging in...";
+
+      try {
+        const res = await fetch(SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" }
+        });
+        const data = await res.json();
+        const user = data.usersdb3 && data.usersdb3.find(u => u.phone === phone);
+
+        if (!user) {
+          msg.style.color = "red";
+          msg.textContent = "No account found for that phone";
+          return;
+        }
+        if (user.password !== password) {
+          msg.style.color = "red";
+          msg.textContent = "Incorrect password";
+          return;
+        }
+
+        msg.style.color = "#aefcae";
+        msg.textContent = "Login successful! Redirecting...";
+        setTimeout(() => location.href = "dashboard.html", 1000);
+      } catch (err) {
+        msg.style.color = "red";
+        msg.textContent = "Network error: " + err.message;
+      }
+    });
+  </script>
+
+</body>
+</html>
