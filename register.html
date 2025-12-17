@@ -1,197 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register | Task888</title>
-
+  <title>Task888 | Register</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    :root{
+      --green:#0f7a3d;
+      --green-btn:#57c58a;
+      --bg:#f4f6f5;
+      --card:#ffffff;
+      --muted:#a0a4a2;
     }
-
-    /* Banner */
-    .banner {
-      width: 100%;
-      max-width: 500px;
-      margin-top: 15px;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:#1f2933;
     }
-    .banner img {
-      width: 100%;
-      border-radius: 12px;
-      display: block;
+    .header{
+      background:#e8f6ee;
     }
-
-    /* Card */
-    .card {
-      background: #ffffff;
-      width: 90%;
-      max-width: 400px;
-      margin-top: -25px;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    .header img{
+      width:100%;display:block
     }
-
-    .card h2 {
-      margin: 0 0 20px;
-      text-align: center;
-      font-weight: 600;
-      color: #222;
+    .card{
+      background:var(--card);
+      margin:-40px 14px 0;
+      border-radius:22px;
+      padding:20px 18px 26px;
+      box-shadow:0 12px 24px rgba(0,0,0,.08)
     }
-
-    /* Inputs */
-    input {
-      width: 100%;
-      padding: 14px;
-      margin-bottom: 14px;
-      border: none;
-      border-bottom: 1px solid #ddd;
-      font-size: 15px;
-      outline: none;
+    .field{margin-bottom:18px}
+    .label{
+      font-size:14px;
+      text-transform:lowercase;
+      margin-bottom:6px;
     }
-
-    input::placeholder {
-      color: #999;
+    .input{
+      width:100%;
+      border:none;
+      border-bottom:1px solid #e4e6e5;
+      padding:10px 4px;
+      font-size:15px;
+      outline:none
     }
-
-    /* Button */
-    button {
-      width: 100%;
-      padding: 14px;
-      background: #0f7c3a;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
+    .input::placeholder{color:#c2c6c4}
+    .btn{
+      margin-top:18px;
+      width:100%;
+      background:var(--green-btn);
+      color:#fff;
+      border:none;
+      border-radius:14px;
+      padding:14px;
+      font-size:16px;
+      font-weight:700
     }
-
-    button:hover {
-      background: #0c6730;
+    .footer{
+      text-align:center;
+      margin-top:16px;
+      font-size:14px;
     }
-
-    /* Links */
-    .link-text {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 14px;
-      color: #666;
-    }
-
-    .link-text a {
-      color: #0f7c3a;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    #msg {
-      margin-top: 12px;
-      text-align: center;
-      font-size: 14px;
+    .footer a{
+      color:var(--green);
+      text-decoration:none;
+      font-weight:600
     }
   </style>
 </head>
+<body>  <!-- TOP IMAGE -->  <div class="header">
+    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="banner">
+  </div>  <!-- REGISTER CARD -->  <div class="card"><div class="field">
+  <div class="label">account</div>
+  <input class="input" type="text" placeholder="Please enter your account number">
+</div>
 
-<body>
+<div class="field">
+  <div class="label">password</div>
+  <input class="input" type="password" placeholder="Enter your password">
+</div>
 
-  <!-- Banner -->
-  <div class="banner">
-    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="Task888 Banner">
-  </div>
+<div class="field">
+  <div class="label">confirm password</div>
+  <input class="input" type="password" placeholder="Please enter your password again">
+</div>
 
-  <!-- Card -->
-  <div class="card">
-    <h2>Register</h2>
+<div class="field">
+  <div class="label">invitation code</div>
+  <input class="input" type="text" placeholder="Please enter the invitation code (optional)">
+</div>
 
-    <input id="phone" type="text" placeholder="Account">
-    <input id="password" type="password" placeholder="Password">
-    <input id="confirmPassword" type="password" placeholder="Confirm Password">
+<button class="btn">Register</button>
 
-    <button id="registerBtn">Register</button>
+<div class="footer">
+  Already have an account? <a href="#">Login now</a>
+</div>
 
-    <div class="link-text">
-      Already have an account?
-      <a href="login.html">Login</a>
-    </div>
-
-    <div id="msg"></div>
-  </div>
-
-  <script>
-    const SHEETY_URL = "https://api.sheety.co/063b7e80466382fc37a14b4f5ae358b1/code/code";
-
-    document.getElementById("registerBtn").onclick = async () => {
-      const msg = document.getElementById("msg");
-      msg.textContent = "";
-      msg.style.color = "#333";
-
-      const phone = phoneInput.value.trim();
-      const password = passwordInput.value.trim();
-      const confirm = confirmPassword.value.trim();
-
-      if (!phone || !password || !confirm) {
-        msg.style.color = "red";
-        msg.textContent = "Please fill all fields";
-        return;
-      }
-
-      if (password !== confirm) {
-        msg.style.color = "red";
-        msg.textContent = "Passwords do not match";
-        return;
-      }
-
-      msg.textContent = "Checking account...";
-
-      let users = [];
-      try {
-        const r = await fetch(SHEETY_URL);
-        const j = await r.json();
-        users = j.code || [];
-      } catch {}
-
-      if (users.some(u => String(u.phone) === phone)) {
-        msg.style.color = "red";
-        msg.textContent = "Account already exists";
-        return;
-      }
-
-      msg.textContent = "Registering...";
-
-      const res = await fetch(SHEETY_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          code: {
-            phone,
-            password,
-            balance: 200
-          }
-        })
-      });
-
-      if (res.ok) {
-        msg.style.color = "#0f7c3a";
-        msg.textContent = "Registered successfully!";
-        setTimeout(() => location.href = "login.html", 1000);
-      } else {
-        msg.style.color = "red";
-        msg.textContent = "Registration failed";
-      }
-    };
-
-    const phoneInput = document.getElementById("phone");
-    const passwordInput = document.getElementById("password");
-    const confirmPassword = document.getElementById("confirmPassword");
-  </script>
-
-</body>
+  </div></body>
 </html>
