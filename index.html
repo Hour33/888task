@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | Hour33</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      width: 350px;
+      text-align: center;
+    }
+    .card img {
+      width: 100%;        /* full width inside card */
+      height: auto;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border-radius: 0;    /* not rounded corners */
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    a { color: #b3e5fc; text-decoration: none; }
+    #msg { margin-top: 10px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="https://postimg.cc/K3Fp0SC3" alt="Hour33 Image">
+    <h2>Register</h2>
+    <input id="phone" type="text" placeholder="Account" />
+    <input id="password" type="password" placeholder="Password" />
+    <input id="confirmPassword" type="password" placeholder="Confirm Password" />
+    <button id="registerBtn">Register</button>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+    <div id="msg"></div>
+  </div>
+
+  <script>
+    const SHEETY_URL = "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/usersDb3/usersDb3";
+
+    document.getElementById('registerBtn').addEventListener('click', async () => {
+      const phone = document.getElementById('phone').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+      const msg = document.getElementById('msg');
+
+      if (!phone || !password || !confirmPassword) {
+        msg.style.color = "red";
+        msg.textContent = "Please fill all fields";
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        msg.style.color = "red";
+        msg.textContent = "Passwords do not match";
+        return;
+      }
+
+      msg.style.color = "white";
+      msg.textContent = "Registering...";
+
+      try {
+        const res = await fetch(SHEETY_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            usersdb3: {
+              phone,
+              password,
+              balance: 200
+            }
+          })
+        });
+        const text = await res.text();
+        if (!res.ok) {
+          msg.style.color = "red";
+          msg.textContent = "Error: " + text;
+          return;
+        }
+        msg.style.color = "#aefcae";
+        msg.textContent = "Registered successfully! Redirecting...";
+        setTimeout(() => location.href = "login.html", 1000);
+      } catch (err) {
+        msg.style.color = "red";
+        msg.textContent = "Network error: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
