@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | Hour33</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .banner {
+      width: 100%;
+      max-width: 500px;
+      margin-top: 20px;
+    }
+    .banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 20px 20px 10px 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 400px;
+      margin-top: -20px;
+      text-align: center;
+    }
+    .card h2 {
+      margin-bottom: 20px;
+      color: #222222;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    a { color: #1e88e5; text-decoration: none; }
+    #msg { margin-top: 10px; font-size: 14px; }
+    @media(max-width: 400px){
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">
+    <img src="https://i.postimg.cc/59KZmBNz/IMG-20251209-184828.jpg" alt="Hour33 Banner">
+  </div>
+
+  <div class="card">
+    <h2>Register</h2>
+
+    <input id="phone" type="text" placeholder="Account" />
+    <input id="password" type="password" placeholder="Password" />
+    <input id="confirmPassword" type="password" placeholder="Confirm Password" />
+
+    <button id="registerBtn">Register</button>
+
+    <p>Already have an account? <a href="login.html">Login</a></p>
+
+    <div id="msg"></div>
+  </div>
+
+  <script>
+    /* ✅ Updated Sheety URL */
+    const SHEETY_URL = "https://api.sheety.co/063b7e80466382fc37a14b4f5ae358b1/code/code";
+
+    document.getElementById("registerBtn").onclick = async function () {
+      const msg = document.getElementById("msg");
+      msg.textContent = "";
+
+      try {
+        const phone = document.getElementById("phone").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+        if (!phone || !password || !confirmPassword) {
+          msg.style.color = "red";
+          msg.textContent = "Please fill all fields";
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          msg.style.color = "red";
+          msg.textContent = "Passwords do not match";
+          return;
+        }
+
+        msg.style.color = "#222";
+        msg.textContent = "Checking account...";
+
+        /* ===== SAFE DUPLICATE CHECK ===== */
+        let users = [];
+        try {
+          const r = await fetch(SHEETY_URL);
+          const j = await r.json();
+          if (j && Array.isArray(j.code)) {
+            users = j.code;
+          }
+        } catch (e) {
+          console.warn("Duplicate check skipped");
+        }
+
+        if (users.some(u => String(u.phone) === phone)) {
+          msg.style.color = "red";
+          msg.textContent = "Account already exists";
+          return;
+        }
+        /* ===== END CHECK ===== */
+
+        msg.textContent = "Registering...";
+
+        const res = await fetch(SHEETY_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            code: {
+              phone: phone,
+              password: password,
+              balance: 200
+            }
+          })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          msg.style.color = "red";
+          msg.textContent = "Error: " + JSON.stringify(data);
+          return;
+        }
+
+        msg.style.color = "#4caf50";
+        msg.textContent = "Registered successfully!";
+        setTimeout(() => location.href = "login.html", 1000);
+
+      } catch (err) {
+        console.error(err);
+        msg.style.color = "red";
+        msg.textContent = "Unexpected error occurred";
+      }
+    };
+  </script>
+
+</body>
+</html>
