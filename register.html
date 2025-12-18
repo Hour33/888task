@@ -39,29 +39,19 @@
     border: 1px solid #ccc;
   }
 
-  .card h2 {
-    color: #222;
-    margin-bottom: 20px;
-  }
-
   input {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
     border-radius: 8px;
     border: 1px solid #ccc;
+    outline: none;
     box-sizing: border-box;
-    outline: none;          /* 🔥 remove black line */
   }
 
   input:focus {
     outline: none;
-    box-shadow: none;       /* 🔥 remove mobile highlight */
-  }
-
-  input[readonly] {
-    background: #f5f5f5;
-    color: #555;
+    box-shadow: none;
   }
 
   button {
@@ -74,23 +64,14 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
-    outline: none;
   }
 
-  button:focus {
-    outline: none;          /* 🔥 remove tap outline */
+  button:hover {
+    background: #43a047;
   }
 
-  a {
-    color: #1e88e5;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  #msg {
-    margin-top: 10px;
-    font-size: 14px;
-  }
+  a { color: #1e88e5; text-decoration: none; font-weight: bold; }
+  #msg { margin-top: 10px; font-size: 14px; }
 </style>
 </head>
 
@@ -107,26 +88,26 @@
   <input id="password" type="password" placeholder="Password" />
   <input id="confirmPassword" type="password" placeholder="Confirm Password" />
 
-  <!-- Invitation Code (permanent, visual for now) -->
+  <!-- Invitation Code (UI only for now) -->
   <input type="text" value="30Q4782N" readonly />
 
   <button id="registerBtn" type="button">Register</button>
 
   <p>Already have an account? <a href="login.html">Login</a></p>
+
   <div id="msg"></div>
 </div>
 
 <script>
-const SHEETY_URL =
-  "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/usersDb3/usersDb3";
+const SHEETY_URL = "https://api.sheety.co/063b7e80466382fc37a14b4f5ae358b1/code/code";
 
 document.getElementById("registerBtn").addEventListener("click", async () => {
-  const msg = document.getElementById("msg");
-  msg.textContent = "";
-
   const phone = document.getElementById("phone").value.trim();
   const password = document.getElementById("password").value.trim();
   const confirmPassword = document.getElementById("confirmPassword").value.trim();
+  const msg = document.getElementById("msg");
+
+  msg.textContent = "";
 
   if (!phone || !password || !confirmPassword) {
     msg.style.color = "red";
@@ -144,24 +125,22 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
   msg.textContent = "Registering...";
 
   try {
-    // check existing user
-    const checkRes = await fetch(
-      SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`
-    );
-    const data = await checkRes.json();
+    // Check if account already exists (GET)
+    const checkRes = await fetch(SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`);
+    const checkData = await checkRes.json();
 
-    if (data.usersDb3 && data.usersDb3.length > 0) {
+    if (checkData.code && checkData.code.length > 0) {
       msg.style.color = "red";
       msg.textContent = "Account already exists";
       return;
     }
 
-    // create user
+    // Register new user (POST)
     const createRes = await fetch(SHEETY_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        usersDb3: {
+        code: {
           phone: phone,
           password: password,
           balance: 200
@@ -169,15 +148,19 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
       })
     });
 
-    if (!createRes.ok) throw new Error();
+    if (!createRes.ok) {
+      msg.style.color = "red";
+      msg.textContent = "Registration failed";
+      return;
+    }
 
     msg.style.color = "#4caf50";
-    msg.textContent = "Registered successfully!";
-    setTimeout(() => location.href = "login.html", 1200);
+    msg.textContent = "Registered successfully! Redirecting...";
+    setTimeout(() => location.href = "login.html", 1000);
 
-  } catch {
+  } catch (err) {
     msg.style.color = "red";
-    msg.textContent = "Registration failed";
+    msg.textContent = "Network error: " + err.message;
   }
 });
 </script>
