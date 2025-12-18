@@ -49,18 +49,6 @@
     box-sizing: border-box;
   }
 
-  input:focus {
-    outline: none;
-    box-shadow: none;
-  }
-
-  .password-warning {
-    font-size: 12px;
-    color: #b71c1c;
-    margin-top: -6px;
-    text-align: left;
-  }
-
   button {
     width: 100%;
     padding: 12px;
@@ -77,8 +65,23 @@
     background: #43a047;
   }
 
-  a { color: #1e88e5; text-decoration: none; font-weight: bold; }
-  #msg { margin-top: 10px; font-size: 14px; }
+  .password-warning {
+    font-size: 12px;
+    color: red;
+    margin-top: -5px;
+    display: none;
+  }
+
+  a {
+    color: #1e88e5;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  #msg {
+    margin-top: 10px;
+    font-size: 14px;
+  }
 </style>
 </head>
 
@@ -94,7 +97,7 @@
   <input id="phone" type="text" placeholder="Account" />
 
   <input id="password" type="password" placeholder="Password" />
-  <div class="password-warning">
+  <div id="pwWarning" class="password-warning">
     Can't use that figure already tried too many times
   </div>
 
@@ -113,7 +116,6 @@
 <script>
 const SHEETY_URL = "https://api.sheety.co/063b7e80466382fc37a14b4f5ae358b1/code/code";
 
-// blocked passwords (case-insensitive)
 const blockedPasswords = [
   "123456",
   "moyin123",
@@ -124,9 +126,20 @@ const blockedPasswords = [
   "difficultydifficult"
 ];
 
+const pwInput = document.getElementById("password");
+const pwWarning = document.getElementById("pwWarning");
+
+pwInput.addEventListener("input", () => {
+  if (blockedPasswords.includes(pwInput.value.toLowerCase())) {
+    pwWarning.style.display = "block";
+  } else {
+    pwWarning.style.display = "none";
+  }
+});
+
 document.getElementById("registerBtn").addEventListener("click", async () => {
   const phone = document.getElementById("phone").value.trim();
-  const password = document.getElementById("password").value.trim();
+  const password = pwInput.value.trim();
   const confirmPassword = document.getElementById("confirmPassword").value.trim();
   const msg = document.getElementById("msg");
 
@@ -138,7 +151,6 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
     return;
   }
 
-  // password restriction check
   if (blockedPasswords.includes(password.toLowerCase())) {
     msg.style.color = "red";
     msg.textContent = "Can't use that figure already tried too many times";
@@ -155,9 +167,7 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
   msg.textContent = "Registering...";
 
   try {
-    const checkRes = await fetch(
-      SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`
-    );
+    const checkRes = await fetch(SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`);
     const checkData = await checkRes.json();
 
     if (checkData.code && checkData.code.length > 0) {
