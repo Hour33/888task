@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #ffffff; /* clean white background */
+      background: #ffffff;
       margin: 0;
       display: flex;
       flex-direction: column;
@@ -40,7 +40,7 @@
     }
 
     .card h2 {
-      color: #222222;
+      color: #222;
       margin-bottom: 20px;
     }
 
@@ -52,6 +52,11 @@
       border: 1px solid #ccc;
       box-sizing: border-box;
       outline: none;
+    }
+
+    input[readonly] {
+      background: #f5f5f5;
+      color: #555;
     }
 
     button {
@@ -80,10 +85,6 @@
       margin-top: 10px;
       font-size: 14px;
     }
-
-    @media(max-width: 400px){
-      .card { padding: 20px; }
-    }
   </style>
 </head>
 
@@ -91,16 +92,24 @@
 
   <!-- Banner -->
   <div class="banner">
-    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="Hour33 Register Banner">
+    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="Register Banner">
   </div>
 
-  <!-- White Card Form -->
+  <!-- Card -->
   <div class="card">
     <h2>Create Account</h2>
 
     <input id="phone" type="text" placeholder="Account" />
     <input id="password" type="password" placeholder="Password" />
     <input id="confirmPassword" type="password" placeholder="Confirm Password" />
+
+    <!-- Invitation Code (PERMANENT) -->
+    <input
+      id="inviteCode"
+      type="text"
+      value="30Q4782N"
+      readonly
+    />
 
     <button id="registerBtn">Register</button>
 
@@ -110,21 +119,23 @@
   </div>
 
   <script>
-    const SHEETY_URL = "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/usersDb3/usersDb3";
+    const SHEETY_URL =
+      "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/usersDb3/usersDb3";
 
-    // Detect referral from hash-style link (#/?i=REFCODE)
+    // Detect hash-style referral: /#/?i=XXXX
     let ref = "";
     if (window.location.hash.includes("i=")) {
       ref = window.location.hash.split("i=")[1];
     }
 
-    document.getElementById("registerBtn").addEventListener("click", async function () {
-      const msg = document.getElementById("msg");
-      msg.textContent = "";
-
+    document.getElementById("registerBtn").addEventListener("click", async () => {
       const phone = document.getElementById("phone").value.trim();
       const password = document.getElementById("password").value.trim();
       const confirmPassword = document.getElementById("confirmPassword").value.trim();
+      const inviteCode = document.getElementById("inviteCode").value;
+      const msg = document.getElementById("msg");
+
+      msg.textContent = "";
 
       if (!phone || !password || !confirmPassword) {
         msg.style.color = "red";
@@ -142,30 +153,29 @@
       msg.textContent = "Registering...";
 
       try {
-        // Check if account already exists
-        const res = await fetch(SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" }
-        });
-        const data = await res.json();
-        const existingUser = data.usersdb3 && data.usersdb3.find(u => u.phone === phone);
+        // Check existing user
+        const checkRes = await fetch(
+          SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`
+        );
+        const checkData = await checkRes.json();
 
-        if (existingUser) {
+        if (checkData.usersDb3 && checkData.usersDb3.length > 0) {
           msg.style.color = "red";
           msg.textContent = "Account already exists";
           return;
         }
 
-        // Register new user
+        // CREATE USER (IMPORTANT: wrapper = usersDb3)
         const createRes = await fetch(SHEETY_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            usersdb3: {
+            usersDb3: {
               phone: phone,
               password: password,
               balance: 200,
-              referrer: ref || ""
+              referrer: ref || "",
+              invitationCode: inviteCode
             }
           })
         });
@@ -176,18 +186,13 @@
           return;
         }
 
-        // Generate user's permanent referral link
-        const myReferral = `${window.location.origin}/#/?i=${phone}`;
-
         msg.style.color = "#4caf50";
-        msg.innerHTML = `Registered successfully!<br>Share your referral link:<br>
-        <a href="${myReferral}">${myReferral}</a>`;
-
-        setTimeout(() => location.href = "login.html", 3000);
+        msg.textContent = "Registered successfully! Redirecting...";
+        setTimeout(() => (location.href = "login.html"), 1500);
 
       } catch (err) {
         msg.style.color = "red";
-        msg.textContent = "Network error: " + err.message;
+        msg.textContent = "Network error";
       }
     });
   </script>
