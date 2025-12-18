@@ -96,7 +96,7 @@
     <input id="password" type="password" placeholder="Password" />
     <input id="confirmPassword" type="password" placeholder="Confirm Password" />
 
-    <!-- Invitation Code (UI ONLY for now) -->
+    <!-- Invitation code (visual only) -->
     <input type="text" value="30Q4782N" readonly />
 
     <button id="registerBtn">Register</button>
@@ -110,11 +110,13 @@
     const SHEETY_URL =
       "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/usersDb3/usersDb3";
 
-    document.getElementById("registerBtn").onclick = async () => {
-      const phone = phone.value.trim();
-      const password = password.value.trim();
-      const confirmPassword = confirmPassword.value.trim();
+    document.getElementById("registerBtn").addEventListener("click", async () => {
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
       const msg = document.getElementById("msg");
+
+      msg.textContent = "";
 
       if (!phone || !password || !confirmPassword) {
         msg.style.color = "red";
@@ -132,19 +134,19 @@
       msg.textContent = "Registering...";
 
       try {
-        // Check existing user
-        const check = await fetch(
+        // check if user exists
+        const checkRes = await fetch(
           SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`
         );
-        const checkData = await check.json();
+        const checkData = await checkRes.json();
 
-        if (checkData.usersDb3.length > 0) {
+        if (checkData.usersDb3 && checkData.usersDb3.length > 0) {
           msg.style.color = "red";
           msg.textContent = "Account already exists";
           return;
         }
 
-        // CREATE USER (ONLY EXISTING COLUMNS)
+        // create user
         const res = await fetch(SHEETY_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -157,17 +159,17 @@
           })
         });
 
-        if (!res.ok) throw new Error();
+        if (!res.ok) throw new Error("POST failed");
 
         msg.style.color = "#4caf50";
         msg.textContent = "Registered successfully!";
         setTimeout(() => location.href = "login.html", 1200);
 
-      } catch {
+      } catch (e) {
         msg.style.color = "red";
         msg.textContent = "Registration failed";
       }
-    };
+    });
   </script>
 
 </body>
