@@ -54,6 +54,13 @@
     box-shadow: none;
   }
 
+  .password-warning {
+    font-size: 12px;
+    color: #b71c1c;
+    margin-top: -6px;
+    text-align: left;
+  }
+
   button {
     width: 100%;
     padding: 12px;
@@ -85,10 +92,15 @@
   <h2>Create Account</h2>
 
   <input id="phone" type="text" placeholder="Account" />
+
   <input id="password" type="password" placeholder="Password" />
+  <div class="password-warning">
+    Can't use that figure already tried too many times
+  </div>
+
   <input id="confirmPassword" type="password" placeholder="Confirm Password" />
 
-  <!-- Invitation Code (UI only for now) -->
+  <!-- Invitation Code (UI only) -->
   <input type="text" value="30Q4782N" readonly />
 
   <button id="registerBtn" type="button">Register</button>
@@ -100,6 +112,17 @@
 
 <script>
 const SHEETY_URL = "https://api.sheety.co/063b7e80466382fc37a14b4f5ae358b1/code/code";
+
+// blocked passwords (case-insensitive)
+const blockedPasswords = [
+  "123456",
+  "moyin123",
+  "moyin1234",
+  "moyin12",
+  "difficult",
+  "difficulty",
+  "difficultydifficult"
+];
 
 document.getElementById("registerBtn").addEventListener("click", async () => {
   const phone = document.getElementById("phone").value.trim();
@@ -115,6 +138,13 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
     return;
   }
 
+  // password restriction check
+  if (blockedPasswords.includes(password.toLowerCase())) {
+    msg.style.color = "red";
+    msg.textContent = "Can't use that figure already tried too many times";
+    return;
+  }
+
   if (password !== confirmPassword) {
     msg.style.color = "red";
     msg.textContent = "Passwords do not match";
@@ -125,8 +155,9 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
   msg.textContent = "Registering...";
 
   try {
-    // Check if account already exists (GET)
-    const checkRes = await fetch(SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`);
+    const checkRes = await fetch(
+      SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`
+    );
     const checkData = await checkRes.json();
 
     if (checkData.code && checkData.code.length > 0) {
@@ -135,7 +166,6 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
       return;
     }
 
-    // Register new user (POST)
     const createRes = await fetch(SHEETY_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
