@@ -1,127 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Register | Hour33</title>
 
 <style>
-body{
-  font-family: Arial, sans-serif;
-  background:#fff;
-  margin:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-.banner{width:100%;max-width:500px;margin-top:20px}
-.banner img{width:100%;border-radius:12px}
-.card{
-  background:#fff;
-  padding:25px;
-  border-radius:20px;
-  box-shadow:0 6px 18px rgba(0,0,0,.1);
-  width:90%;
-  max-width:400px;
-  margin-top:-25px;
-  text-align:center;
-  border:1px solid #ccc;
-}
-input{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:8px;
-  border:1px solid #ccc;
-}
-button{
-  width:100%;
-  padding:12px;
-  background:#4caf50;
-  color:#fff;
-  border:none;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
-}
-input[readonly]{background:#f5f5f5}
-#msg{margin-top:10px;font-size:14px}
-a{color:#1e88e5;text-decoration:none;font-weight:bold}
+  body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .banner {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+  }
+
+  .banner img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+  }
+
+  .card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 400px;
+    margin-top: -25px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+
+  .card h2 {
+    color: #222;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    outline: none;          /* 🔥 remove black line */
+  }
+
+  input:focus {
+    outline: none;
+    box-shadow: none;       /* 🔥 remove mobile highlight */
+  }
+
+  input[readonly] {
+    background: #f5f5f5;
+    color: #555;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    outline: none;
+  }
+
+  button:focus {
+    outline: none;          /* 🔥 remove tap outline */
+  }
+
+  a {
+    color: #1e88e5;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  #msg {
+    margin-top: 10px;
+    font-size: 14px;
+  }
 </style>
 </head>
 
 <body>
 
 <div class="banner">
-<img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png">
+  <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="Register Banner">
 </div>
 
 <div class="card">
-<h2>Create Account</h2>
+  <h2>Create Account</h2>
 
-<input id="phone" placeholder="Account">
-<input id="password" type="password" placeholder="Password">
-<input id="confirmPassword" type="password" placeholder="Confirm Password">
+  <input id="phone" type="text" placeholder="Account" />
+  <input id="password" type="password" placeholder="Password" />
+  <input id="confirmPassword" type="password" placeholder="Confirm Password" />
 
-<input value="30Q4782N" readonly>
+  <!-- Invitation Code (permanent, visual for now) -->
+  <input type="text" value="30Q4782N" readonly />
 
-<!-- 🔥 IMPORTANT FIX -->
-<button id="registerBtn" type="button">Register</button>
+  <button id="registerBtn" type="button">Register</button>
 
-<p>Already have an account? <a href="login.html">Login</a></p>
-<div id="msg"></div>
+  <p>Already have an account? <a href="login.html">Login</a></p>
+  <div id="msg"></div>
 </div>
 
 <script>
-const SHEETY_URL="https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/usersDb3/usersDb3";
+const SHEETY_URL =
+  "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/usersDb3/usersDb3";
 
-document.getElementById("registerBtn").onclick=async()=>{
-  const phone=document.getElementById("phone").value.trim();
-  const password=document.getElementById("password").value.trim();
-  const confirm=document.getElementById("confirmPassword").value.trim();
-  const msg=document.getElementById("msg");
+document.getElementById("registerBtn").addEventListener("click", async () => {
+  const msg = document.getElementById("msg");
+  msg.textContent = "";
 
-  if(!phone||!password||!confirm){
-    msg.style.color="red";
-    msg.textContent="Fill all fields";
+  const phone = document.getElementById("phone").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+  if (!phone || !password || !confirmPassword) {
+    msg.style.color = "red";
+    msg.textContent = "Please fill all fields";
     return;
   }
-  if(password!==confirm){
-    msg.style.color="red";
-    msg.textContent="Passwords do not match";
+
+  if (password !== confirmPassword) {
+    msg.style.color = "red";
+    msg.textContent = "Passwords do not match";
     return;
   }
 
-  msg.style.color="#4caf50";
-  msg.textContent="Registering...";
+  msg.style.color = "#4caf50";
+  msg.textContent = "Registering...";
 
-  try{
-    const check=await fetch(SHEETY_URL+`?filter[phone]=${encodeURIComponent(phone)}`);
-    const checkData=await check.json();
-    if(checkData.usersDb3.length){
-      msg.style.color="red";
-      msg.textContent="Account already exists";
+  try {
+    // check existing user
+    const checkRes = await fetch(
+      SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`
+    );
+    const data = await checkRes.json();
+
+    if (data.usersDb3 && data.usersDb3.length > 0) {
+      msg.style.color = "red";
+      msg.textContent = "Account already exists";
       return;
     }
 
-    const res=await fetch(SHEETY_URL,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        usersDb3:{phone,password,balance:200}
+    // create user
+    const createRes = await fetch(SHEETY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        usersDb3: {
+          phone: phone,
+          password: password,
+          balance: 200
+        }
       })
     });
 
-    if(!res.ok) throw "";
+    if (!createRes.ok) throw new Error();
 
-    msg.textContent="Registered successfully!";
-    setTimeout(()=>location.href="login.html",1200);
+    msg.style.color = "#4caf50";
+    msg.textContent = "Registered successfully!";
+    setTimeout(() => location.href = "login.html", 1200);
 
-  }catch{
-    msg.style.color="red";
-    msg.textContent="Registration failed";
+  } catch {
+    msg.style.color = "red";
+    msg.textContent = "Registration failed";
   }
-};
+});
 </script>
 
 </body>
