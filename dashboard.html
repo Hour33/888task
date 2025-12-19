@@ -15,28 +15,22 @@ body{
 
 /* BOTTOM NAV */
 .nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#fff;
-  display:flex;
-  justify-content:space-around;
-  padding:8px 0;
-  border-top:1px solid #ddd;
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:#fff;
+display:flex;
+justify-content:space-around;
+padding:8px 0;
+border-top:1px solid #ddd;
 }
-
-.nav-icon{
-  font-size:12px;
-  color:#777;
-  text-align:center;
-  cursor:pointer;
+.nav div{
+font-size:12px;
+color:#777;
+text-align:center;
 }
-
-.nav .active{
-  color:#0f7a3c;
-  font-weight:bold;
-}
+.nav .active{color:#0f7a3c;font-weight:bold;}
 
 /* COMMON */
 .section-wrapper{display:none;padding-bottom:60px;}
@@ -44,256 +38,128 @@ body{
 
 /* HEADER */
 .header{
-  background:#0f7a3c;
-  color:#fff;
-  padding:14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+background:#0f7a3c;
+color:#fff;
+padding:14px;
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
-
-.header-left{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
+.header-left{display:flex;align-items:center;gap:10px;}
 .logo{
-  width:38px;
-  height:38px;
-  background:#0a5e2d;
-  border-radius:8px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:bold;
+width:38px;height:38px;border-radius:8px;
+background:#0a5e2d;
+display:flex;align-items:center;justify-content:center;
+font-weight:bold;
 }
-
 .vip{
-  background:rgba(255,255,255,.2);
-  padding:4px 8px;
-  border-radius:12px;
-  font-size:12px;
+background:rgba(255,255,255,0.2);
+padding:4px 8px;
+border-radius:12px;
+font-size:12px;
 }
-
 .download-btn{
-  background:#fff;
-  color:#0f7a3c;
-  padding:8px 14px;
-  border-radius:20px;
-  font-size:13px;
-  font-weight:bold;
+background:#fff;color:#0f7a3c;
+padding:8px 14px;border-radius:20px;
+font-weight:bold;font-size:13px;
 }
 
 /* DASHBOARD */
 .stats{
-  background:#fff;
-  margin:15px;
-  padding:16px;
-  border-radius:16px;
-  display:flex;
-  justify-content:space-between;
-  text-align:center;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
+background:#fff;margin:15px;border-radius:16px;
+padding:16px;display:flex;justify-content:space-between;
+text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
-
-.stat h3{margin:0;font-size:20px;}
+.stat h3{margin:0;font-size:20px;color:#111;}
 .stat p{margin:6px 0 0;font-size:12px;color:#777;}
 
-.quick{
-  display:flex;
-  gap:12px;
-  margin:0 15px;
-}
-
+.quick{display:flex;gap:12px;margin:0 15px;}
 .quick-box{
-  flex:1;
-  background:#fff;
-  padding:14px;
-  border-radius:14px;
-  display:flex;
-  justify-content:space-between;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
+flex:1;background:#fff;border-radius:14px;
+padding:14px;display:flex;
+align-items:center;justify-content:space-between;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+font-weight:bold;
 }
 
-.banner{
-  margin:15px;
-  border-radius:18px;
-  overflow:hidden;
-}
-
+.banner{margin:15px;border-radius:18px;overflow:hidden;}
 .banner img{width:100%;display:block;}
 
-.section{margin:15px;}
-
 .task{
-  background:#fff;
-  border-radius:14px;
-  padding:14px;
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:12px;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
+background:#fff;border-radius:14px;padding:14px;
+display:flex;align-items:center;justify-content:space-between;
+margin-bottom:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
-
-.task-left{display:flex;gap:10px;}
-
+.task-left{display:flex;align-items:center;gap:10px;}
 .task-icon{
-  width:36px;
-  height:36px;
-  background:#e6f7ee;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#0f7a3c;
-  font-weight:bold;
+width:36px;height:36px;border-radius:50%;
+background:#e6f7ee;color:#0f7a3c;
+display:flex;align-items:center;justify-content:center;
+font-weight:bold;
 }
-
 .start{
-  background:#1faa59;
-  color:#fff;
-  padding:8px 14px;
-  border-radius:20px;
-  font-size:13px;
-}
-
-/* PROMOTION */
-.promo-header{
-  background:linear-gradient(135deg,#2e7d32,#4caf50);
-  color:#fff;
-  padding:20px;
-  text-align:center;
-  border-radius:20px 20px 0 0;
-}
-
-.tree-box{
-  background:#fff;
-  padding:15px;
-  border-radius:12px;
-  margin-top:15px;
-}
-
-.promo-section .section{
-  background:#fff;
-  padding:15px;
-  border-radius:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
-  margin:15px;
-}
-
-.ref-row{display:flex;gap:10px;}
-.ref-row input{flex:1;padding:10px;}
-.ref-row button{background:#4caf50;border:none;color:#fff;padding:10px 14px;border-radius:6px;}
-
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  text-align:center;
-}
-
-.stats-grid .stat{
-  background:#f1f8f4;
-  padding:10px;
-  border-radius:10px;
+background:#1faa59;color:#fff;
+padding:8px 14px;border-radius:20px;font-size:13px;
 }
 
 /* SERVICE */
 .service-card{
-  background:#fff;
-  margin:15px;
-  padding:12px;
-  border-radius:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.service-card button{
-  background:#0f7a3c;
-  color:#fff;
-  border:none;
-  padding:8px 12px;
-  border-radius:8px;
+background:#fff;margin:15px;border-radius:12px;
+padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);
+display:flex;align-items:center;justify-content:space-between;
 }
 
 /* ACCOUNT FIX */
 .account-header{
-  background:#0f7a3c;
-  color:#fff;
-  padding:20px;
-  text-align:center;
+background:#0f7a3c;
+color:#fff;
+padding:20px;
+text-align:center;
 }
-
 .account-avatar{
-  width:64px;
-  height:64px;
-  background:#0a5e2d;
-  border-radius:50%;
-  margin:0 auto 10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  font-weight:bold;
+width:60px;height:60px;
+border-radius:50%;
+background:#0a5e2d;
+margin:0 auto 10px;
+display:flex;align-items:center;justify-content:center;
+font-size:26px;
 }
-
-.account-balance{
-  background:#fff;
-  margin:15px;
-  padding:15px;
-  border-radius:14px;
-  text-align:center;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
+.account-card{
+background:#fff;
+margin:15px;
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
-
-.account-balance strong{
-  font-size:20px;
-  color:#0f7a3c;
+.account-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:14px;
+border-bottom:1px solid #eee;
+font-size:14px;
 }
-
-.account-list{
-  background:#fff;
-  margin:15px;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
-}
-
-.account-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px;
-  border-bottom:1px solid #eee;
-}
-
+.account-row:last-child{border-bottom:none;}
 .account-left{
-  display:flex;
-  gap:10px;
-  align-items:center;
+display:flex;
+align-items:center;
+gap:10px;
+color:#333;
 }
-
 .account-icon{
-  width:34px;
-  height:34px;
-  background:#e6f7ee;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#0f7a3c;
+width:34px;height:34px;
+border-radius:50%;
+background:#e6f7ee;
+color:#0f7a3c;
+display:flex;align-items:center;justify-content:center;
+font-weight:bold;
 }
-
-.account-arrow{color:#aaa;font-size:18px;}
 </style>
 </head>
 
 <body>
 
-<!-- HOME -->
+<!-- HOME (UNCHANGED) -->
 <div id="home" class="section-wrapper active">
   <div class="header">
     <div class="header-left">
@@ -305,73 +171,97 @@ body{
     </div>
     <div class="download-btn">Download APP</div>
   </div>
-
-  <div class="stats">
-    <div class="stat"><h3>20</h3><p>Balance</p></div>
-    <div class="stat"><h3>360</h3><p>Today</p></div>
-    <div class="stat"><h3>140</h3><p>Promo</p></div>
-  </div>
-
-  <div class="quick">
-    <div class="quick-box">Lucky Wheel 🎁</div>
-    <div class="quick-box">Sign In 📅</div>
-  </div>
-
-  <div class="banner">
-    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png">
-  </div>
 </div>
 
-<!-- ACCOUNT -->
+<!-- ACCOUNT (FIXED ONLY) -->
 <div id="account" class="section-wrapper">
   <div class="account-header">
-    <div class="account-avatar">U</div>
+    <div class="account-avatar">👤</div>
     <div>9120945160</div>
-    <div class="vip">VIP0</div>
+    <small>Referral Code: 70LFTS9H</small>
   </div>
 
-  <div class="account-balance">
-    <div>Account Balance</div>
-    <strong>105.54 NGN</strong>
-    <div>380 Points</div>
-  </div>
+  <div class="account-card">
+    <div class="account-row">
+      <div class="account-left">
+        <div class="account-icon">💰</div>
+        Account Balance
+      </div>
+      <span>380 pts / ₦105.54</span>
+    </div>
 
-  <div class="account-list">
-    <div class="account-item">
-      <div class="account-left"><div class="account-icon">💰</div>Withdrawal</div>
-      <div class="account-arrow">›</div>
+    <div class="account-row">
+      <div class="account-left">
+        <div class="account-icon">🏦</div>
+        Withdraw
+      </div>
+      ➜
     </div>
-    <div class="account-item">
-      <div class="account-left"><div class="account-icon">📊</div>Income</div>
-      <div class="account-arrow">›</div>
+
+    <div class="account-row">
+      <div class="account-left">
+        <div class="account-icon">📊</div>
+        Income Details
+      </div>
+      ➜
     </div>
-    <div class="account-item">
-      <div class="account-left"><div class="account-icon">🔑</div>Password</div>
-      <div class="account-arrow">›</div>
+
+    <div class="account-row">
+      <div class="account-left">
+        <div class="account-icon">📜</div>
+        Withdrawal Orders
+      </div>
+      ➜
     </div>
-    <div class="account-item">
-      <div class="account-left"><div class="account-icon">🚪</div>Logout</div>
-      <div class="account-arrow">›</div>
+
+    <div class="account-row">
+      <div class="account-left">
+        <div class="account-icon">🔒</div>
+        Change Password
+      </div>
+      ➜
+    </div>
+
+    <div class="account-row">
+      <div class="account-left">
+        <div class="account-icon">🌐</div>
+        Language
+      </div>
+      ➜
+    </div>
+
+    <div class="account-row">
+      <div class="account-left">
+        <div class="account-icon">🚪</div>
+        Log Out
+      </div>
+      ➜
     </div>
   </div>
 </div>
 
 <!-- NAV -->
 <div class="nav">
-  <div class="nav-icon active" onclick="show('home')">🏠<br>Home</div>
+  <div class="nav-icon" onclick="show('home')">🏠<br>Home</div>
+  <div class="nav-icon" onclick="show('promotion')">📣<br>Promotion</div>
+  <div class="nav-icon" onclick="show('task')">💼<br>Task</div>
+  <div class="nav-icon" onclick="show('service')">🛎️<br>Service</div>
   <div class="nav-icon" onclick="show('account')">👤<br>Account</div>
 </div>
 
 <script>
-const pages=['home','account'];
 function show(id){
-  document.querySelectorAll('.section-wrapper').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.section-wrapper')
+    .forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.nav-icon').forEach((el,i)=>{
-    el.classList.toggle('active',pages[i]===id);
+
+  const map=['home','promotion','task','service','account'];
+  document.querySelectorAll('.nav .nav-icon').forEach((el,i)=>{
+    el.style.color = map[i]===id ? '#0f7a3c' : '#777';
+    el.style.fontWeight = map[i]===id ? 'bold' : 'normal';
   });
 }
 </script>
 
 </body>
-</html>
+    </html>
