@@ -3,315 +3,228 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Task888 SPA</title>
+<title>Account | Hour33</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f3f4f6;
-  padding-bottom:70px;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  padding-bottom: 70px;
 }
 
-/* BOTTOM NAV */
-.nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#fff;
-  display:flex;
-  justify-content:space-around;
-  padding:8px 0;
-  border-top:1px solid #ddd;
-}
-.nav div{
-  font-size:12px;
-  color:#777;
-  text-align:center;
-}
-.nav .active{color:#0f7a3c;font-weight:bold;}
-
-/* COMMON */
-.section-wrapper{display:none;padding-bottom:60px;}
-.section-wrapper.active{display:block;}
-
-/* HEADER */
-.header{
-  background:#0f7a3c;
-  color:#fff;
-  padding:14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.header-left{display:flex;align-items:center;gap:10px;}
-.logo{
-  width:38px;height:38px;border-radius:8px;
-  background:#0a5e2d;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:bold;
-}
-.vip{
-  background:rgba(255,255,255,0.2);
-  padding:4px 8px;border-radius:12px;font-size:12px;
-}
-.download-btn{
-  background:#fff;color:#0f7a3c;
-  padding:8px 14px;border-radius:20px;
-  font-weight:bold;font-size:13px;
+/* ===== HEADER ===== */
+.header {
+  background: #ffffff;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-/* HOME */
-.stats{
-  background:#fff;margin:15px;border-radius:16px;
-  padding:16px;display:flex;justify-content:space-between;
-  text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.08);
-}
-.stat h3{margin:0;font-size:20px;}
-.stat p{margin:6px 0 0;font-size:12px;color:#777;}
-
-.quick{display:flex;gap:12px;margin:0 15px;}
-.quick-box{
-  flex:1;background:#fff;border-radius:14px;padding:14px;
-  display:flex;justify-content:space-between;align-items:center;
-  box-shadow:0 4px 10px rgba(0,0,0,0.08);
-  font-weight:bold;
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ddd;
 }
 
-.banner{margin:15px;border-radius:18px;overflow:hidden;}
-.banner img{width:100%;display:block;}
-
-.task{
-  background:#fff;border-radius:14px;padding:14px;
-  display:flex;justify-content:space-between;align-items:center;
-  margin:15px;box-shadow:0 4px 10px rgba(0,0,0,0.08);
-}
-.task-left{display:flex;gap:10px;align-items:center;}
-.task-icon{
-  width:36px;height:36px;border-radius:50%;
-  background:#e6f7ee;color:#0f7a3c;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:bold;
-}
-.start{
-  background:#1faa59;color:#fff;
-  padding:8px 14px;border-radius:20px;
-  font-size:13px;
+.user-info h3 {
+  margin: 0;
+  font-size: 16px;
 }
 
-/* PROMOTION */
-.promo-header{
-  background:linear-gradient(135deg,#2e7d32,#4caf50);
-  color:#fff;padding:20px;text-align:center;
-}
-.section{
-  background:#fff;margin:15px;padding:15px;
-  border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-.ref-row{display:flex;gap:10px;}
-.ref-row input{flex:1;padding:10px;border-radius:6px;border:1px solid #ccc;}
-.ref-row button{background:#4caf50;border:none;color:#fff;padding:10px 14px;border-radius:6px;font-weight:bold;}
-
-.stats-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:10px;text-align:center;
-}
-.stats-grid .stat{
-  background:#f1f8f4;padding:10px;border-radius:10px;
+.user-info span {
+  font-size: 12px;
+  color: #666;
 }
 
-.share{display:flex;justify-content:space-around;}
-.share div{text-align:center;font-size:12px;}
-
-.rules p{font-size:13px;color:#555;line-height:1.6;}
-
-/* TASK */
-.task-note{color:red;margin:15px;font-size:13px;}
-
-/* SERVICE */
-.service-card{
-  background:#fff;margin:15px;border-radius:12px;padding:12px;
-  display:flex;align-items:center;justify-content:space-between;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-.service-card img{width:60px;height:60px;border-radius:8px;}
-.service-card button{
-  background:#0f7a3c;color:#fff;border:none;
-  padding:8px 12px;border-radius:8px;
+/* ===== BALANCE CARD ===== */
+.balance-card {
+  margin: 15px;
+  background: linear-gradient(135deg, #0b7a3c, #0f9d58);
+  color: #fff;
+  border-radius: 14px;
+  padding: 18px;
 }
 
-/* ACCOUNT */
-.account-card{
-  background:#fff;margin:15px;border-radius:12px;
-  padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.05);
+.balance-card small {
+  opacity: 0.9;
 }
-.acc-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:12px 4px;border-bottom:1px solid #eee;
+
+.balance-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
-.acc-row:last-child{border-bottom:none;}
-.acc-row span{color:#999;}
+
+.balance-main h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.balance-main span {
+  font-size: 14px;
+}
+
+/* ===== LIST SECTION ===== */
+.list {
+  background: #fff;
+  margin: 15px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+}
+
+.purple { background: #7e57c2; }
+.blue { background: #42a5f5; }
+.orange { background: #ffa726; }
+.red { background: #ef5350; }
+.green { background: #66bb6a; }
+
+.arrow {
+  color: #aaa;
+}
+
+/* ===== LOGOUT ===== */
+.logout {
+  text-align: center;
+  margin-top: 20px;
+  color: #999;
+  font-size: 14px;
+}
+
+/* ===== BOTTOM NAV ===== */
+.nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 12px;
+  color: #777;
+  text-align: center;
+}
+
+.nav a.active {
+  color: #0f9d58;
+  font-weight: bold;
+}
 </style>
 </head>
 
 <body>
 
-<!-- HOME -->
-<div id="home" class="section-wrapper active">
-  <div class="header">
-    <div class="header-left">
-      <div class="logo">t88</div>
-      <div>
-        <div>task888</div>
-        <div class="vip">VIP0</div>
-      </div>
-    </div>
-    <div class="download-btn">Download APP</div>
-  </div>
-
-  <div class="stats">
-    <div class="stat"><h3>20</h3><p>Account balance</p></div>
-    <div class="stat"><h3>360</h3><p>Today's earnings</p></div>
-    <div class="stat"><h3>140</h3><p>Today's promotion</p></div>
-  </div>
-
-  <div class="quick">
-    <div class="quick-box">Lucky wheel 🎁</div>
-    <div class="quick-box">Sign in calendar 📅</div>
-  </div>
-
-  <div class="banner">
-    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png">
-  </div>
-
-  <div class="task">
-    <div class="task-left">
-      <div class="task-icon">W</div>
-      <div>
-        <strong>Automatic scoring task NO.1</strong>
-        <div style="font-size:12px;color:#777;">180 pts</div>
-      </div>
-    </div>
-    <div class="start">Start</div>
+<!-- ===== USER HEADER ===== -->
+<div class="header">
+  <div class="avatar"></div>
+  <div class="user-info">
+    <h3>9120945160</h3>
+    <span>Referral code: 70LFTS9H</span>
   </div>
 </div>
 
-<!-- PROMOTION -->
-<div id="promotion" class="section-wrapper">
-  <div class="promo-header">
-    <h2>Cash Rewards</h2>
-  </div>
-
-  <div class="section">
-    <h3>Suggested Link</h3>
-    <div class="ref-row">
-      <input value="https://task888.onrender.com/#/?i=30Q4782N" readonly>
-      <button>Copy</button>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>Invitation Code</h3>
-    <div class="ref-row">
-      <input value="30Q4782N" readonly>
-      <button>Copy</button>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>Invitation Income</h3>
-    <div class="stats-grid">
-      <div class="stat"><strong>₦1800</strong><br>Total</div>
-      <div class="stat"><strong>₦40</strong><br>Today</div>
-      <div class="stat"><strong>₦0</strong><br>Yesterday</div>
-    </div>
-  </div>
-</div>
-
-<!-- TASK -->
-<div id="task" class="section-wrapper">
-  <div class="task">
-    <div class="task-left">
-      <div class="task-icon">W</div>
-      <div>
-        <strong>WhatsApp Task</strong>
-        <div style="font-size:12px;color:#777;">180 pts per task</div>
-      </div>
-    </div>
-    <div class="start">Start</div>
-  </div>
-  <div class="task-note">
-    * Tasks cannot run simultaneously.
-  </div>
-</div>
-
-<!-- SERVICE -->
-<div id="service" class="section-wrapper">
-  <div class="service-card">
-    <img src="https://i.postimg.cc/MHt5sLZ4/name-c152f16f.png">
+<!-- ===== BALANCE ===== -->
+<div class="balance-card">
+  <small>Account balance</small>
+  <div class="balance-main">
     <div>
-      <strong>Online Customer Service</strong>
-      <div style="font-size:12px;color:#777;">We are here to help</div>
+      <h1>100</h1>
+      <span>30.54 NGN</span>
     </div>
-    <button>Consult</button>
+    <div>⇅</div>
   </div>
 </div>
 
-<!-- ACCOUNT -->
-<div id="account" class="section-wrapper">
-  <div class="account-card" style="display:flex;gap:12px;align-items:center;">
-    <div style="width:48px;height:48px;border-radius:50%;
-                background:#0f7a3c;color:#fff;
-                display:flex;align-items:center;justify-content:center;">
-      👤
+<!-- ===== MENU LIST ===== -->
+<div class="list">
+  <div class="list-item">
+    <div class="list-left">
+      <div class="icon purple">💳</div>
+      <span>Account withdrawal</span>
     </div>
-    <div>
-      <strong>9120945160</strong>
-      <div style="font-size:12px;color:#777;">Referral code: 70LFTS9H</div>
-    </div>
+    <div class="arrow">›</div>
   </div>
 
-  <div class="account-card">
-    <strong>Balance</strong>
-    <div style="margin-top:6px;color:#0f7a3c;font-weight:bold;">
-      380 points / ₦105.54
+  <div class="list-item">
+    <div class="list-left">
+      <div class="icon blue">📄</div>
+      <span>Income details</span>
     </div>
+    <div class="arrow">›</div>
   </div>
 
-  <div class="account-card">
-    <div class="acc-row">💰 Account withdrawal <span>›</span></div>
-    <div class="acc-row">📊 Income details <span>›</span></div>
-    <div class="acc-row">📄 Withdrawal order <span>›</span></div>
-    <div class="acc-row">🔒 Change password <span>›</span></div>
-    <div class="acc-row">🌐 Language settings <span>›</span></div>
+  <div class="list-item">
+    <div class="list-left">
+      <div class="icon orange">🧾</div>
+      <span>Withdrawal order</span>
+    </div>
+    <div class="arrow">›</div>
   </div>
 
-  <div class="account-card" style="text-align:center;color:red;font-weight:bold;">
-    🚪 Log out
+  <div class="list-item">
+    <div class="list-left">
+      <div class="icon red">🔒</div>
+      <span>Change password</span>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+  <div class="list-item">
+    <div class="list-left">
+      <div class="icon green">🌐</div>
+      <span>Language settings</span>
+    </div>
+    <div class="arrow">›</div>
   </div>
 </div>
 
-<!-- NAV -->
+<div class="logout">Log out</div>
+
+<!-- ===== BOTTOM NAV ===== -->
 <div class="nav">
-  <div class="nav-icon active" onclick="show('home')">🏠<br>Home</div>
-  <div class="nav-icon" onclick="show('promotion')">📣<br>Promotion</div>
-  <div class="nav-icon" onclick="show('task')">💼<br>Task</div>
-  <div class="nav-icon" onclick="show('service')">🛎️<br>Service</div>
-  <div class="nav-icon" onclick="show('account')">👤<br>Account</div>
+  <a href="dashboard.html">🏠<br>Home</a>
+  <a href="promotion.html">📣<br>Promotion</a>
+  <a href="task.html">💼<br>Task</a>
+  <a href="service.html">🛎️<br>Service</a>
+  <a href="account.html" class="active">👤<br>Account</a>
 </div>
-
-<script>
-function show(id){
-  document.querySelectorAll('.section-wrapper').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-
-  const map=['home','promotion','task','service','account'];
-  document.querySelectorAll('.nav div').forEach((el,i)=>{
-    el.classList.toggle('active', map[i]===id);
-  });
-}
-</script>
 
 </body>
 </html>
