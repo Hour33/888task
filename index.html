@@ -3,75 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Task888 SPA</title>
+<title>Task888 Preview</title>
 <style>
-  body{ margin:0; font-family:Arial,sans-serif; background:#f3f4f6; padding-bottom:70px; }
-  .nav{ position:fixed; bottom:0; left:0; right:0; background:#fff; display:flex; justify-content:space-around; padding:8px 0; border-top:1px solid #ddd; }
-  .nav div{ font-size:12px; color:#777; text-align:center; cursor:pointer; }
-  .nav .active{color:#0f7a3c;font-weight:bold;}
-  .section-wrapper{display:none;padding-bottom:60px;}
-  .section-wrapper.active{display:block;}
-  .header{background:#0f7a3c;color:#fff;padding:14px;display:flex;align-items:center;justify-content:space-between;}
-  .header-left{display:flex;align-items:center;gap:10px;}
-  .logo{width:38px;height:38px;border-radius:8px;background:#0a5e2d;display:flex;align-items:center;justify-content:center;font-weight:bold;}
-  .vip{background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:12px;font-size:12px;}
-  .download-btn{background:#fff;color:#0f7a3c;padding:8px 14px;border-radius:20px;font-weight:bold;font-size:13px;}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  padding-bottom: 70px;
+}
+.header {
+  background: #0f7a3c;
+  color: #fff;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #0a5e2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.vip {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.download-btn {
+  background: #fff;
+  color: #0f7a3c;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+/* HOME CONTENT */
+.stats {
+  background:#fff;
+  margin:15px;
+  border-radius:16px;
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  text-align:center;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+.stat h3 {margin:0;font-size:20px;color:#111;}
+.stat p {margin:6px 0 0;font-size:12px;color:#777;}
+.quick {display:flex; gap:12px; margin:0 15px;}
+.quick-box {flex:1; background:#fff; border-radius:14px; padding:14px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 4px 10px rgba(0,0,0,0.08);}
+.quick-box span {font-size:14px;font-weight:bold;}
+.banner {margin:15px;border-radius:18px;overflow:hidden;}
+.banner img {width:100%;display:block;}
+.task {background:#fff;border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);}
+.task-left{display:flex;align-items:center;gap:10px;}
+.task-icon{width:36px;height:36px;border-radius:50%;background:#e6f7ee;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#0f7a3c;}
+.task h4{margin:0;font-size:14px;}
+.task p{margin:4px 0 0;font-size:12px;color:#777;}
+.start{background:#1faa59;color:#fff;padding:8px 14px;border-radius:20px;font-size:13px;}
+
+/* BOTTOM NAV */
+.nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#fff;
+  display:flex;
+  justify-content:space-around;
+  padding:8px 0;
+  border-top:1px solid #ddd;
+}
+.nav div{
+  font-size:12px;
+  color:#777;
+  text-align:center;
+}
+.nav .active{color:#0f7a3c;font-weight:bold;}
 </style>
 </head>
 <body>
 
-<!-- HOME SECTION (shown by default) -->
-<div id="home" class="section-wrapper active">
-  <div class="header">
-    <div class="header-left">
-      <div class="logo">t88</div>
-      <div>
-        <div>task888</div>
-        <div class="vip">VIP0</div>
-      </div>
+<div class="header">
+  <div class="header-left">
+    <div class="logo">t88</div>
+    <div>
+      <div>task888</div>
+      <div class="vip">VIP0</div>
     </div>
-    <div class="download-btn">Download APP</div>
   </div>
-  <h2 style="padding:15px;">Welcome to Task888</h2>
-  <p style="padding:0 15px;">Preview Home content. Register or login to unlock all features!</p>
+  <div class="download-btn">Download APP</div>
+</div>
+
+<!-- FULL HOME CONTENT -->
+<div id="home">
+  <div class="stats">
+    <div class="stat"><h3>20</h3><p>Account balance</p></div>
+    <div class="stat"><h3>360</h3><p>Today's earnings</p></div>
+    <div class="stat"><h3>140</h3><p>Today's promotion</p></div>
+  </div>
+
+  <div class="quick">
+    <div class="quick-box"><span>Lucky wheel</span> 🎁</div>
+    <div class="quick-box"><span>Sign in calendar</span> 📅</div>
+  </div>
+
+  <div class="banner">
+    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="banner">
+  </div>
+
+  <div class="section">
+    <h3>Recommended tasks</h3>
+    <div class="task">
+      <div class="task-left">
+        <div class="task-icon">W</div>
+        <div>
+          <h4>Automatic scoring task NO.1</h4>
+          <p>Messaging: 180 pts</p>
+        </div>
+      </div>
+      <div class="start">Start task</div>
+    </div>
+    <div class="task">
+      <div class="task-left">
+        <div class="task-icon">W</div>
+        <div>
+          <h4>Self-service scoring task NO.2</h4>
+          <p>180 points per message</p>
+        </div>
+      </div>
+      <div class="start">Start task</div>
+    </div>
+  </div>
 </div>
 
 <!-- BOTTOM NAV -->
 <div class="nav">
-  <div class="nav-icon active" data-target="home">🏠<br>Home</div>
-  <div class="nav-icon" data-target="promotion">📣<br>Promotion</div>
-  <div class="nav-icon" data-target="task">💼<br>Task</div>
-  <div class="nav-icon" data-target="service">🛎️<br>Service</div>
-  <div class="nav-icon" data-target="account">👤<br>Account</div>
+  <div class="nav-icon active" onclick="navClick('home')">🏠<br>Home</div>
+  <div class="nav-icon" onclick="navClick('promotion')">📣<br>Promotion</div>
+  <div class="nav-icon" onclick="navClick('task')">💼<br>Task</div>
+  <div class="nav-icon" onclick="navClick('service')">🛎️<br>Service</div>
+  <div class="nav-icon" onclick="navClick('account')">👤<br>Account</div>
 </div>
 
 <script>
-const isLoggedIn = () => localStorage.getItem("loggedIn") === "true";
-
-function showSection(target){
-  if(target !== "home" && !isLoggedIn()){
-    // Not logged in → redirect to register
-    location.href = "register.html";
-    return;
-  }
-
-  // Hide all sections
-  document.querySelectorAll('.section-wrapper').forEach(s => s.classList.remove('active'));
-
-  // Show only the target (home is in this file, others are separate)
-  if(target === "home") document.getElementById("home").classList.add('active');
-
-  // Update nav colors
-  document.querySelectorAll('.nav .nav-icon').forEach(el=>{
-    el.classList.remove('active');
-    if(el.dataset.target === target) el.classList.add('active');
-  });
+function navClick(page) {
+  // Home stays, all others redirect to register
+  if(page === 'home') return;
+  window.location.href = 'register.html'; // redirect before registration
 }
-
-// Attach click events
-document.querySelectorAll('.nav .nav-icon').forEach(el=>{
-  el.addEventListener('click',()=>showSection(el.dataset.target));
-});
 </script>
 
 </body>
