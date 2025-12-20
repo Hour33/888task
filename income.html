@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income Details</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+}
+
+/* HEADER */
+.header{
+  background:#0f7a3c;
+  color:#fff;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.back{
+  font-size:20px;
+  cursor:pointer;
+}
+.header-title{
+  font-size:16px;
+  font-weight:bold;
+}
+
+/* SUMMARY */
+.summary{
+  background:#fff;
+  margin:15px;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  display:flex;
+  justify-content:space-between;
+  text-align:center;
+}
+.summary div{
+  flex:1;
+}
+.summary h3{
+  margin:0;
+  font-size:18px;
+}
+.summary p{
+  margin:6px 0 0;
+  font-size:12px;
+  color:#777;
+}
+
+/* LIST */
+.list{
+  background:#fff;
+  margin:15px;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+.row{
+  display:flex;
+  justify-content:space-between;
+  padding:14px;
+  border-bottom:1px solid #eee;
+}
+.row:last-child{border-bottom:none;}
+.row-left{
+  font-size:13px;
+}
+.row-left small{
+  display:block;
+  color:#777;
+  margin-top:4px;
+}
+.row-right{
+  font-weight:bold;
+  color:#1faa59;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="back" onclick="history.back()">←</div>
+  <div class="header-title">Income details</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary">
+  <div>
+    <h3>₦105.54</h3>
+    <p>Total income</p>
+  </div>
+  <div>
+    <h3>₦40</h3>
+    <p>Today</p>
+  </div>
+  <div>
+    <h3>₦0</h3>
+    <p>Yesterday</p>
+  </div>
+</div>
+
+<!-- INCOME LIST -->
+<div class="list">
+  <div class="row">
+    <div class="row-left">
+      Task income
+      <small>2025-01-10 14:32</small>
+    </div>
+    <div class="row-right">+₦180</div>
+  </div>
+
+  <div class="row">
+    <div class="row-left">
+      Promotion income
+      <small>2025-01-10 09:11</small>
+    </div>
+    <div class="row-right">+₦40</div>
+  </div>
+
+  <div class="row">
+    <div class="row-left">
+      Task income
+      <small>2025-01-09 21:05</small>
+    </div>
+    <div class="row-right">+₦140</div>
+  </div>
+</div>
+
+</body>
+</html>
