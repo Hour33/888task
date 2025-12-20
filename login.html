@@ -145,6 +145,9 @@
           return;
         }
 
+        // ✅ Set logged-in flag so index.html knows the user is authenticated
+        localStorage.setItem("loggedIn", "true");
+
         msg.style.color = "#4caf50";
         msg.textContent = "Login successful! Redirecting...";
         setTimeout(() => location.href = "index.html", 1000);
