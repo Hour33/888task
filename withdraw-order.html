@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Withdrawal Order</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+}
+
+/* HEADER */
+.header{
+  background:#0f7a3c;
+  color:#fff;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.back{
+  font-size:20px;
+  cursor:pointer;
+}
+.header-title{
+  font-size:16px;
+  font-weight:bold;
+}
+
+/* SUMMARY */
+.summary{
+  background:#fff;
+  margin:15px;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  display:flex;
+  justify-content:space-between;
+  text-align:center;
+}
+.summary div{flex:1;}
+.summary h3{
+  margin:0;
+  font-size:18px;
+}
+.summary p{
+  margin:6px 0 0;
+  font-size:12px;
+  color:#777;
+}
+
+/* LIST */
+.list{
+  background:#fff;
+  margin:15px;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+.row{
+  display:flex;
+  justify-content:space-between;
+  padding:14px;
+  border-bottom:1px solid #eee;
+}
+.row:last-child{border-bottom:none;}
+
+.row-left{
+  font-size:13px;
+}
+.row-left small{
+  display:block;
+  color:#777;
+  margin-top:4px;
+}
+
+.row-right{
+  text-align:right;
+  font-size:13px;
+}
+.amount{
+  font-weight:bold;
+}
+.success{
+  color:#1faa59;
+}
+.pending{
+  color:#ff9800;
+}
+.failed{
+  color:#f44336;
+}
+.status{
+  font-size:12px;
+  margin-top:4px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="back" onclick="history.back()">←</div>
+  <div class="header-title">Withdrawal order</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary">
+  <div>
+    <h3>₦105.54</h3>
+    <p>Total withdrawn</p>
+  </div>
+  <div>
+    <h3>₦50</h3>
+    <p>This month</p>
+  </div>
+  <div>
+    <h3>2</h3>
+    <p>Completed</p>
+  </div>
+</div>
+
+<!-- WITHDRAW LIST -->
+<div class="list">
+
+  <!-- SUCCESS -->
+  <div class="row">
+    <div class="row-left">
+      Bank transfer
+      <small>2025-01-10 16:44</small>
+      <small>GTBank • ****4521</small>
+    </div>
+    <div class="row-right">
+      <div class="amount success">-₦50</div>
+      <div class="status success">Successful</div>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="row">
+    <div class="row-left">
+      Bank transfer
+      <small>2025-01-08 11:20</small>
+      <small>Access Bank • ****7784</small>
+    </div>
+    <div class="row-right">
+      <div class="amount success">-₦55.54</div>
+      <div class="status success">Successful</div>
+    </div>
+  </div>
+
+  <!-- PENDING -->
+  <div class="row">
+    <div class="row-left">
+      Bank transfer
+      <small>2025-01-11 09:02</small>
+      <small>First Bank • ****9931</small>
+    </div>
+    <div class="row-right">
+      <div class="amount pending">-₦30</div>
+      <div class="status pending">Processing</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+  </html>
