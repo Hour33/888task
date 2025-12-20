@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task888 – Tasks</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  padding-bottom:70px;
+}
+
+/* NAV */
+.nav{
+position:fixed;bottom:0;left:0;right:0;
+background:#fff;display:flex;justify-content:space-around;
+padding:8px 0;border-top:1px solid #ddd;
+}
+.nav a{
+font-size:12px;color:#777;text-align:center;
+text-decoration:none;
+}
+.nav .active{color:#0f7a3c;font-weight:bold;}
+
+/* HEADER */
+.header{
+background:#0f7a3c;color:#fff;
+padding:16px;text-align:center;
+font-size:18px;font-weight:bold;
+}
+
+/* TASK SECTION */
+.task-wrapper{
+background:#fff;margin:15px;
+border-radius:14px;padding:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+.task{
+background:#f9fafb;border-radius:12px;
+padding:14px;display:flex;
+align-items:center;justify-content:space-between;
+margin-bottom:12px;
+}
+.task-left{
+display:flex;align-items:center;gap:12px;
+}
+.task-icon{
+width:38px;height:38px;
+border-radius:50%;
+background:#e6f7ee;
+display:flex;align-items:center;
+justify-content:center;
+font-weight:bold;color:#0f7a3c;
+}
+.task h4{
+margin:0;font-size:14px;
+}
+.task p{
+margin:4px 0 0;
+font-size:12px;color:#777;
+}
+.start{
+background:#1faa59;color:#fff;
+padding:8px 14px;border-radius:20px;
+font-size:13px;
+}
+.task-note{
+margin:15px;
+font-size:13px;
+color:red;
+line-height:1.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">Task Center</div>
+
+<div class="task-wrapper">
+  <h3>WhatsApp Tasks</h3>
+
+  <div class="task">
+    <div class="task-left">
+      <div class="task-icon">W</div>
+      <div>
+        <h4>Automatic scoring task NO.1</h4>
+        <p>Messaging: 180 points</p>
+      </div>
+    </div>
+    <div class="start">Start task</div>
+  </div>
+
+  <div class="task">
+    <div class="task-left">
+      <div class="task-icon">W</div>
+      <div>
+        <h4>Self-service scoring task NO.2</h4>
+        <p>Complete manually, 180 points per message</p>
+      </div>
+    </div>
+    <div class="start">Start task</div>
+  </div>
+
+</div>
+
+<div class="task-note">
+  * The two tasks cannot be carried out at the same time.  
+  It is recommended to carry out task NO.2 during the day  
+  and task NO.1 at night to earn continuously.
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="nav">
+  <a href="index.html">🏠<br>Home</a>
+  <a href="promotion.html">📣<br>Promotion</a>
+  <a class="active" href="task.html">💼<br>Task</a>
+  <a href="service.html">🛎️<br>Service</a>
+  <a href="account.html">👤<br>Account</a>
+</div>
+
+</body>
+</html>
