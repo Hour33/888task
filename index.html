@@ -56,6 +56,15 @@ background:#e6f7ee;color:#0f7a3c;
 display:flex;align-items:center;justify-content:center;}
 .start{background:#1faa59;color:#fff;padding:8px 14px;border-radius:20px;}
 </style>
+
+<!-- ADD FIRST-TIME VISITOR REDIRECT -->
+<script>
+  if (!localStorage.getItem('registered')) {
+    // redirect first-time visitors to register page
+    window.location.href = "register.html";
+  }
+</script>
+
 </head>
 
 <body>
