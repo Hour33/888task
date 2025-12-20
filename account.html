@@ -50,7 +50,7 @@ body{
   margin:15px;
   border-radius:16px;
   padding:16px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 .balance-top{
   display:flex;
@@ -89,7 +89,7 @@ body{
   margin:15px;
   border-radius:16px;
   overflow:hidden;
-  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 .menu-item{
   display:flex;
@@ -97,6 +97,7 @@ body{
   justify-content:space-between;
   padding:14px 16px;
   border-bottom:1px solid #eee;
+  cursor:pointer;
 }
 .menu-item:last-child{border-bottom:none;}
 .menu-left{
@@ -126,6 +127,7 @@ body{
   padding:14px;
   border-radius:14px;
   font-weight:bold;
+  cursor:pointer;
 }
 
 /* NAV */
@@ -224,6 +226,26 @@ text-decoration:none;
   <a href="service.html">🛎️<br>Service</a>
   <a class="active" href="account.html">👤<br>Account</a>
 </div>
+
+<script>
+// Menu navigation
+const menuItems = document.querySelectorAll('.menu-item');
+menuItems[0].addEventListener('click', () => location.href = 'withdraw.html');
+menuItems[1].addEventListener('click', () => location.href = 'income.html');
+menuItems[2].addEventListener('click', () => location.href = 'withdraw-order.html');
+menuItems[3].addEventListener('click', () => location.href = 'change-password.html');
+menuItems[4].addEventListener('click', () => location.href = 'language.html');
+
+// Balance card buttons
+document.querySelector('.balance-actions .withdraw').addEventListener('click', () => location.href = 'withdraw.html');
+document.querySelector('.balance-actions .details').addEventListener('click', () => location.href = 'income.html');
+
+// Logout
+document.querySelector('.logout').addEventListener('click', () => {
+    localStorage.removeItem('loggedIn'); // keeps login system safe
+    location.href = 'login.html';
+});
+</script>
 
 </body>
 </html>
