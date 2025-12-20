@@ -84,7 +84,7 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
 
     msg.style.color="#4caf50";
     msg.textContent="Registered successfully! Redirecting...";
-    setTimeout(()=> location.href="index.html", 1000);
+    setTimeout(()=> location.href="login.html", 1000);
 
   } catch(err){ msg.style.color="red"; msg.textContent="Network error: "+err.message; }
 });
