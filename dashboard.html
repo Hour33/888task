@@ -1,28 +1,34 @@
-<!DOCTYPE html>  <html lang="en">    <head>    
-<meta charset="UTF-8">    
-<meta name="viewport" content="width=device-width, initial-scale=1.0">    
-<title>Task888 SPA</title>    
-<style>    
-body{    
-  margin:0;    
-  font-family:Arial,sans-serif;    
-  background:#f3f4f6;    
-  padding-bottom:70px;    
-}  /* BOTTOM NAV */  
-.nav{  
-position:fixed;  
-bottom:0;  
-left:0;  
-right:0;  
-background:#fff;  
-display:flex;  
-justify-content:space-around;  
-padding:8px 0;  
-border-top:1px solid #ddd;  
-}  .nav div{
-font-size:12px;
-color:#777;
-text-align:center;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task888 SPA</title>
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  padding-bottom:70px;
+}
+
+/* BOTTOM NAV */
+.nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#fff;
+  display:flex;
+  justify-content:space-around;
+  padding:8px 0;
+  border-top:1px solid #ddd;
+}
+
+.nav div{
+  font-size:12px;
+  color:#777;
+  text-align:center;
 }
 
 .nav .active{color:#0f7a3c;font-weight:bold;}
@@ -33,12 +39,12 @@ text-align:center;
 
 /* HEADER */
 .header{
-background:#0f7a3c;
-color:#fff;
-padding:14px;
-display:flex;
-align-items:center;
-justify-content:space-between;
+  background:#0f7a3c;
+  color:#fff;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 .header-left{display:flex;align-items:center;gap:10px;}
 .logo{width:38px;height:38px;border-radius:8px;background:#0a5e2d;display:flex;align-items:center;justify-content:center;font-weight:bold;}
@@ -88,175 +94,219 @@ justify-content:space-between;
 .account-section .account-card{background:#fff;margin:15px;border-radius:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
 .account-section .account-card div{margin:6px 0;}
 </style>
+</head>
+<body>
 
-</head>    
-<body>  <!-- HOME -->  <div id="home" class="section-wrapper active">    
-  <div class="header">    
-    <div class="header-left">    
-      <div class="logo">t88</div>    
-      <div>    
-        <div>task888</div>    
-        <div class="vip">VIP0</div>    
-      </div>    
-    </div>    
-    <div class="download-btn">Download APP</div>    
-  </div>    <div class="stats">    
-    <div class="stat"><h3>20</h3><p>Account balance</p></div>    
-    <div class="stat"><h3>360</h3><p>Today's earnings</p></div>    
-    <div class="stat"><h3>140</h3><p>Today's promotion</p></div>    
-  </div>    <div class="quick">    
-    <div class="quick-box"><span>Lucky wheel</span> 🎁</div>    
-    <div class="quick-box"><span>Sign in calendar</span> 📅</div>    
-  </div>    <div class="banner">    
-    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="banner">    
-  </div>    <div class="section">    
-    <h3>Recommended tasks</h3>    
-    <div class="task">    
-      <div class="task-left">    
-        <div class="task-icon">W</div>    
-        <div>    
-          <h4>Automatic scoring task NO.1</h4>    
-          <p>Messaging: 180 pts</p>    
-        </div>    
-      </div>    
-      <div class="start">Start task</div>    
-    </div>  <div class="task">    
-  <div class="task-left">    
-    <div class="task-icon">W</div>    
-    <div>    
-      <h4>Self-service scoring task NO.2</h4>    
-      <p>180 points per message</p>    
-    </div>    
-  </div>    
-  <div class="start">Start task</div>    
-</div>    </div>    
-</div>  <!-- PROMOTION -->  <div id="promotion" class="section-wrapper">    
-  <div class="promo-header">    
-    <h2>Cash Rewards</h2>    
-    <div class="tree-box">    
-      <img src="https://i.postimg.cc/CL9Hdckc/name-7f8d54c4.png">    
-    </div>    
-  </div>    <div class="promo-section">    
-    <div class="section">    
-      <h3>Suggested Link</h3>    
-      <div class="ref-row">    
-        <input value="https://task888.onrender.com/#/?i=30Q4782N" readonly>    
-        <button>Copy</button>    
-      </div>    
-    </div>  <div class="section">    
-  <h3>Invitation Code</h3>    
-  <div class="ref-row">    
-    <input value="30Q4782N" readonly>    
-    <button>Copy</button>    
-  </div>    
-</div>    <div class="section">    
-  <h3>Invitation Income</h3>    
-  <div class="stats-grid">    
-    <div class="stat"><strong>₦1800</strong>Total</div>    
-    <div class="stat"><strong>₦40</strong>Today</div>    
-    <div class="stat"><strong>₦0</strong>Yesterday</div>    
-    <div class="stat"><strong>0</strong>Active</div>    
-    <div class="stat"><strong>0</strong>New</div>    
-    <div class="stat"><strong>0</strong>Direct</div>    
-  </div>    
-</div>    <div class="section">    
-  <h3>Share and Earn</h3>    
-  <div class="share">    
-    <div>📱<br>Telegram</div>    
-    <div>💬<br>WhatsApp</div>    
-    <div>📘<br>Facebook</div>    
-  </div>    
-</div>    <div class="section rules">    
-  <h3>Activity Rules</h3>    
-  <p>1. Invite friends to register using your link or code.<br>    
-     2. Earn commission when referrals complete tasks.<br>    
-     3. Level 1 rebate: 20%<br>    
-     4. Level 2 rebate: 10%    
-  </p>    
-</div>    </div>    
-</div>  <!-- TASK -->  <div id="task" class="section-wrapper">    
-  <div class="task-section">    
-    <div class="task-wrapper">    
-      <h3>WhatsApp</h3>    
-      <div class="task">    
-        <div class="task-left">    
-          <div class="task-icon">W</div>    
-          <div>    
-            <h4>Automatic scoring tasks NO.1</h4>    
-            <p>Msging: 180 pts</p>    
-          </div>    
-        </div>    
-        <div class="start">Start task</div>    
-      </div>    
-      <div class="task">    
-        <div class="task-left">    
-          <div class="task-icon">W</div>    
-          <div>    
-            <h4>Self-service scoring task NO.2</h4>    
-            <p>Complete tasks manually, 180 points per message</p>    
-          </div>    
-        </div>    
-        <div class="start">Start task</div>    
-      </div>    
-      <div class="task-note">    
-        * The two tasks cannot be carried out at the same time. It is recommended to carry out task No.2 during the day and use task No.1 during the night to keep making money 24 hours a day.    
-      </div>    
-    </div>    
-  </div>    
-</div>  <!-- SERVICE -->  <div id="service" class="section-wrapper">    
-  <div class="service-section">    
-    <div class="service-card">    
-      <img src="https://i.postimg.cc/MHt5sLZ4/name-c152f16f.png" alt="Customer">    
-      <div>    
-        <h3>HI~ I am online customer service!</h3>    
-        <p>If you have any questions, please contact customer service~</p>    
-      </div>    
-      <button>Consult Now</button>    
-    </div>    
-    <div class="service-card">    
-      <div>📱 Telegram Groups</div><button>Join Now</button>    
-    </div>    
-    <div class="service-card">    
-      <div>📱 Telegram Channels</div><button>Join Now</button>    
-    </div>    
-    <div class="service-card">    
-      <div>📖 Platform Guideline</div><button>Click Here</button>    
-    </div>    
-  </div>    
-</div>  <!-- ACCOUNT -->  <div id="account" class="section-wrapper">    
-  <div class="account-section">    
-    <div class="account-card">    
-      <div>9120945160</div>    
-      <div>Referral code: 70LFTS9H</div>    
-      <div>Account balance: 380 points / 105.54 NGN</div>    
-      <div>Account withdrawal</div>    
-      <div>Income details</div>    
-      <div>Withdrawal order</div>    
-      <div>Change password</div>    
-      <div>Language settings</div>    
-      <div>Log out</div>    
-    </div>    
-  </div>    
-</div>  <!-- BOTTOM NAV -->  <div class="nav">    
-  <div class="nav-icon active" onclick="show('home')">🏠<br>Home</div>    
-  <div class="nav-icon" onclick="show('promotion')">📣<br>Promotion</div>    
-  <div class="nav-icon" onclick="show('task')">💼<br>Task</div>    
-  <div class="nav-icon" onclick="show('service')">🛎️<br>Service</div>    
-  <div class="nav-icon" onclick="show('account')">👤<br>Account</div>    
-</div>  <script>    
-function show(id){    
-  document.querySelectorAll('.section-wrapper').forEach(s=>s.classList.remove('active'));    
-  document.getElementById(id).classList.add('active');    document.querySelectorAll('.nav .nav-icon').forEach((el,i)=>{
-el.classList.remove('active');
-if(i===Array.from(el.parentNode.children).indexOf(document.querySelector(#${id}))) el.classList.add('active');
-});
+<!-- HOME -->
+<div id="home" class="section-wrapper active">
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">t88</div>
+      <div>
+        <div>task888</div>
+        <div class="vip">VIP0</div>
+      </div>
+    </div>
+    <div class="download-btn">Download APP</div>
+  </div>
 
-// alternative simpler: update colors manually
-const map=['home','promotion','task','service','account'];
-document.querySelectorAll('.nav .nav-icon').forEach((el,i)=>{
-el.style.color=map[i]===id?'#0f7a3c':'#777';
-el.style.fontWeight=map[i]===id?'bold':'normal';
-});
+  <div class="stats">
+    <div class="stat"><h3>8900</h3><p>Account balance</p></div>
+    <div class="stat"><h3>3800</h3><p>Today's earnings</p></div>
+    <div class="stat"><h3>960</h3><p>Today's promotion</p></div>
+  </div>
+
+  <div class="quick">
+    <div class="quick-box"><span>Lucky wheel</span> 🎁</div>
+    <div class="quick-box"><span>Sign in calendar</span> 📅</div>
+  </div>
+
+  <div class="banner">
+    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="banner">
+  </div>
+
+  <div class="section">
+    <h3>Recommended tasks</h3>
+    <div class="task">
+      <div class="task-left">
+        <div class="task-icon">W</div>
+        <div>
+          <h4>Automatic scoring task NO.1</h4>
+          <p>Messaging: 180 pts</p>
+        </div>
+      </div>
+      <div class="start">Start task</div>
+    </div>
+
+    <div class="task">
+      <div class="task-left">
+        <div class="task-icon">W</div>
+        <div>
+          <h4>Self-service scoring task NO.2</h4>
+          <p>180 points per message</p>
+        </div>
+      </div>
+      <div class="start">Start task</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMOTION -->
+<div id="promotion" class="section-wrapper">
+  <div class="promo-header">
+    <h2>Cash Rewards</h2>
+    <div class="tree-box">
+      <img src="https://i.postimg.cc/Zq1mL0sB/ref-tree.png" alt="Referral Tree">
+    </div>
+  </div>
+
+  <div class="promo-section">
+    <div class="section">
+      <h3>Suggested Link</h3>
+      <div class="ref-row">
+        <input value="https://task888.onrender.com/#/?i=30Q4782N" readonly>
+        <button>Copy</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Invitation Code</h3>
+      <div class="ref-row">
+        <input value="20Q4783N" readonly>
+        <button>Copy</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Invitation Income</h3>
+      <div class="stats-grid">
+        <div class="stat"><strong>₦0</strong>Total</div>
+        <div class="stat"><strong>₦0</strong>Today</div>
+        <div class="stat"><strong>₦0</strong>Yesterday</div>
+        <div class="stat"><strong>0</strong>Active</div>
+        <div class="stat"><strong>0</strong>New</div>
+        <div class="stat"><strong>0</strong>Direct</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Share and Earn</h3>
+      <div class="share">
+        <div>📱<br>Telegram</div>
+        <div>💬<br>WhatsApp</div>
+        <div>📘<br>Facebook</div>
+      </div>
+    </div>
+
+    <div class="section rules">
+      <h3>Activity Rules</h3>
+      <p>1. Invite friends to register using your link or code.<br>
+         2. Earn commission when referrals complete tasks.<br>
+         3. Level 1 rebate: 20%<br>
+         4. Level 2 rebate: 10%
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- TASK -->
+<div id="task" class="section-wrapper">
+  <div class="task-section">
+    <div class="task-wrapper">
+      <h3>WhatsApp</h3>
+      <div class="task">
+        <div class="task-left">
+          <div class="task-icon">W</div>
+          <div>
+            <h4>Automatic scoring tasks NO.1</h4>
+            <p>Msging: 100 pts</p>
+          </div>
+        </div>
+        <div class="start">Start task</div>
+      </div>
+      <div class="task">
+        <div class="task-left">
+          <div class="task-icon">W</div>
+          <div>
+            <h4>Self-service scoring task NO.2</h4>
+            <p>Complete tasks manually, 100 points per message</p>
+          </div>
+        </div>
+        <div class="start">Start task</div>
+      </div>
+      <div class="task-note">
+        * The two tasks cannot be carried out at the same time. It is recommended to carry out task No.2 during the day and use task No.1 during the night to keep making money 24 hours a day.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE -->
+<div id="service" class="section-wrapper">
+  <div class="service-section">
+    <div class="service-card">
+      <img src="https://i.postimg.cc/8C4h2T5g/customer.png" alt="Customer">
+      <div>
+        <h3>HI~ I am online customer service!</h3>
+        <p>If you have any questions, please contact customer service~</p>
+      </div>
+      <button>Consult Now</button>
+    </div>
+    <div class="service-card">
+      <div>📱 Telegram Groups</div><button>Join Now</button>
+    </div>
+    <div class="service-card">
+      <div>📱 Telegram Channels</div><button>Join Now</button>
+    </div>
+    <div class="service-card">
+      <div>📖 Platform Guideline</div><button>Click Here</button>
+    </div>
+  </div>
+</div>
+
+<!-- ACCOUNT -->
+<div id="account" class="section-wrapper">
+  <div class="account-section">
+    <div class="account-card">
+      <div>9120945160</div>
+      <div>Referral code: 70LFTS9H</div>
+      <div>Account balance: 100 points / 30.54 NGN</div>
+      <div>Account withdrawal</div>
+      <div>Income details</div>
+      <div>Withdrawal order</div>
+      <div>Change password</div>
+      <div>Language settings</div>
+      <div>Log out</div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="nav">
+  <div class="nav-icon active" onclick="show('home')">🏠<br>Home</div>
+  <div class="nav-icon" onclick="show('promotion')">📣<br>Promotion</div>
+  <div class="nav-icon" onclick="show('task')">💼<br>Task</div>
+  <div class="nav-icon" onclick="show('service')">🛎️<br>Service</div>
+  <div class="nav-icon" onclick="show('account')">👤<br>Account</div>
+</div>
+
+<script>
+function show(id){
+  document.querySelectorAll('.section-wrapper').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  
+  document.querySelectorAll('.nav .nav-icon').forEach((el,i)=>{
+    el.classList.remove('active');
+    if(i===Array.from(el.parentNode.children).indexOf(document.querySelector(`#${id}`))) el.classList.add('active');
+  });
+
+  // alternative simpler: update colors manually
+  const map=['home','promotion','task','service','account'];
+  document.querySelectorAll('.nav .nav-icon').forEach((el,i)=>{
+    el.style.color=map[i]===id?'#0f7a3c':'#777';
+    el.style.fontWeight=map[i]===id?'bold':'normal';
+  });
 }
-</script>  </body>
-</html>
+</script>
+</body>
+  </html>
