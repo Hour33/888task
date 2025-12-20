@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Language Settings</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+}
+
+/* HEADER */
+.header{
+  background:#0f7a3c;
+  color:#fff;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.back{
+  font-size:20px;
+  cursor:pointer;
+}
+.header-title{
+  font-size:16px;
+  font-weight:bold;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  margin:16px;
+  border-radius:16px;
+  padding:10px 0;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+/* LANGUAGE ITEM */
+.lang-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 18px;
+  border-bottom:1px solid #eee;
+  cursor:pointer;
+}
+.lang-item:last-child{
+  border-bottom:none;
+}
+
+.lang-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.flag{
+  font-size:20px;
+}
+
+.lang-name{
+  font-size:14px;
+}
+
+.check{
+  color:#0f7a3c;
+  font-weight:bold;
+  display:none;
+}
+.active .check{
+  display:block;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="back" onclick="history.back()">←</div>
+  <div class="header-title">Language Settings</div>
+</div>
+
+<!-- LIST -->
+<div class="card">
+
+  <div class="lang-item active" onclick="selectLang(this)">
+    <div class="lang-left">
+      <div class="flag">🇬🇧</div>
+      <div class="lang-name">English</div>
+    </div>
+    <div class="check">✓</div>
+  </div>
+
+  <div class="lang-item" onclick="selectLang(this)">
+    <div class="lang-left">
+      <div class="flag">🇫🇷</div>
+      <div class="lang-name">French</div>
+    </div>
+    <div class="check">✓</div>
+  </div>
+
+  <div class="lang-item" onclick="selectLang(this)">
+    <div class="lang-left">
+      <div class="flag">🇪🇸</div>
+      <div class="lang-name">Spanish</div>
+    </div>
+    <div class="check">✓</div>
+  </div>
+
+  <div class="lang-item" onclick="selectLang(this)">
+    <div class="lang-left">
+      <div class="flag">🇵🇹</div>
+      <div class="lang-name">Portuguese</div>
+    </div>
+    <div class="check">✓</div>
+  </div>
+
+</div>
+
+<script>
+function selectLang(el){
+  document.querySelectorAll('.lang-item').forEach(i=>{
+    i.classList.remove('active');
+  });
+  el.classList.add('active');
+
+  // UI only – backend later
+}
+</script>
+
+</body>
+</html>
