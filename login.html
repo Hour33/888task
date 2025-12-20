@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #ffffff; /* clean white background */
+      background: #ffffff;
       margin: 0;
       display: flex;
       flex-direction: column;
@@ -28,13 +28,13 @@
     }
 
     .card {
-      background: #ffffff; /* white card */
+      background: #ffffff;
       padding: 25px;
       border-radius: 20px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.1);
       width: 90%;
       max-width: 400px;
-      margin-top: -25px; /* slightly overlap banner */
+      margin-top: -25px;
       text-align: center;
       border: 1px solid #ccc;
     }
@@ -57,7 +57,7 @@
     button {
       width: 100%;
       padding: 12px;
-      background: #4caf50; /* green button */
+      background: #4caf50;
       color: white;
       border: none;
       border-radius: 8px;
@@ -109,7 +109,7 @@
   </div>
 
   <script>
-    const SHEETY_URL = "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/usersDb3/usersDb3";
+    const SHEETY_URL = "https://api.sheety.co/063b7e80466382fc37a14b4f5ae358b1/code/code";
 
     document.getElementById('loginBtn').addEventListener('click', async () => {
       const phone = document.getElementById('phone').value.trim();
@@ -131,7 +131,8 @@
           headers: { "Content-Type": "application/json" }
         });
         const data = await res.json();
-        const user = data.usersdb3 && data.usersdb3.find(u => u.phone === phone);
+        const users = data.code || [];
+        const user = users.find(u => u.phone === phone);
 
         if (!user) {
           msg.style.color = "red";
