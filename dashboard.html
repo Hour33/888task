@@ -3,228 +3,335 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Account | Hour33</title>
+<title>Task888 Dashboard</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f7fa;
-  padding-bottom: 70px;
-}
-
-/* ===== HEADER ===== */
-.header {
-  background: #ffffff;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #ddd;
-}
-
-.user-info h3 {
-  margin: 0;
-  font-size: 16px;
-}
-
-.user-info span {
-  font-size: 12px;
-  color: #666;
-}
-
-/* ===== BALANCE CARD ===== */
-.balance-card {
-  margin: 15px;
-  background: linear-gradient(135deg, #0b7a3c, #0f9d58);
-  color: #fff;
-  border-radius: 14px;
-  padding: 18px;
-}
-
-.balance-card small {
-  opacity: 0.9;
-}
-
-.balance-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.balance-main h1 {
-  margin: 0;
-  font-size: 28px;
-}
-
-.balance-main span {
-  font-size: 14px;
-}
-
-/* ===== LIST SECTION ===== */
-.list {
-  background: #fff;
-  margin: 15px;
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-.list-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-bottom: 1px solid #eee;
-}
-
-.list-item:last-child {
-  border-bottom: none;
-}
-
-.list-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 16px;
-}
-
-.purple { background: #7e57c2; }
-.blue { background: #42a5f5; }
-.orange { background: #ffa726; }
-.red { background: #ef5350; }
-.green { background: #66bb6a; }
-
-.arrow {
-  color: #aaa;
-}
-
-/* ===== LOGOUT ===== */
-.logout {
-  text-align: center;
-  margin-top: 20px;
-  color: #999;
-  font-size: 14px;
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  padding-bottom:70px;
 }
 
 /* ===== BOTTOM NAV ===== */
-.nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #fff;
-  border-top: 1px solid #ddd;
-  display: flex;
-  justify-content: space-around;
-  padding: 8px 0;
+.nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#fff;
+  display:flex;
+  justify-content:space-around;
+  padding:8px 0;
+  border-top:1px solid #ddd;
+}
+.nav .nav-icon{
+  font-size:12px;
+  color:#777;
+  text-align:center;
+}
+.nav .nav-icon.active{
+  color:#0f7a3c;
+  font-weight:bold;
 }
 
-.nav a {
-  text-decoration: none;
-  font-size: 12px;
-  color: #777;
-  text-align: center;
+/* ===== SECTIONS ===== */
+.section-wrapper{display:none;}
+.section-wrapper.active{display:block;}
+
+/* ===== HEADER ===== */
+.header{
+  background:#0f7a3c;
+  color:#fff;
+  padding:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.header-left{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.logo{
+  width:38px;
+  height:38px;
+  border-radius:8px;
+  background:#0a5e2d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+.vip{
+  background:rgba(255,255,255,.2);
+  padding:4px 8px;
+  border-radius:12px;
+  font-size:12px;
+}
+.download-btn{
+  background:#fff;
+  color:#0f7a3c;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:bold;
 }
 
-.nav a.active {
-  color: #0f9d58;
-  font-weight: bold;
+/* ===== HOME ===== */
+.stats{
+  background:#fff;
+  margin:15px;
+  padding:16px;
+  border-radius:16px;
+  display:flex;
+  justify-content:space-between;
+  text-align:center;
 }
+.stat h3{margin:0;}
+.stat p{font-size:12px;color:#777;}
+
+.quick{
+  display:flex;
+  gap:12px;
+  margin:0 15px;
+}
+.quick-box{
+  flex:1;
+  background:#fff;
+  padding:14px;
+  border-radius:14px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.banner{
+  margin:15px;
+  border-radius:18px;
+  overflow:hidden;
+}
+.banner img{width:100%;}
+
+.task{
+  background:#fff;
+  margin:15px;
+  padding:14px;
+  border-radius:14px;
+  display:flex;
+  justify-content:space-between;
+}
+.task-left{
+  display:flex;
+  gap:10px;
+}
+.task-icon{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#e6f7ee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#0f7a3c;
+  font-weight:bold;
+}
+.start{
+  background:#1faa59;
+  color:#fff;
+  padding:8px 14px;
+  border-radius:20px;
+  font-size:13px;
+}
+
+/* ===== PROMOTION ===== */
+.promo-header{
+  background:linear-gradient(135deg,#2e7d32,#4caf50);
+  color:#fff;
+  padding:20px;
+  text-align:center;
+}
+.section{
+  background:#fff;
+  margin:15px;
+  padding:15px;
+  border-radius:12px;
+}
+.ref-row{
+  display:flex;
+  gap:10px;
+}
+.ref-row input{
+  flex:1;
+  padding:10px;
+}
+.ref-row button{
+  background:#4caf50;
+  border:none;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:6px;
+}
+
+/* ===== TASK ===== */
+.task-note{
+  color:red;
+  margin:15px;
+  font-size:13px;
+}
+
+/* ===== SERVICE ===== */
+.service-card{
+  background:#fff;
+  margin:15px;
+  padding:15px;
+  border-radius:12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.service-card button{
+  background:#0f7a3c;
+  color:#fff;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+}
+
+/* ===== ACCOUNT ===== */
+.account-card{
+  background:#fff;
+  margin:15px;
+  border-radius:14px;
+  padding:15px;
+}
+.account-row{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid #eee;
+}
+.account-row:last-child{border-bottom:none;}
+.logout{color:red;font-weight:bold;}
 </style>
 </head>
 
 <body>
 
-<!-- ===== USER HEADER ===== -->
-<div class="header">
-  <div class="avatar"></div>
-  <div class="user-info">
-    <h3>9120945160</h3>
-    <span>Referral code: 70LFTS9H</span>
+<!-- HOME -->
+<div id="home" class="section-wrapper active">
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">t88</div>
+      <div>
+        <div>task888</div>
+        <div class="vip">VIP0</div>
+      </div>
+    </div>
+    <div class="download-btn">Download</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><h3>20</h3><p>Balance</p></div>
+    <div class="stat"><h3>360</h3><p>Today</p></div>
+    <div class="stat"><h3>140</h3><p>Promo</p></div>
+  </div>
+
+  <div class="quick">
+    <div class="quick-box">Lucky Wheel 🎁</div>
+    <div class="quick-box">Sign In 📅</div>
+  </div>
+
+  <div class="banner">
+    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png">
+  </div>
+
+  <div class="task">
+    <div class="task-left">
+      <div class="task-icon">W</div>
+      <div>
+        <b>Automatic task</b>
+        <p>180 pts</p>
+      </div>
+    </div>
+    <div class="start">Start</div>
   </div>
 </div>
 
-<!-- ===== BALANCE ===== -->
-<div class="balance-card">
-  <small>Account balance</small>
-  <div class="balance-main">
-    <div>
-      <h1>100</h1>
-      <span>30.54 NGN</span>
+<!-- PROMOTION -->
+<div id="promotion" class="section-wrapper">
+  <div class="promo-header"><h2>Cash Rewards</h2></div>
+  <div class="section">
+    <h3>Invitation Link</h3>
+    <div class="ref-row">
+      <input value="https://task888.onrender.com/#/?i=30Q4782N" readonly>
+      <button>Copy</button>
     </div>
-    <div>⇅</div>
   </div>
 </div>
 
-<!-- ===== MENU LIST ===== -->
-<div class="list">
-  <div class="list-item">
-    <div class="list-left">
-      <div class="icon purple">💳</div>
-      <span>Account withdrawal</span>
+<!-- TASK -->
+<div id="task" class="section-wrapper">
+  <div class="task">
+    <div class="task-left">
+      <div class="task-icon">W</div>
+      <div>
+        <b>WhatsApp Task</b>
+        <p>180 pts</p>
+      </div>
     </div>
-    <div class="arrow">›</div>
+    <div class="start">Start</div>
   </div>
-
-  <div class="list-item">
-    <div class="list-left">
-      <div class="icon blue">📄</div>
-      <span>Income details</span>
-    </div>
-    <div class="arrow">›</div>
-  </div>
-
-  <div class="list-item">
-    <div class="list-left">
-      <div class="icon orange">🧾</div>
-      <span>Withdrawal order</span>
-    </div>
-    <div class="arrow">›</div>
-  </div>
-
-  <div class="list-item">
-    <div class="list-left">
-      <div class="icon red">🔒</div>
-      <span>Change password</span>
-    </div>
-    <div class="arrow">›</div>
-  </div>
-
-  <div class="list-item">
-    <div class="list-left">
-      <div class="icon green">🌐</div>
-      <span>Language settings</span>
-    </div>
-    <div class="arrow">›</div>
+  <div class="task-note">
+    * Tasks cannot run at same time
   </div>
 </div>
 
-<div class="logout">Log out</div>
+<!-- SERVICE -->
+<div id="service" class="section-wrapper">
+  <div class="service-card">
+    <div>Customer Service</div>
+    <button>Chat</button>
+  </div>
+  <div class="service-card">
+    <div>Telegram Group</div>
+    <button>Join</button>
+  </div>
+</div>
 
-<!-- ===== BOTTOM NAV ===== -->
+<!-- ACCOUNT -->
+<div id="account" class="section-wrapper">
+  <div class="account-card">
+    <div class="account-row"><span>Account</span><b>9120945160</b></div>
+    <div class="account-row"><span>Referral</span><b>30Q4782N</b></div>
+    <div class="account-row"><span>Balance</span><b>₦105.54</b></div>
+    <div class="account-row">Withdraw</div>
+    <div class="account-row">Income Details</div>
+    <div class="account-row">Change Password</div>
+    <div class="account-row logout">Log Out</div>
+  </div>
+</div>
+
+<!-- NAV -->
 <div class="nav">
-  <a href="dashboard.html">🏠<br>Home</a>
-  <a href="promotion.html">📣<br>Promotion</a>
-  <a href="task.html">💼<br>Task</a>
-  <a href="service.html">🛎️<br>Service</a>
-  <a href="account.html" class="active">👤<br>Account</a>
+  <div class="nav-icon active" onclick="show('home')">🏠<br>Home</div>
+  <div class="nav-icon" onclick="show('promotion')">📣<br>Promo</div>
+  <div class="nav-icon" onclick="show('task')">💼<br>Task</div>
+  <div class="nav-icon" onclick="show('service')">🛎️<br>Service</div>
+  <div class="nav-icon" onclick="show('account')">👤<br>Account</div>
 </div>
+
+<script>
+function show(id){
+  document.querySelectorAll('.section-wrapper').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('.nav-icon').forEach(el=>el.classList.remove('active'));
+  const map=['home','promotion','task','service','account'];
+  document.querySelectorAll('.nav-icon').forEach((el,i)=>{
+    if(map[i]===id) el.classList.add('active');
+  });
+}
+</script>
 
 </body>
-</html>
+  </html>
