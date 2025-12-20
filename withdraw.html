@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Withdrawal</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+}
+
+/* HEADER */
+.header{
+  background:#0f7a3c;
+  color:#fff;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.back{
+  font-size:20px;
+  cursor:pointer;
+}
+.header-title{
+  font-size:16px;
+  font-weight:bold;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  margin:15px;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+label{
+  font-size:13px;
+  color:#555;
+  display:block;
+  margin-bottom:6px;
+}
+
+select,input{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  margin-bottom:14px;
+  outline:none;
+}
+
+.fee{
+  font-size:13px;
+  color:#777;
+  margin-bottom:10px;
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:14px;
+  background:#1faa59;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:active{
+  opacity:.9;
+}
+
+/* NOTICE */
+.notice{
+  background:#fff;
+  margin:15px;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+.notice h4{
+  margin:0 0 8px;
+  font-size:14px;
+}
+.notice p{
+  margin:0;
+  font-size:13px;
+  color:#555;
+  line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="back" onclick="history.back()">←</div>
+  <div class="header-title">Account withdrawal</div>
+</div>
+
+<!-- FORM CARD -->
+<div class="card">
+  <label>Country</label>
+  <select>
+    <option>Nigeria</option>
+    <option>TRX</option>
+    <option>India</option>
+  </select>
+
+  <label>Withdrawal address</label>
+  <input type="text" placeholder="Enter withdrawal address">
+
+  <label>Withdrawal amount</label>
+  <input type="number" placeholder="Enter amount">
+
+  <div class="fee">Handling fee: ₦0.00</div>
+
+  <button>Sure</button>
+</div>
+
+<!-- NOTICE -->
+<div class="notice">
+  <h4>Withdrawal instructions</h4>
+  <p>
+    1. Please check the withdrawal address carefully before submitting.<br>
+    2. Withdrawals are processed within 24 hours.<br>
+    3. Incorrect information may lead to loss of funds.<br>
+    4. If you have any questions, contact customer service.
+  </p>
+</div>
+
+</body>
+</html>
