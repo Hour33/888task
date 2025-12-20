@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task888 – Service</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  padding-bottom:70px;
+}
+
+/* NAV */
+.nav{
+position:fixed;bottom:0;left:0;right:0;
+background:#fff;display:flex;justify-content:space-around;
+padding:8px 0;border-top:1px solid #ddd;
+}
+.nav a{
+font-size:12px;color:#777;text-align:center;
+text-decoration:none;
+}
+.nav .active{color:#0f7a3c;font-weight:bold;}
+
+/* HEADER */
+.header{
+background:#0f7a3c;color:#fff;
+padding:16px;text-align:center;
+font-size:18px;font-weight:bold;
+}
+
+/* SERVICE CARDS */
+.service-card{
+background:#fff;
+margin:15px;
+border-radius:14px;
+padding:15px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+.service-left{
+display:flex;
+align-items:center;
+gap:12px;
+}
+.service-left img{
+width:60px;height:60px;
+border-radius:10px;
+}
+.service-left h3{
+margin:0;font-size:15px;
+}
+.service-left p{
+margin:4px 0 0;
+font-size:12px;color:#777;
+}
+.service-card button{
+background:#0f7a3c;
+border:none;color:#fff;
+padding:8px 14px;
+border-radius:20px;
+font-size:13px;
+}
+.simple{
+font-size:14px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">Customer Service</div>
+
+<div class="service-card">
+  <div class="service-left">
+    <img src="https://i.postimg.cc/MHt5sLZ4/name-c152f16f.png">
+    <div>
+      <h3>HI~ I am online customer service!</h3>
+      <p>If you have any questions, please contact customer service</p>
+    </div>
+  </div>
+  <button>Consult Now</button>
+</div>
+
+<div class="service-card">
+  <div class="service-left simple">📱 Telegram Groups</div>
+  <button>Join Now</button>
+</div>
+
+<div class="service-card">
+  <div class="service-left simple">📢 Telegram Channels</div>
+  <button>Join Now</button>
+</div>
+
+<div class="service-card">
+  <div class="service-left simple">📖 Platform Guideline</div>
+  <button>Click Here</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="nav">
+  <a href="index.html">🏠<br>Home</a>
+  <a href="promotion.html">📣<br>Promotion</a>
+  <a href="task.html">💼<br>Task</a>
+  <a class="active" href="service.html">🛎️<br>Service</a>
+  <a href="account.html">👤<br>Account</a>
+</div>
+
+</body>
+</html>
