@@ -1,106 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Task888 Dashboard SPA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task888 SPA</title>
 <style>
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f3f4f6;
-  padding-bottom:70px;
-}
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    padding-bottom: 70px;
+  }
 
-/* BOTTOM NAV */
-.nav{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-background:#fff;
-display:flex;
-justify-content:space-around;
-padding:8px 0;
-border-top:1px solid #ddd;
-}
-.nav div{
-font-size:12px;
-color:#777;
-text-align:center;
-cursor:pointer;
-}
-.nav .active{color:#0f7a3c;font-weight:bold;}
+  /* BOTTOM NAV */
+  .nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    border-top: 1px solid #ddd;
+  }
+  .nav div {
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+  }
+  .nav .active {
+    color: #0f7a3c;
+    font-weight: bold;
+  }
 
-/* COMMON SECTIONS */
-.section-wrapper{display:none;padding-bottom:60px;}
-.section-wrapper.active{display:block;}
+  /* COMMON SECTIONS */
+  .section-wrapper { display: none; padding-bottom: 60px; }
+  .section-wrapper.active { display: block; }
 
-/* HEADER */
-.header{
-background:#0f7a3c;
-color:#fff;
-padding:14px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-}
-.header-left{display:flex;align-items:center;gap:10px;}
-.logo{width:38px;height:38px;border-radius:8px;background:#0a5e2d;display:flex;align-items:center;justify-content:center;font-weight:bold;}
-.vip{background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:12px;font-size:12px;}
-.download-btn{background:#fff;color:#0f7a3c;padding:8px 14px;border-radius:20px;font-weight:bold;font-size:13px;}
+  /* HEADER */
+  .header {
+    background: #0f7a3c;
+    color: #fff;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .logo { width: 38px; height: 38px; border-radius: 8px; background: #0a5e2d; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .vip { background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 12px; font-size: 12px; }
+  .download-btn { background: #fff; color: #0f7a3c; padding: 8px 14px; border-radius: 20px; font-weight: bold; font-size: 13px; }
 
-/* DASHBOARD */
-.stats{background:#fff;margin:15px;border-radius:16px;padding:16px;display:flex;justify-content:space-between;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.08);}
-.stat h3{margin:0;font-size:20px;color:#111;}
-.stat p{margin:6px 0 0;font-size:12px;color:#777;}
-.quick{display:flex;gap:12px;margin:0 15px;}
-.quick-box{flex:1;background:#fff;border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 10px rgba(0,0,0,0.08);}
-.quick-box span{font-size:14px;font-weight:bold;}
-.banner{margin:15px;border-radius:18px;overflow:hidden;}
-.banner img{width:100%;display:block;}
-.task{background:#fff;border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);}
-.task-left{display:flex;align-items:center;gap:10px;}
-.task-icon{width:36px;height:36px;border-radius:50%;background:#e6f7ee;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#0f7a3c;}
-.task h4{margin:0;font-size:14px;}
-.task p{margin:4px 0 0;font-size:12px;color:#777;}
-.start{background:#1faa59;color:#fff;padding:8px 14px;border-radius:20px;font-size:13px;}
+  /* DASHBOARD */
+  .stats { background: #fff; margin: 15px; border-radius: 16px; padding: 16px; display: flex; justify-content: space-between; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+  .stat h3 { margin:0; font-size: 20px; color:#111; }
+  .stat p { margin:6px 0 0; font-size:12px; color:#777; }
+  .quick { display:flex; gap:12px; margin:0 15px; }
+  .quick-box { flex:1; background:#fff; border-radius:14px; padding:14px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 4px 10px rgba(0,0,0,0.08); }
+  .quick-box span { font-size:14px; font-weight:bold; }
+  .banner { margin:15px; border-radius:18px; overflow:hidden; }
+  .banner img { width:100%; display:block; }
+  .task { background:#fff; border-radius:14px; padding:14px; display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; box-shadow:0 4px 10px rgba(0,0,0,0.08); }
+  .task-left { display:flex; align-items:center; gap:10px; }
+  .task-icon { width:36px; height:36px; border-radius:50%; background:#e6f7ee; display:flex; align-items:center; justify-content:center; font-weight:bold; color:#0f7a3c; }
+  .task h4 { margin:0; font-size:14px; }
+  .task p { margin:4px 0 0; font-size:12px; color:#777; }
+  .start { background:#1faa59; color:#fff; padding:8px 14px; border-radius:20px; font-size:13px; }
 
-/* PROMOTION */
-.promo-header{background: linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:20px;border-radius:20px 20px 0 0;text-align:center;}
-.tree-box{background:#fff;border-radius:12px;margin-top:15px;padding:15px;color:#333;text-align:center;}
-.tree-box img{width:100%;max-width:300px;}
-.promo-section .section{background:#fff;margin:15px;padding:15px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
-.ref-row{display:flex;gap:10px;}
-.ref-row input{flex:1;padding:10px;border-radius:6px;border:1px solid #ccc;}
-.ref-row button{background:#4caf50;border:none;color:#fff;padding:10px 14px;border-radius:6px;font-weight:bold;}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;}
-.stats-grid .stat{background:#f1f8f4;padding:10px;border-radius:10px;}
-.share{display:flex;justify-content:space-around;margin-top:10px;}
-.share div{text-align:center;font-size:12px;}
-.rules p{font-size:13px;color:#555;line-height:1.6;}
+  /* PROMOTION */
+  .promo-header { background: linear-gradient(135deg,#2e7d32,#4caf50); color:#fff; padding:20px; border-radius:20px 20px 0 0; text-align:center; }
+  .tree-box { background:#fff; border-radius:12px; margin-top:15px; padding:15px; color:#333; text-align:center; }
+  .tree-box img { width:100%; max-width:300px; }
+  .promo-section .section { background:#fff; margin:15px; padding:15px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+  .ref-row { display:flex; gap:10px; }
+  .ref-row input { flex:1; padding:10px; border-radius:6px; border:1px solid #ccc; }
+  .ref-row button { background:#4caf50; border:none; color:#fff; padding:10px 14px; border-radius:6px; font-weight:bold; }
+  .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; text-align:center; }
+  .stats-grid .stat { background:#f1f8f4; padding:10px; border-radius:10px; }
+  .share { display:flex; justify-content:space-around; margin-top:10px; }
+  .share div { text-align:center; font-size:12px; }
+  .rules p { font-size:13px; color:#555; line-height:1.6; }
 
-/* TASK SECTION */
-.task-section .task-wrapper{background:#fff;margin:15px;border-radius:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
-.task-note{color:red;margin:15px;font-size:13px;}
+  /* TASK */
+  .task-section .task-wrapper { background:#fff; margin:15px; border-radius:12px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+  .task-note { color:red; margin:15px; font-size:13px; }
 
-/* SERVICE */
-.service-section .service-card{background:#fff;margin:15px;border-radius:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);display:flex;align-items:center;justify-content:space-between;}
-.service-section img{width:60px;height:60px;border-radius:8px;margin-right:10px;}
-.service-section button{background:#0f7a3c;color:#fff;border:none;padding:8px 12px;border-radius:8px;}
+  /* SERVICE */
+  .service-section .service-card { background:#fff; margin:15px; border-radius:12px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,0.05); display:flex; align-items:center; justify-content:space-between; }
+  .service-section img { width:60px; height:60px; border-radius:8px; margin-right:10px; }
+  .service-section button { background:#0f7a3c; color:#fff; border:none; padding:8px 12px; border-radius:8px; }
 
-/* ACCOUNT */
-.account-section .account-card{background:#fff;margin:15px;border-radius:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
-.account-section .account-card div{margin:6px 0;}
-.account-section .account-card div.button{
-  background:#0f7a3c;color:#fff;padding:8px 12px;border-radius:8px;text-align:center;cursor:pointer;
-}
+  /* ACCOUNT */
+  .account-section .account-card { background:#fff; margin:15px; border-radius:12px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+  .account-section .account-card div { margin:6px 0; }
+
+  /* PREVIEW (Not logged in) */
+  .preview-msg { margin: 20px; padding: 15px; background:#fff; border-radius:12px; text-align:center; font-size:14px; color:#555; }
 </style>
 </head>
 <body>
 
 <!-- HOME -->
-<div id="home" class="section-wrapper active">
+<div id="home" class="section-wrapper">
   <div class="header">
     <div class="header-left">
       <div class="logo">t88</div>
@@ -127,28 +129,8 @@ justify-content:space-between;
     <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="banner">
   </div>
 
-  <div class="section">
-    <h3>Recommended tasks</h3>
-    <div class="task">
-      <div class="task-left">
-        <div class="task-icon">W</div>
-        <div>
-          <h4>Automatic scoring task NO.1</h4>
-          <p>Messaging: 180 pts</p>
-        </div>
-      </div>
-      <div class="start">Start task</div>
-    </div>
-    <div class="task">
-      <div class="task-left">
-        <div class="task-icon">W</div>
-        <div>
-          <h4>Self-service scoring task NO.2</h4>
-          <p>180 points per message</p>
-        </div>
-      </div>
-      <div class="start">Start task</div>
-    </div>
+  <div id="homeContent">
+    <!-- Will be replaced if logged in -->
   </div>
 </div>
 
@@ -165,14 +147,14 @@ justify-content:space-between;
       <h3>Suggested Link</h3>
       <div class="ref-row">
         <input value="https://task888.onrender.com/#/?i=30Q4782N" readonly>
-        <button>Copy</button>
+        <button onclick="copyText(this)">Copy</button>
       </div>
     </div>
     <div class="section">
       <h3>Invitation Code</h3>
       <div class="ref-row">
         <input value="30Q4782N" readonly>
-        <button>Copy</button>
+        <button onclick="copyText(this)">Copy</button>
       </div>
     </div>
     <div class="section">
@@ -196,10 +178,11 @@ justify-content:space-between;
     </div>
     <div class="section rules">
       <h3>Activity Rules</h3>
-      <p>1. Invite friends to register using your link or code.<br>
-         2. Earn commission when referrals complete tasks.<br>
-         3. Level 1 rebate: 20%<br>
-         4. Level 2 rebate: 10%
+      <p>
+        1. Invite friends to register using your link or code.<br>
+        2. Earn commission when referrals complete tasks.<br>
+        3. Level 1 rebate: 20%<br>
+        4. Level 2 rebate: 10%
       </p>
     </div>
   </div>
@@ -246,16 +229,16 @@ justify-content:space-between;
         <h3>HI~ I am online customer service!</h3>
         <p>If you have any questions, please contact customer service~</p>
       </div>
-      <div class="button" onclick="alert('Consult Now clicked')">Consult Now</div>
+      <button>Consult Now</button>
     </div>
     <div class="service-card">
-      <div>📱 Telegram Groups</div><div class="button" onclick="alert('Join Now clicked')">Join Now</div>
+      <div>📱 Telegram Groups</div><button>Join Now</button>
     </div>
     <div class="service-card">
-      <div>📱 Telegram Channels</div><div class="button" onclick="alert('Join Now clicked')">Join Now</div>
+      <div>📱 Telegram Channels</div><button>Join Now</button>
     </div>
     <div class="service-card">
-      <div>📖 Platform Guideline</div><div class="button" onclick="alert('Click Here clicked')">Click Here</div>
+      <div>📖 Platform Guideline</div><button>Click Here</button>
     </div>
   </div>
 </div>
@@ -264,15 +247,15 @@ justify-content:space-between;
 <div id="account" class="section-wrapper">
   <div class="account-section">
     <div class="account-card">
-      <div id="acc-phone">9120945160</div>
-      <div id="acc-code">Referral code: 70LFTS9H</div>
-      <div id="acc-balance">Account balance: 380 points / 105.54 NGN</div>
-      <div class="button">Account withdrawal</div>
-      <div class="button">Income details</div>
-      <div class="button">Withdrawal order</div>
-      <div class="button">Change password</div>
-      <div class="button">Language settings</div>
-      <div class="button">Log out</div>
+      <div>9120945160</div>
+      <div>Referral code: 70LFTS9H</div>
+      <div>Account balance: 380 points / 105.54 NGN</div>
+      <div>Account withdrawal</div>
+      <div>Income details</div>
+      <div>Withdrawal order</div>
+      <div>Change password</div>
+      <div>Language settings</div>
+      <div>Log out</div>
     </div>
   </div>
 </div>
@@ -287,12 +270,18 @@ justify-content:space-between;
 </div>
 
 <script>
-// LOGIN GUARD
-const isLoggedIn = localStorage.getItem('task888_loggedIn');
+function copyText(button){
+  const input = button.previousElementSibling;
+  input.select();
+  document.execCommand("copy");
+  alert("Copied!");
+}
+
+// Check login
+const isLoggedIn = localStorage.getItem('task888_loggedIn') === 'true';
 
 function show(id){
-  // Guard: redirect to register if not logged in
-  if(!isLoggedIn && id!=='home'){
+  if(!isLoggedIn && id !== 'home'){
     window.location.href = 'register.html';
     return;
   }
@@ -301,29 +290,50 @@ function show(id){
   document.getElementById(id).classList.add('active');
 
   document.querySelectorAll('.nav .nav-icon').forEach((el,i)=>{
-    el.classList.remove('active');
-    const map=['home','promotion','task','service','account'];
-    if(map[i]===id){
-      el.classList.add('active');
-      el.style.color='#0f7a3c';
-      el.style.fontWeight='bold';
-    } else {
-      el.style.color='#777';
-      el.style.fontWeight='normal';
-    }
+    el.style.color = (['home','promotion','task','service','account'][i]===id)?'#0f7a3c':'#777';
+    el.style.fontWeight = (['home','promotion','task','service','account'][i]===id)?'bold':'normal';
   });
 }
 
-// Optional: populate account info after login
+// Show home content depending on login
 if(isLoggedIn){
-  const userPhone = localStorage.getItem('task888_phone') || '9120945160';
-  const userCode = localStorage.getItem('task888_code') || '70LFTS9H';
-  const userBalance = localStorage.getItem('task888_balance') || '380 points / 105.54 NGN';
-  document.getElementById('acc-phone').textContent = userPhone;
-  document.getElementById('acc-code').textContent = 'Referral code: ' + userCode;
-  document.getElementById('acc-balance').textContent = 'Account balance: ' + userBalance;
+  document.getElementById('homeContent').innerHTML = `
+    <div class="section">
+      <h3>Recommended tasks</h3>
+      <div class="task">
+        <div class="task-left">
+          <div class="task-icon">W</div>
+          <div>
+            <h4>Automatic scoring task NO.1</h4>
+            <p>Messaging: 180 pts</p>
+          </div>
+        </div>
+        <div class="start">Start task</div>
+      </div>
+      <div class="task">
+        <div class="task-left">
+          <div class="task-icon">W</div>
+          <div>
+            <h4>Self-service scoring task NO.2</h4>
+            <p>180 points per message</p>
+          </div>
+        </div>
+        <div class="start">Start task</div>
+      </div>
+    </div>
+  `;
+}else{
+  document.getElementById('homeContent').innerHTML = `
+    <div class="preview-msg">
+      Welcome to Task888<br>
+      Preview Home content. Register or login to unlock all features!
+    </div>
+  `;
 }
+
+// Default show home
+show('home');
 </script>
 
 </body>
-          </html>
+  </html>
