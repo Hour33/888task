@@ -3,194 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Sign In</title>
-
+<title>Sign In Calendar</title>
 <style>
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f3f4f6;
-}
-
-/* HEADER */
-.header{
-  background:#0f7a3c;
-  color:#fff;
-  padding:14px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.back{font-size:20px;cursor:pointer;}
-.header h3{margin:0;font-size:16px;}
-
-/* CARD */
-.card{
-  background:#fff;
-  margin:15px;
-  border-radius:16px;
-  padding:16px;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
-}
-
-/* CALENDAR */
-.calendar{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-top:12px;
-}
-.day{
-  background:#f1f8f4;
-  border-radius:12px;
-  padding:12px 6px;
-  text-align:center;
-  font-size:12px;
-  color:#0f7a3c;
-}
-.day.active{
-  background:#0f7a3c;
-  color:#fff;
-}
-.day.done{
-  background:#c8e6c9;
-  color:#0f7a3c;
-  font-weight:bold;
-}
-
-/* BUTTON */
-.btn{
-  width:100%;
-  margin-top:16px;
-  padding:12px;
-  border:none;
-  border-radius:14px;
-  background:#0f7a3c;
-  color:#fff;
-  font-size:16px;
-  font-weight:bold;
-}
-.btn:disabled{
-  background:#9cccaa;
-}
-
-/* POPUP */
-.popup{
-  position:fixed;
-  top:0;left:0;right:0;bottom:0;
-  background:rgba(0,0,0,.5);
-  display:none;
-  align-items:center;
-  justify-content:center;
-}
-.popup-box{
-  background:#fff;
-  border-radius:16px;
-  padding:20px;
-  width:80%;
-  max-width:300px;
-  text-align:center;
-}
-.popup-box h2{
-  margin:0;
-  color:#0f7a3c;
-}
-.popup-box button{
-  margin-top:14px;
-  padding:10px 16px;
-  border:none;
-  border-radius:10px;
-  background:#0f7a3c;
-  color:#fff;
-  font-weight:bold;
-}
+body { margin:0; font-family:Arial,sans-serif; background:#f3f4f6; padding-bottom:70px; }
+.header { background:#0f7a3c; color:#fff; padding:14px; display:flex; align-items:center; }
+.header .back { font-size:20px; margin-right:10px; cursor:pointer; }
+.header h2 { margin:0; font-size:18px; flex:1; text-align:center; }
+.calendar-card { background:#fff; border-radius:16px; margin:15px; padding:16px; text-align:center; }
+.calendar-card .info { margin-bottom:12px; font-size:14px; }
+.calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin:10px 0; }
+.calendar div { padding:10px; border-radius:50%; background:#cde9d1; color:#0f7a3c; }
+.calendar div.today { background:#0f7a3c; color:#fff; }
+.sign-btn { background:#0f7a3c; color:#fff; border:none; border-radius:20px; padding:10px 0; width:80%; margin:10px auto; display:block; font-weight:bold; cursor:pointer; }
+.rules { text-align:left; margin:10px 15px; font-size:12px; }
 </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
 <div class="header">
-  <div class="back" onclick="history.back()">‹</div>
-  <h3>Daily Sign In</h3>
+  <div class="back">&#8592;</div>
+  <h2>Sign in</h2>
 </div>
 
-<!-- CARD -->
-<div class="card">
-  <h3>Check in & Get Reward</h3>
-  <p style="font-size:13px;color:#777;margin:6px 0;">
-    Sign in daily to earn rewards
-  </p>
-
-  <div class="calendar" id="calendar"></div>
-
-  <button class="btn" id="signBtn" onclick="signInToday()">
-    Sign In Today
-  </button>
-</div>
-
-<!-- POPUP -->
-<div class="popup" id="popup">
-  <div class="popup-box">
-    <h2 id="rewardText">+₦20</h2>
-    <p>Sign in successful</p>
-    <button onclick="closePopup()">OK</button>
+<div class="calendar-card">
+  <div class="info">
+    Signed in for <span style="color:red">0</span> consecutive days<br>
+    Sign in for <span style="color:red">7</span> more days to earn <span style="color:red">5000</span> points
+  </div>
+  <div class="calendar">
+    <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
+    <div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div>
+    <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div class="today">21</div>
+    <div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div>
+    <div>29</div><div>30</div><div>31</div>
+  </div>
+  <button class="sign-btn">Sign in now!</button>
+  <div class="rules">
+    <b>Rules:</b><br>
+    1. Each member can only receive one sign-in reward per day.<br>
+    2. Members must complete the sign-in on the same day to continue...
   </div>
 </div>
-
-<script>
-const rewards = [20,30,40,50,60,80,100];
-const today = new Date().toDateString();
-
-let data = JSON.parse(localStorage.getItem("signinData")) || {
-  lastDate:null,
-  streak:0
-};
-
-function renderCalendar(){
-  const cal = document.getElementById("calendar");
-  cal.innerHTML = "";
-
-  for(let i=0;i<7;i++){
-    let div = document.createElement("div");
-    div.className = "day";
-    div.innerHTML = `Day ${i+1}<br>₦${rewards[i]}`;
-
-    if(i < data.streak) div.classList.add("done");
-    if(i === data.streak) div.classList.add("active");
-
-    cal.appendChild(div);
-  }
-
-  if(data.lastDate === today){
-    document.getElementById("signBtn").disabled = true;
-    document.getElementById("signBtn").textContent = "Already Signed Today";
-  }
-}
-
-function signInToday(){
-  if(data.lastDate === today) return;
-
-  const reward = rewards[data.streak] || 20;
-  data.streak++;
-
-  if(data.streak > 7) data.streak = 1;
-
-  data.lastDate = today;
-  localStorage.setItem("signinData", JSON.stringify(data));
-
-  document.getElementById("rewardText").textContent = `+₦${reward}`;
-  document.getElementById("popup").style.display = "flex";
-
-  renderCalendar();
-}
-
-function closePopup(){
-  document.getElementById("popup").style.display = "none";
-}
-
-renderCalendar();
-</script>
 
 </body>
 </html>
