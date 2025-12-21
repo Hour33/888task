@@ -41,14 +41,16 @@ box-shadow:0 4px 10px rgba(0,0,0,0.08);
 .task{
 background:#f9fafb;border-radius:12px;
 padding:14px;display:flex;
-align-items:center;justify-content:space-between;
+align-items:center;
+justify-content:space-between;
 margin-bottom:12px;
-min-height:60px;
+min-height:60px; /* ensures all cards same height */
+}
 .task-left{
 display:flex;
 align-items:center;
 gap:12px;
-flex:1; /* make left part take remaining space so button stays right */
+flex:1; /* stretch left section to push button right */
 }
 .task-icon{
 width:38px;height:38px;
@@ -69,8 +71,8 @@ font-size:12px;color:#777;
 background:#1faa59;color:#fff;
 padding:8px 14px;border-radius:20px;
 font-size:13px;
-cursor:pointer; /* make it clickable */
-white-space: nowrap; /* prevent text wrap */
+cursor:pointer; /* clickable */
+white-space: nowrap; /* prevent button wrap */
 }
 .task-note{
 margin:15px;
@@ -88,6 +90,7 @@ line-height:1.5;
 <div class="task-wrapper">
   <h3>WhatsApp Tasks</h3>
 
+  <!-- Automatic Task -->
   <div class="task">
     <div class="task-left">
       <div class="task-icon">W</div>
@@ -97,7 +100,9 @@ line-height:1.5;
       </div>
     </div>
     <div class="start" onclick="location.href='whatsapp-auto.html'">Start task</div>
+  </div>
 
+  <!-- Manual Task -->
   <div class="task">
     <div class="task-left">
       <div class="task-icon">W</div>
@@ -107,6 +112,7 @@ line-height:1.5;
       </div>
     </div>
     <div class="start" onclick="location.href='manual-task.html'">Start task</div>
+  </div>
 
 </div>
 
@@ -126,4 +132,4 @@ line-height:1.5;
 </div>
 
 </body>
-  </html>
+</html>
