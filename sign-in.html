@@ -33,28 +33,34 @@ body {
     text-align:center;
 }
 
-/* Top image placeholder with overlay text */
+/* Container for text + image */
 .signin-container {
     position: relative;
     margin: 15px;
+    border-radius:16px;
 }
 
+/* Text behind the image */
+.signin-text {
+    position: absolute;
+    top:14px;
+    left:14px;
+    z-index:1;
+    font-size:14px;
+    color:#000;
+    line-height:1.5;
+    padding:10px;
+    background: rgba(255,255,255,0.8);
+    border-radius:12px;
+}
+
+/* Image on top */
 .signin-img {
     width:100%;
     display:block;
     border-radius:16px;
-}
-
-.signin-text {
-    position: absolute;
-    top:12px;
-    left:12px;
-    color:#fff;
-    font-size:14px;
-    background: rgba(0,0,0,0.3);
-    padding:6px 10px;
-    border-radius:10px;
-    max-width: 90%;
+    z-index:2;
+    position: relative;
 }
 
 /* Calendar card */
@@ -119,11 +125,11 @@ body {
 </div>
 
 <div class="signin-container">
-    <img src="https://i.postimg.cc/287YWdft/name-71d6e454.png" alt="Sign-in graphic" class="signin-img">
     <div class="signin-text">
         Signed in for <span style="color:red">0</span> consecutive days<br>
         Sign in for <span style="color:red">7</span> more days to earn <span style="color:red">5000</span> points
     </div>
+    <img src="https://i.postimg.cc/287YWdft/name-71d6e454.png" alt="Sign-in graphic" class="signin-img">
 </div>
 
 <div class="calendar-card">
