@@ -3,183 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VIP Details</title>
-
+<title>VIP Details | Task888</title>
 <style>
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f3f4f6;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    padding-bottom: 70px;
 }
 
 /* HEADER */
-.header{
-  background:#0f7a3c;
-  color:#fff;
-  padding:14px;
-  display:flex;
-  align-items:center;
-  gap:10px;
+.header {
+    background: #0f7a3c;
+    color: #fff;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.back{font-size:20px;cursor:pointer;}
-.header h3{margin:0;font-size:16px;}
-
-/* VIP CARD */
-.vip-card{
-  margin:16px;
-  background:linear-gradient(135deg,#0f7a3c,#1faa59);
-  color:#fff;
-  border-radius:18px;
-  padding:20px;
-  box-shadow:0 6px 16px rgba(0,0,0,.15);
+.header-left {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
-.vip-card h2{
-  margin:0;
-  font-size:20px;
+.logo {
+    width: 38px;
+    height: 38px;
+    background: #0a5e2d;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }
-.vip-card p{
-  font-size:13px;
-  opacity:.9;
-  margin:6px 0 0;
+.vip-level {
+    background: rgba(255,255,255,.2);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
 }
-
-/* LEVEL LIST */
-.levels{
-  margin:16px;
-}
-.level{
-  background:#fff;
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:14px;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
-}
-.level-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.badge{
-  background:#e6f7ee;
-  color:#0f7a3c;
-  padding:4px 12px;
-  border-radius:14px;
-  font-size:12px;
-  font-weight:bold;
-}
-.price{
-  color:#0f7a3c;
-  font-weight:bold;
-  font-size:14px;
+.vip-points {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #fff;
 }
 
-.features{
-  margin-top:10px;
-  font-size:13px;
-  color:#555;
-  line-height:1.6;
+/* VIP Card */
+.vip-card {
+    background: #fff;
+    margin: 15px;
+    border-radius: 18px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.vip-card h2 {
+    margin: 0;
+    color: #0f7a3c;
+    font-size: 20px;
+}
+
+.vip-wheel {
+    margin: 20px auto;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 10px solid #1faa59;
+    background: conic-gradient(#4caf50 0% 25%, #a5d6a7 25% 50%, #4caf50 50% 75%, #a5d6a7 75% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #0f7a3c;
+    font-weight: bold;
 }
 
 /* BUTTON */
-.btn{
-  margin-top:12px;
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:14px;
-  background:#0f7a3c;
-  color:#fff;
-  font-weight:bold;
-  font-size:14px;
-}
-.btn.locked{
-  background:#ccc;
-  color:#666;
+.collect-btn {
+    display: block;
+    width: 80%;
+    margin: 20px auto 0;
+    padding: 12px;
+    background: #1faa59;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-/* NOTE */
-.note{
-  margin:16px;
-  font-size:12px;
-  color:#777;
-  text-align:center;
+/* NAV */
+.nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    border-top: 1px solid #ddd;
+}
+.nav a {
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+    text-decoration: none;
+}
+.nav .active {
+    color: #0f7a3c;
+    font-weight: bold;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
-  <div class="back" onclick="history.back()">‹</div>
-  <h3>VIP Details</h3>
+    <div class="header-left">
+        <div class="logo">t88</div>
+        <div>
+            <div>task888</div>
+            <div class="vip-level">VIP0</div>
+        </div>
+    </div>
+    <div class="vip-points">Points: 140</div>
 </div>
 
-<!-- VIP SUMMARY -->
 <div class="vip-card">
-  <h2>Your Current Level: VIP0</h2>
-  <p>Upgrade VIP to unlock higher task income and benefits</p>
+    <h2>VIP Reward Wheel</h2>
+    <div class="vip-wheel">🎁</div>
+    <button class="collect-btn">Collect Reward</button>
 </div>
 
-<!-- VIP LEVELS -->
-<div class="levels">
-
-  <div class="level">
-    <div class="level-top">
-      <strong>VIP0</strong>
-      <span class="badge">Current</span>
-    </div>
-    <div class="features">
-      • Daily Tasks: 1<br>
-      • Task Reward: ₦50<br>
-      • Daily Income Limit: ₦50
-    </div>
-    <button class="btn locked">Activated</button>
-  </div>
-
-  <div class="level">
-    <div class="level-top">
-      <strong>VIP1</strong>
-      <span class="price">₦2,000</span>
-    </div>
-    <div class="features">
-      • Daily Tasks: 3<br>
-      • Task Reward: ₦120<br>
-      • Daily Income Limit: ₦360
-    </div>
-    <button class="btn">Upgrade VIP1</button>
-  </div>
-
-  <div class="level">
-    <div class="level-top">
-      <strong>VIP2</strong>
-      <span class="price">₦5,000</span>
-    </div>
-    <div class="features">
-      • Daily Tasks: 5<br>
-      • Task Reward: ₦250<br>
-      • Daily Income Limit: ₦1,250
-    </div>
-    <button class="btn">Upgrade VIP2</button>
-  </div>
-
-  <div class="level">
-    <div class="level-top">
-      <strong>VIP3</strong>
-      <span class="price">₦10,000</span>
-    </div>
-    <div class="features">
-      • Daily Tasks: 8<br>
-      • Task Reward: ₦400<br>
-      • Daily Income Limit: ₦3,200
-    </div>
-    <button class="btn">Upgrade VIP3</button>
-  </div>
-
-</div>
-
-<div class="note">
-  VIP upgrades are permanent and increase daily income capacity.
+<!-- BOTTOM NAV -->
+<div class="nav">
+    <a href="index.html">🏠<br>Home</a>
+    <a href="promotion.html">📣<br>Promotion</a>
+    <a href="task.html">💼<br>Task</a>
+    <a href="service.html">🛎️<br>Service</a>
+    <a class="active" href="account.html">👤<br>Account</a>
 </div>
 
 </body>
