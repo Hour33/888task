@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WhatsApp Linking Task</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        background: #f2f4f7;
+        color: #333;
+    }
+
+    /* Header */
+    .header {
+        background: #1aa34a;
+        color: #fff;
+        padding: 14px;
+        display: flex;
+        align-items: center;
+    }
+
+    .header span {
+        font-size: 18px;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+
+    .back {
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    /* Container */
+    .container {
+        padding: 14px;
+    }
+
+    /* Card */
+    .card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 16px;
+        margin-bottom: 14px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    /* Statistics */
+    .stats {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .stat h2 {
+        margin: 0;
+        font-size: 22px;
+    }
+
+    .stat p {
+        margin: 4px 0 0;
+        font-size: 13px;
+        color: #666;
+    }
+
+    /* Video Placeholder */
+    .video {
+        height: 180px;
+        background: #e9ecef;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+    }
+
+    .play {
+        width: 60px;
+        height: 60px;
+        background: rgba(0,0,0,0.4);
+        border-radius: 50%;
+        position: relative;
+    }
+
+    .play:after {
+        content: "";
+        position: absolute;
+        top: 18px;
+        left: 24px;
+        border-style: solid;
+        border-width: 12px 0 12px 18px;
+        border-color: transparent transparent transparent white;
+    }
+
+    /* Steps */
+    .step-title {
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .link-box {
+        border: 1px solid #1aa34a;
+        border-radius: 8px;
+        padding: 12px;
+        color: #1aa34a;
+        background: #f0fff5;
+        font-size: 14px;
+    }
+
+    /* Bind Section */
+    .warning {
+        color: #d9534f;
+        font-size: 13px;
+        margin: 8px 0;
+    }
+
+    .input-row {
+        display: flex;
+        margin-bottom: 12px;
+    }
+
+    select, input {
+        padding: 12px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        outline: none;
+    }
+
+    select {
+        border-radius: 8px 0 0 8px;
+        background: #f7f7f7;
+    }
+
+    input {
+        flex: 1;
+        border-radius: 0 8px 8px 0;
+        border-left: none;
+    }
+
+    .btn {
+        width: 100%;
+        background: linear-gradient(90deg, #1aa34a, #22c55e);
+        color: #fff;
+        border: none;
+        padding: 14px;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .note {
+        color: #d9534f;
+        text-align: center;
+        margin: 10px 0;
+        font-size: 13px;
+    }
+
+    .code-boxes {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        margin: 14px 0;
+    }
+
+    .code-boxes div {
+        width: 34px;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background: #f7f7f7;
+    }
+
+    .desc {
+        font-size: 12px;
+        color: #777;
+        text-align: center;
+    }
+
+    /* Online Numbers */
+    .online {
+        text-align: center;
+        color: #777;
+        padding: 20px 0;
+    }
+
+    .refresh {
+        float: right;
+        color: #1aa34a;
+        font-size: 14px;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="back">←</div>
+    <span>WhatsApp Linking Task</span>
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <strong>Task Statistics</strong>
+        <div class="stats" style="margin-top:12px;">
+            <div class="stat">
+                <h2>0</h2>
+                <p>Today's Send Count</p>
+            </div>
+            <div class="stat">
+                <h2>0</h2>
+                <p>Today's Points</p>
+            </div>
+            <div class="stat">
+                <h2>0</h2>
+                <p>Yesterday's Points</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="video">
+        <div class="play"></div>
+    </div>
+
+    <div class="card">
+        <div class="step-title">Step 1: Click to download WhatsApp</div>
+        <div class="link-box">Click to redirect: https://www.whatsapp.com</div>
+    </div>
+
+    <div class="card">
+        <div class="step-title">Step 2: Bind WhatsApp</div>
+        <div class="link-box">
+            Continue with the following binding steps after completing registration
+        </div>
+    </div>
+
+    <div class="card">
+        <strong>Bind WhatsApp</strong>
+        <p style="font-size:14px;">Enter the verification code into the linked WhatsApp account</p>
+        <div class="warning">Only active WhatsApp mobile users can claim the task</div>
+
+        <div class="input-row">
+            <select>
+                <option>+00</option>
+                <option>+234</option>
+                <option>+1</option>
+                <option>+44</option>
+            </select>
+            <input type="text" placeholder="Please Enter Phone Number"/>
+        </div>
+
+        <button class="btn">Get Verification Code</button>
+
+        <div class="note">Do not refresh the page</div>
+
+        <div class="code-boxes">
+            <div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+
+        <div class="desc">
+            After entering the verification code in WhatsApp, please ensure the linking is successful and return to the platform for verification.
+        </div>
+    </div>
+
+    <div class="card">
+        <strong>Online Numbers</strong>
+        <span class="refresh">⟳ Refresh</span>
+        <div class="online">No Online Numbers Available</div>
+    </div>
+
+</div>
+
+</body>
+</html>
