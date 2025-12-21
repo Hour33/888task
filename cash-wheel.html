@@ -3,13 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cash Wheel | Task888</title>
+<title>Cash Wheel</title>
 <style>
 body {
     margin:0;
-    font-family: Arial,sans-serif;
+    font-family:Arial,sans-serif;
     background:#f3f4f6;
     color:#000;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 .header {
@@ -18,6 +21,7 @@ body {
     padding:14px;
     display:flex;
     align-items:center;
+    width:100%;
 }
 
 .header .back {
@@ -33,95 +37,97 @@ body {
     text-align:center;
 }
 
-/* Top card */
-.cash-card {
-    background:#fff;
-    border-radius:16px;
-    margin:15px;
-    padding:16px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    box-shadow:0 4px 10px rgba(0,0,0,.08);
-}
-
-.cash-info {
+/* Info section above wheel */
+.info {
+    margin:20px 15px 10px;
+    text-align:center;
     font-size:14px;
     line-height:1.5;
 }
 
-.cash-info b {
-    color:#0f7a3c;
-}
-
 /* Wheel placeholder */
-.wheel-img {
-    width:120px;
-    height:120px;
+.wheel-container {
+    margin:10px auto;
+    width:250px;
+    height:250px;
     border-radius:50%;
-    background:#cde9d1;
+    background: conic-gradient(#f1c40f 0deg 60deg, #e74c3c 60deg 120deg, #2ecc71 120deg 180deg, #3498db 180deg 240deg, #9b59b6 240deg 300deg, #e67e22 300deg 360deg);
     display:flex;
     align-items:center;
     justify-content:center;
     font-weight:bold;
-    color:#0f7a3c;
-    font-size:14px;
-    text-align:center;
-    padding:10px;
+    color:#fff;
+    font-size:24px;
+    position:relative;
 }
 
-/* Spin button */
-.spin-btn {
-    display:block;
-    width:80%;
-    margin:16px auto 0;
+/* Center circle */
+.wheel-container::after {
+    content:"WHEEL";
+    position:absolute;
+    width:80px;
+    height:80px;
+    background:#fff;
+    color:#0f7a3c;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+/* Start button */
+.start-btn {
+    margin:20px auto;
     padding:12px 0;
-    background:#1faa59;
-    color:#fff;
+    width:150px;
     border:none;
     border-radius:20px;
+    background:#0f7a3c;
+    color:#fff;
     font-weight:bold;
     cursor:pointer;
+    display:block;
 }
 
-/* Rules/info */
+/* Rules box */
 .rules {
     background:#fff;
+    color:#000;
     border-radius:16px;
     padding:12px;
     margin:12px 15px;
     font-size:12px;
-    line-height:1.5;
     text-align:left;
+    line-height:1.5;
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-    <div class="back">&#8592;</div>
+    <div class="back" onclick="history.back()">&#8592;</div>
     <h2>Cash Wheel</h2>
 </div>
 
-<div class="cash-card">
-    <div class="cash-info">
-        Each spin costs <b>10 points</b><br>
-        Available balance：<b>100 points</b><br>
-        Points can be withdrawn as cash
-    </div>
-    <div class="wheel-img">WHEEL</div>
+<div class="info">
+    Each spin costs 10 points<br>
+    Available balance: 100 points<br>
+    Points can be withdrawn as cash
 </div>
 
-<button class="spin-btn" onclick="alert('No number online')">Start</button>
+<div class="wheel-container"></div>
+
+<button class="start-btn" onclick="alert('No number online')">Start</button>
 
 <div class="rules">
-<b>Rules：</b><br>
-1. How it works:<br>
-2. Spin the wheel: Each spin will add more points to your total score!<br>
-3. Improve your score: Your score will increase with each spin.<br>
-4. No spins?.<br>
-5. Buy more spins: Use your points to buy more spins and keep having fun!.<br>
-6. Spin, earn and stay excited!.
+    <b>Rules：</b><br>
+    1. How it works:<br>
+    2. Spin the wheel: Each spin will add more points to your total score!<br>
+    3. Improve your score: Your score will increase with each spin.<br>
+    4. No spins? <br>
+    5. Buy more spins: Use your points to buy more spins and keep having fun!<br>
+    6. Spin, earn and stay excited!
 </div>
 
 </body>
