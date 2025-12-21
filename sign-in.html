@@ -33,17 +33,28 @@ body {
     text-align:center;
 }
 
-/* Top image wrapper */
-.image-wrapper {
+/* Top image placeholder with overlay text */
+.signin-container {
     position: relative;
-    margin:15px 15px 5px 0;
-    text-align: right;
+    margin: 15px;
 }
 
-.image-wrapper img {
-    max-width:70%;
-    height:auto;
-    display:inline-block;
+.signin-img {
+    width:100%;
+    display:block;
+    border-radius:16px;
+}
+
+.signin-text {
+    position: absolute;
+    top:12px;
+    left:12px;
+    color:#fff;
+    font-size:14px;
+    background: rgba(0,0,0,0.3);
+    padding:6px 10px;
+    border-radius:10px;
+    max-width: 90%;
 }
 
 /* Calendar card */
@@ -53,13 +64,6 @@ body {
     margin:15px;
     padding:16px;
     text-align:center;
-    box-shadow:0 4px 10px rgba(0,0,0,.08);
-}
-
-.calendar-card .info {
-    margin-bottom:12px;
-    font-size:14px;
-    line-height:1.5;
 }
 
 .calendar-card .calendar {
@@ -100,41 +104,38 @@ body {
     color:#000;
     border-radius:16px;
     padding:12px;
-    margin:12px 15px 20px 15px;
+    margin:12px 15px;
     font-size:12px;
     text-align:left;
     line-height:1.5;
-    box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-    <div class="back">&#8592;</div>
+    <div class="back" onclick="history.back()">&#8592;</div>
     <h2>Sign in</h2>
 </div>
 
-<!-- Top image aligned right -->
-<div class="image-wrapper">
-    <img src="https://i.postimg.cc/287YWdft/name-71d6e454.png" alt="Sign-in graphic">
-</div>
-
-<div class="calendar-card">
-    <div class="info">
+<div class="signin-container">
+    <img src="https://i.postimg.cc/287YWdft/name-71d6e454.png" alt="Sign-in graphic" class="signin-img">
+    <div class="signin-text">
         Signed in for <span style="color:red">0</span> consecutive days<br>
         Sign in for <span style="color:red">7</span> more days to earn <span style="color:red">5000</span> points
     </div>
+</div>
 
+<div class="calendar-card">
     <div class="calendar">
         <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
         <div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div>
-        <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div class="today">21</div>
+        <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div>
         <div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div>
         <div>29</div><div>30</div><div>31</div>
     </div>
 
-    <button class="sign-btn">Sign in now!</button>
+    <button class="sign-btn" onclick="signIn()">Sign in now!</button>
 </div>
 
 <div class="rules">
@@ -142,8 +143,14 @@ body {
     1. Each member can only receive one sign-in reward per day.<br>
     2. Members must complete the sign-in on the same day to continue to participate in the sign-in activity on the next day.<br>
     3. If a member fails to sign in on time, the member can make up within 24 hours.<br>
-    4. wsgo99 reserves the right to interpret the rules of this event and modify or change the rules, rewards or terms of participation at any time without prior notice.
+    4. task888 reserves the right to interpret the rules of this event and modify or change the rules, rewards or terms of participation at any time without prior notice.
 </div>
+
+<script>
+function signIn() {
+    alert("Not enough messages sent. You cannot sign in yet.");
+}
+</script>
 
 </body>
 </html>
