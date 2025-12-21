@@ -5,44 +5,133 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign In Calendar</title>
 <style>
-body { margin:0; font-family:Arial,sans-serif; background:#f3f4f6; padding-bottom:70px; }
-.header { background:#0f7a3c; color:#fff; padding:14px; display:flex; align-items:center; }
-.header .back { font-size:20px; margin-right:10px; cursor:pointer; }
-.header h2 { margin:0; font-size:18px; flex:1; text-align:center; }
-.calendar-card { background:#fff; border-radius:16px; margin:15px; padding:16px; text-align:center; }
-.calendar-card .info { margin-bottom:12px; font-size:14px; }
-.calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin:10px 0; }
-.calendar div { padding:10px; border-radius:50%; background:#cde9d1; color:#0f7a3c; }
-.calendar div.today { background:#0f7a3c; color:#fff; }
-.sign-btn { background:#0f7a3c; color:#fff; border:none; border-radius:20px; padding:10px 0; width:80%; margin:10px auto; display:block; font-weight:bold; cursor:pointer; }
-.rules { text-align:left; margin:10px 15px; font-size:12px; }
+body {
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f3f4f6;
+    color:#000;
+}
+
+.header {
+    background:#0f7a3c;
+    color:#fff;
+    padding:14px;
+    display:flex;
+    align-items:center;
+}
+
+.header .back {
+    font-size:20px;
+    margin-right:10px;
+    cursor:pointer;
+}
+
+.header h2 {
+    margin:0;
+    font-size:18px;
+    flex:1;
+    text-align:center;
+}
+
+/* Top image placeholder */
+.signin-img {
+    width:100%;
+    display:block;
+}
+
+/* Calendar card */
+.calendar-card {
+    background:#fff;
+    border-radius:16px;
+    margin:15px;
+    padding:16px;
+    text-align:center;
+}
+
+.calendar-card .info {
+    margin-bottom:12px;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.calendar-card .calendar {
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:8px;
+    margin:10px 0;
+}
+
+.calendar-card .calendar div {
+    padding:12px 0;
+    border-radius:50%;
+    background:#cde9d1;
+    color:#0f7a3c;
+    font-weight:bold;
+}
+
+.calendar-card .calendar div.today {
+    background:#0f7a3c;
+    color:#fff;
+}
+
+.sign-btn {
+    background:#0f7a3c;
+    color:#fff;
+    border:none;
+    border-radius:20px;
+    padding:10px 0;
+    width:80%;
+    margin:12px auto 0;
+    display:block;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.rules {
+    background:#fff;
+    color:#000;
+    border-radius:16px;
+    padding:12px;
+    margin:12px 15px;
+    font-size:12px;
+    text-align:left;
+    line-height:1.5;
+}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="back">&#8592;</div>
-  <h2>Sign in</h2>
+    <div class="back">&#8592;</div>
+    <h2>Sign in</h2>
 </div>
 
+<!-- Placeholder for image, change src later -->
+<img src="https://via.placeholder.com/400x120" alt="Sign-in graphic" class="signin-img">
+
 <div class="calendar-card">
-  <div class="info">
-    Signed in for <span style="color:red">0</span> consecutive days<br>
-    Sign in for <span style="color:red">7</span> more days to earn <span style="color:red">5000</span> points
-  </div>
-  <div class="calendar">
-    <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
-    <div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div>
-    <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div class="today">21</div>
-    <div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div>
-    <div>29</div><div>30</div><div>31</div>
-  </div>
-  <button class="sign-btn">Sign in now!</button>
-  <div class="rules">
-    <b>Rules:</b><br>
+    <div class="info">
+        Signed in for <span style="color:red">0</span> consecutive days<br>
+        Sign in for <span style="color:red">7</span> more days to earn <span style="color:red">5000</span> points
+    </div>
+
+    <div class="calendar">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
+        <div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div>
+        <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div class="today">21</div>
+        <div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div>
+        <div>29</div><div>30</div><div>31</div>
+    </div>
+
+    <button class="sign-btn">Sign in now!</button>
+</div>
+
+<div class="rules">
+    <b>Rules：</b><br>
     1. Each member can only receive one sign-in reward per day.<br>
-    2. Members must complete the sign-in on the same day to continue...
-  </div>
+    2. Members must complete the sign-in on the same day to continue to participate in the sign-in activity on the next day.<br>
+    3. If a member fails to sign in on time, the member can make up within 24 hours.<br>
+    4. wsgo99 reserves the right to interpret the rules of this event and modify or change the rules, rewards or terms of participation at any time without prior notice.
 </div>
 
 </body>
