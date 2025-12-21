@@ -35,32 +35,27 @@ body {
 
 /* Container for text + image */
 .signin-container {
-    position: relative;
-    margin: 15px;
+    display:flex;
+    align-items:center;
+    background:#fff;
     border-radius:16px;
+    margin:15px;
+    padding:16px;
+    gap:12px;
 }
 
-/* Text behind the image */
+/* Left text */
 .signin-text {
-    position: absolute;
-    top:14px;
-    left:14px;
-    z-index:1;
     font-size:14px;
-    color:#000;
     line-height:1.5;
-    padding:10px;
-    background: rgba(255,255,255,0.8);
-    border-radius:12px;
+    flex:1;
 }
 
-/* Image on top */
+/* Right image */
 .signin-img {
-    width:100%;
-    display:block;
-    border-radius:16px;
-    z-index:2;
-    position: relative;
+    width:80px; /* adjust size as needed */
+    height:auto;
+    border-radius:12px;
 }
 
 /* Calendar card */
