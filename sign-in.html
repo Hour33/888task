@@ -33,10 +33,17 @@ body {
     text-align:center;
 }
 
-/* Top image placeholder */
-.signin-img {
-    width:100%;
-    display:block;
+/* Top image wrapper */
+.image-wrapper {
+    position: relative;
+    margin:15px 15px 5px 0;
+    text-align: right;
+}
+
+.image-wrapper img {
+    max-width:70%;
+    height:auto;
+    display:inline-block;
 }
 
 /* Calendar card */
@@ -46,6 +53,7 @@ body {
     margin:15px;
     padding:16px;
     text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 
 .calendar-card .info {
@@ -92,10 +100,11 @@ body {
     color:#000;
     border-radius:16px;
     padding:12px;
-    margin:12px 15px;
+    margin:12px 15px 20px 15px;
     font-size:12px;
     text-align:left;
     line-height:1.5;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 </style>
 </head>
@@ -106,8 +115,10 @@ body {
     <h2>Sign in</h2>
 </div>
 
-<!-- Placeholder for image, change src later -->
-<img src="https://i.postimg.cc/287YWdft/name-71d6e454.png" alt="Sign-in graphic" class="signin-img">
+<!-- Top image aligned right -->
+<div class="image-wrapper">
+    <img src="https://i.postimg.cc/287YWdft/name-71d6e454.png" alt="Sign-in graphic">
+</div>
 
 <div class="calendar-card">
     <div class="info">
@@ -118,7 +129,7 @@ body {
     <div class="calendar">
         <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
         <div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div>
-        <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div>
+        <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div class="today">21</div>
         <div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div>
         <div>29</div><div>30</div><div>31</div>
     </div>
@@ -131,7 +142,7 @@ body {
     1. Each member can only receive one sign-in reward per day.<br>
     2. Members must complete the sign-in on the same day to continue to participate in the sign-in activity on the next day.<br>
     3. If a member fails to sign in on time, the member can make up within 24 hours.<br>
-    4. task888 reserves the right to interpret the rules of this event and modify or change the rules, rewards or terms of participation at any time without prior notice.
+    4. wsgo99 reserves the right to interpret the rules of this event and modify or change the rules, rewards or terms of participation at any time without prior notice.
 </div>
 
 </body>
