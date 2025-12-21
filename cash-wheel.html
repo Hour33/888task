@@ -55,9 +55,6 @@ body {
     display:flex;
     align-items:center;
     justify-content:center;
-    font-weight:bold;
-    color:#fff;
-    font-size:24px;
     position:relative;
 }
 
@@ -74,6 +71,21 @@ body {
     align-items:center;
     justify-content:center;
     font-weight:bold;
+}
+
+/* Numbers around wheel */
+.number {
+    position:absolute;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:#fff;
+    color:#0f7a3c;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:12px;
 }
 
 /* Start button */
@@ -116,7 +128,16 @@ body {
     Points can be withdrawn as cash
 </div>
 
-<div class="wheel-container"></div>
+<div class="wheel-container">
+    <div class="number" style="top:5%; left:50%;">1</div>
+    <div class="number" style="top:15%; left:85%;">2</div>
+    <div class="number" style="top:50%; left:95%;">3</div>
+    <div class="number" style="top:85%; left:85%;">4</div>
+    <div class="number" style="top:95%; left:50%;">5</div>
+    <div class="number" style="top:85%; left:15%;">6</div>
+    <div class="number" style="top:50%; left:5%;">7</div>
+    <div class="number" style="top:15%; left:15%;">8</div>
+</div>
 
 <button class="start-btn" onclick="alert('No number online')">Start</button>
 
