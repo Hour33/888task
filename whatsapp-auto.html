@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Link Tasks</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  padding-bottom:30px;
+}
+
+/* HEADER */
+.header{
+  background:#0f7a3c;
+  color:#fff;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.back{
+  font-size:20px;
+  cursor:pointer;
+}
+.header h3{
+  margin:0;
+  font-size:16px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  margin:14px;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+/* STATISTICS */
+.stats{
+  background:#0f7a3c;
+  color:#fff;
+  border-radius:12px;
+  padding:14px;
+  display:flex;
+  justify-content:space-between;
+  text-align:center;
+  font-size:13px;
+}
+.stats div span{
+  display:block;
+  margin-top:6px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* VIDEO */
+.video-box{
+  background:#d9ebe2;
+  border-radius:12px;
+  padding:30px;
+  text-align:center;
+  margin-top:14px;
+}
+.play{
+  width:50px;height:50px;
+  border-radius:50%;
+  background:#0f7a3c;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  margin:auto;
+}
+
+/* STEPS */
+.step{
+  margin-top:14px;
+}
+.step h4{
+  margin:0 0 6px;
+  font-size:14px;
+}
+.step-box{
+  background:#f1f8f4;
+  padding:10px;
+  border-radius:10px;
+  font-size:13px;
+  color:#0f7a3c;
+}
+
+/* BIND BOX */
+.bind-box{
+  background:#fff;
+  margin:14px;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+.bind-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.bind-header span{
+  font-weight:bold;
+  color:#0f7a3c;
+}
+.close{
+  color:#999;
+  cursor:pointer;
+}
+
+/* FORM */
+input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  margin-bottom:10px;
+  font-size:14px;
+}
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#0f7a3c;
+  color:#fff;
+  font-weight:bold;
+  font-size:15px;
+}
+.note{
+  font-size:12px;
+  color:#d32f2f;
+  margin:8px 0;
+}
+
+/* ONLINE NUMBER */
+.online{
+  background:#fff;
+  margin:14px;
+  border-radius:14px;
+  padding:16px;
+  text-align:center;
+  color:#999;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+.refresh{
+  float:right;
+  cursor:pointer;
+  color:#0f7a3c;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="back" onclick="history.back()">‹</div>
+  <h3>WhatsApp Link Tasks</h3>
+</div>
+
+<!-- STATISTICS -->
+<div class="card">
+  <div class="stats">
+    <div>Today sent <span id="sent">0</span></div>
+    <div>Today's points <span id="points">0</span></div>
+    <div>Yesterday's points <span>0</span></div>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="video-box">
+    <div class="play">▶</div>
+    <p style="margin-top:10px;color:#0f7a3c;font-weight:bold">
+      wsgo99 Money making tutorial videos
+    </p>
+  </div>
+
+  <!-- STEPS -->
+  <div class="step">
+    <h4>Step 1 : Click to download WhatsApp</h4>
+    <div class="step-box">
+      Click to jump: <a href="https://www.whatsapp.com" target="_blank">https://www.whatsapp.com</a>
+    </div>
+  </div>
+
+  <div class="step">
+    <h4>Step 2 : Connect WhatsApp</h4>
+    <div class="step-box">
+      After completing the registration, continue with the binding
+    </div>
+  </div>
+</div>
+
+<!-- BIND WHATSAPP -->
+<div class="bind-box">
+  <div class="bind-header">
+    <span>Bind WhatsApp</span>
+    <div class="close">Close</div>
+  </div>
+
+  <p style="font-size:13px">
+    Enter the verification code into the associated WhatsApp account
+  </p>
+
+  <div class="note">Only active WhatsApp Mobile users can claim tasks</div>
+
+  <input type="text" placeholder="+234  Enter your phone number">
+
+  <button onclick="getCode()">Get verification code</button>
+
+  <p style="font-size:12px;color:#999;margin-top:8px">
+    After getting the verification code, do not refresh the page
+  </p>
+
+  <!-- CODE INPUT (AUTO TASK SIMULATION) -->
+  <input type="text" placeholder="Enter verification code">
+
+  <p style="font-size:12px;color:#999">
+    After entering the verification code in WhatsApp, return to refresh
+  </p>
+</div>
+
+<!-- ONLINE NUMBER -->
+<div class="online">
+  <span class="refresh" onclick="refreshOnline()">⟳</span>
+  <strong>Online Number</strong>
+  <p>No data yet</p>
+</div>
+
+<script>
+/* TEMP FRONTEND LOGIC ONLY */
+/* Safe to remove later */
+
+function getCode(){
+  alert("Verification code sent (demo)");
+}
+
+function refreshOnline(){
+  alert("No online data yet");
+}
+</script>
+
+</body>
+</html>
