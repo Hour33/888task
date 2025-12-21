@@ -31,7 +31,13 @@ display:flex;justify-content:space-between;align-items:center;
 .header-left{display:flex;gap:10px;align-items:center;}
 .logo{width:38px;height:38px;background:#0a5e2d;border-radius:8px;
 display:flex;align-items:center;justify-content:center;font-weight:bold;}
-.vip{background:rgba(255,255,255,.2);padding:4px 8px;border-radius:12px;font-size:12px;}
+.vip{
+background:rgba(255,255,255,.2);
+padding:4px 8px;
+border-radius:12px;
+font-size:12px;
+cursor:pointer;
+}
 .download-btn{background:#fff;color:#0f7a3c;padding:8px 14px;border-radius:20px;font-weight:bold;}
 
 .stats{background:#fff;margin:15px;border-radius:16px;padding:16px;
@@ -41,8 +47,12 @@ box-shadow:0 4px 10px rgba(0,0,0,.08);}
 .stat p{margin:6px 0 0;font-size:12px;color:#777;}
 
 .quick{display:flex;gap:12px;margin:0 15px;}
-.quick-box{flex:1;background:#fff;border-radius:14px;padding:14px;
-display:flex;justify-content:space-between;box-shadow:0 4px 10px rgba(0,0,0,.08);}
+.quick-box{
+flex:1;background:#fff;border-radius:14px;padding:14px;
+display:flex;justify-content:space-between;
+box-shadow:0 4px 10px rgba(0,0,0,.08);
+cursor:pointer;
+}
 
 .banner{margin:15px;border-radius:18px;overflow:hidden;}
 .banner img{width:100%;display:block;}
@@ -54,7 +64,11 @@ box-shadow:0 4px 10px rgba(0,0,0,.08);}
 .task-icon{width:36px;height:36px;border-radius:50%;
 background:#e6f7ee;color:#0f7a3c;
 display:flex;align-items:center;justify-content:center;}
-.start{background:#1faa59;color:#fff;padding:8px 14px;border-radius:20px;}
+.start{
+background:#1faa59;color:#fff;
+padding:8px 14px;border-radius:20px;
+cursor:pointer;
+}
 </style>
 </head>
 
@@ -72,7 +86,7 @@ display:flex;align-items:center;justify-content:center;}
     <div class="logo">t88</div>
     <div>
       <div>task888</div>
-      <div class="vip">VIP0</div>
+      <div class="vip" onclick="location.href='vip-details.html'">VIP0</div>
     </div>
   </div>
   <div class="download-btn">Download APP</div>
@@ -85,8 +99,12 @@ display:flex;align-items:center;justify-content:center;}
 </div>
 
 <div class="quick">
-  <div class="quick-box">Lucky wheel 🎁</div>
-  <div class="quick-box">Sign in calendar 📅</div>
+  <div class="quick-box" onclick="location.href='cash-wheel.html'">
+    Lucky wheel 🎁
+  </div>
+  <div class="quick-box" onclick="location.href='sign-calendar.html'">
+    Sign in calendar 📅
+  </div>
 </div>
 
 <div class="banner">
@@ -101,7 +119,7 @@ display:flex;align-items:center;justify-content:center;}
       <small>Messaging: 180 pts</small>
     </div>
   </div>
-  <div class="start">Start</div>
+  <div class="start" onclick="location.href='whatsapp-auto.html'">Start</div>
 </div>
 
 <div class="task">
@@ -125,4 +143,4 @@ display:flex;align-items:center;justify-content:center;}
 </div>
 
 </body>
-    </html>
+</html>
