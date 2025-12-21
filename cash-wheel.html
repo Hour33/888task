@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Wheel</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+}
+
+/* HEADER */
+.header{
+  background:#0f7a3c;
+  color:#fff;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.back{font-size:20px;cursor:pointer;}
+.header h3{margin:0;font-size:16px;}
+
+/* CARD */
+.card{
+  background:#fff;
+  margin:15px;
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  text-align:center;
+}
+
+/* WHEEL */
+.wheel-container{
+  position:relative;
+  width:260px;
+  height:260px;
+  margin:20px auto;
+}
+.wheel{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  border:8px solid #0f7a3c;
+  background:conic-gradient(
+    #1faa59 0deg 45deg,
+    #e8f5e9 45deg 90deg,
+    #1faa59 90deg 135deg,
+    #e8f5e9 135deg 180deg,
+    #1faa59 180deg 225deg,
+    #e8f5e9 225deg 270deg,
+    #1faa59 270deg 315deg,
+    #e8f5e9 315deg 360deg
+  );
+  transition:transform 3s ease-out;
+}
+.pointer{
+  position:absolute;
+  top:-10px;
+  left:50%;
+  transform:translateX(-50%);
+  width:0;
+  height:0;
+  border-left:12px solid transparent;
+  border-right:12px solid transparent;
+  border-bottom:22px solid #d32f2f;
+}
+
+/* BUTTON */
+.spin-btn{
+  background:#0f7a3c;
+  color:#fff;
+  padding:12px;
+  border:none;
+  border-radius:14px;
+  font-size:16px;
+  font-weight:bold;
+  width:100%;
+  margin-top:15px;
+}
+.spin-btn:disabled{
+  background:#9cccaa;
+}
+
+/* INFO */
+.info{
+  font-size:13px;
+  color:#777;
+  margin-top:10px;
+}
+
+/* POPUP */
+.popup{
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.5);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.popup-box{
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+  width:80%;
+  max-width:300px;
+  text-align:center;
+}
+.popup-box h2{
+  margin:0;
+  color:#0f7a3c;
+}
+.popup-box button{
+  margin-top:14px;
+  padding:10px 16px;
+  border:none;
+  border-radius:10px;
+  background:#0f7a3c;
+  color:#fff;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="back" onclick="history.back()">‹</div>
+  <h3>Lucky Wheel</h3>
+</div>
+
+<!-- MAIN CARD -->
+<div class="card">
+  <h3>Spin & Win Cash</h3>
+
+  <div class="wheel-container">
+    <div class="pointer"></div>
+    <div class="wheel" id="wheel"></div>
+  </div>
+
+  <button class="spin-btn" id="spinBtn" onclick="spinWheel()">
+    Spin Now
+  </button>
+
+  <div class="info">
+    Daily free spin: <b id="spinsLeft">1</b>
+  </div>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h2 id="rewardText">₦0</h2>
+    <p>Congratulations! Reward added</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
+
+<script>
+let spinsLeft = 1;
+let rotating = false;
+
+const rewards = [
+  "₦20",
+  "₦50",
+  "₦10",
+  "₦100",
+  "₦30",
+  "₦0",
+  "₦200",
+  "₦5"
+];
+
+function spinWheel(){
+  if(spinsLeft <= 0 || rotating) return;
+
+  rotating = true;
+  spinsLeft--;
+  document.getElementById("spinsLeft").textContent = spinsLeft;
+
+  const wheel = document.getElementById("wheel");
+  const angle = Math.floor(Math.random() * 360) + 1440;
+  wheel.style.transform = `rotate(${angle}deg)`;
+
+  const reward = rewards[Math.floor(Math.random() * rewards.length)];
+
+  setTimeout(()=>{
+    document.getElementById("rewardText").textContent = reward;
+    document.getElementById("popup").style.display = "flex";
+    rotating = false;
+  }, 3200);
+
+  if(spinsLeft <= 0){
+    document.getElementById("spinBtn").disabled = true;
+  }
+}
+
+function closePopup(){
+  document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
