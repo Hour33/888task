@@ -37,21 +37,26 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
   <div id="msg"></div>
 </div>
 
-<!-- Supabase JS v2 -->
+<!-- ✅ Supabase JS library loaded first -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+
 <script>
+// Initialize Supabase
 const supabaseUrl = "https://oetyaatagxshgtzdjidn.supabase.co";
 const supabaseKey = "sb_publishable_knnuabKcZ6p4DF4CrEwWAw_zg2mc1Wa";
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
+// Blocked passwords
 const blockedPasswords = ["123456","moyin123","moyin1234","moyin12","difficult","difficulty","difficultydifficult"];
 
+// Show warning if blocked password
 const pwInput = document.getElementById("password");
 const pwWarning = document.getElementById("pwWarning");
 pwInput.addEventListener("input", () => {
   pwWarning.style.display = blockedPasswords.includes(pwInput.value.toLowerCase()) ? "block":"none";
 });
 
+// Register button functionality
 document.getElementById("registerBtn").addEventListener("click", async () => {
   const phone = document.getElementById("phone").value.trim();
   const password = pwInput.value.trim();
@@ -72,23 +77,23 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
   msg.style.color="#4caf50"; msg.textContent="Registering...";
 
   try {
-    // Check if user exists
-    let { data: existing, error: fetchError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('phone', phone);
+    // Check if account exists
+    const { data: existingUsers, error: checkError } = await supabase
+      .from("users")
+      .select("*")
+      .eq("phone", phone);
 
-    if (fetchError) throw fetchError;
+    if (checkError) throw checkError;
 
-    if (existing.length > 0) {
+    if (existingUsers.length > 0){
       msg.style.color="red"; msg.textContent="Account already exists"; 
       return;
     }
 
     // Insert new user
     const { data, error } = await supabase
-      .from('users')
-      .insert([{ phone, password, balance: 200 }]);
+      .from("users")
+      .insert([{ phone: phone, password: password, balance: 200 }]);
 
     if (error) throw error;
 
@@ -97,8 +102,8 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
     setTimeout(()=> location.href="login.html", 1000);
 
   } catch(err){
-    msg.style.color="red";
-    msg.textContent="Error: " + err.message;
+    msg.style.color="red"; 
+    msg.textContent="Error: "+err.message;
   }
 });
 </script>
