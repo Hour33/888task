@@ -4,80 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Login | Hour33</title>
-
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #ffffff;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.banner {
-  width: 100%;
-  max-width: 500px;
-  margin-top: 20px;
-}
-.banner img {
-  width: 100%;
-  border-radius: 12px;
-  display: block;
-}
-.card {
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-  width: 90%;
-  max-width: 400px;
-  margin-top: -25px;
-  text-align: center;
-  border: 1px solid #ccc;
-}
-.card h2 {
-  color: #222222;
-  margin-bottom: 20px;
-}
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  outline: none;
-}
-button {
-  width: 100%;
-  padding: 12px;
-  background: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-}
+body { font-family: Arial, sans-serif; background: #ffffff; margin: 0; display: flex; flex-direction: column; align-items: center; }
+.banner { width: 100%; max-width: 500px; margin-top: 20px; }
+.banner img { width: 100%; border-radius: 12px; display: block; }
+.card { background: #ffffff; padding: 25px; border-radius: 20px; box-shadow: 0 6px 18px rgba(0,0,0,0.1); width: 90%; max-width: 400px; margin-top: -25px; text-align: center; border: 1px solid #ccc; }
+.card h2 { color: #222222; margin-bottom: 20px; }
+input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; outline: none; }
+button { width: 100%; padding: 12px; background: #4caf50; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
 button:hover { background: #43a047; }
-a {
-  color: #1e88e5;
-  text-decoration: none;
-  font-weight: bold;
-}
+a { color: #1e88e5; text-decoration: none; font-weight: bold; }
 #msg { margin-top: 10px; font-size: 14px; }
-@media(max-width: 400px){ .card { padding: 20px; } }
 </style>
 </head>
-
 <body>
 
-<!-- Banner -->
 <div class="banner">
   <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="Hour33 Login Banner">
 </div>
 
-<!-- White Card Form -->
 <div class="card">
   <h2>Login</h2>
 
@@ -87,16 +32,11 @@ a {
   <button id="loginBtn">Login</button>
 
   <p>Don't have an account? <a href="register.html">Register</a></p>
-
   <div id="msg"></div>
 </div>
 
-<!-- Supabase JS -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
 <script>
-const supabaseUrl = "https://oetyaatagxshgtzdjidn.supabase.co";
-const supabaseKey = "sb_publishable_knnuabKcZ6p4DF4CrEwWAw_zg2mc1Wa";
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+const SHEETY_URL = "https://api.sheety.co/e77a5eb49cbb696208c1098246baf279/code1/code1";
 
 document.getElementById('loginBtn').addEventListener('click', async () => {
   const phone = document.getElementById('phone').value.trim();
@@ -110,40 +50,33 @@ document.getElementById('loginBtn').addEventListener('click', async () => {
   }
 
   msg.style.color = "#4caf50";
-  msg.textContent = "Logging in...";
+  msg.textContent = "Checking credentials...";
 
   try {
-    const { data: users, error } = await supabase
-      .from("users") // replace with your table name
-      .select("*")
-      .eq("phone", phone);
+    const res = await fetch(SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
+    });
+    const data = await res.json();
+    const users = data.code1 || [];
+    const user = users.find(u => u.phone === phone);
 
-    if (error) {
-      msg.style.color = "red";
-      msg.textContent = error.message;
-      return;
-    }
-
-    if (!users || users.length === 0) {
+    if (!user) {
       msg.style.color = "red";
       msg.textContent = "No account found for that phone";
       return;
     }
 
-    const user = users[0];
     if (user.password !== password) {
       msg.style.color = "red";
       msg.textContent = "Incorrect password";
       return;
     }
 
-    // ✅ Successful login: store user in session storage or local storage
-    sessionStorage.setItem("loggedIn", "true");
-    sessionStorage.setItem("userPhone", phone);
-
     msg.style.color = "#4caf50";
     msg.textContent = "Login successful! Redirecting...";
     setTimeout(() => location.href = "index.html", 1000);
+
   } catch (err) {
     msg.style.color = "red";
     msg.textContent = "Network error: " + err.message;
