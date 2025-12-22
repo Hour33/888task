@@ -55,7 +55,11 @@ cursor:pointer;
 }
 
 .banner{margin:15px;border-radius:18px;overflow:hidden;}
-.banner img{width:100%;display:block;}
+.banner img{width:100%;}
+.banner-img{
+  width:100%;
+  display:none;
+}
 
 .task{background:#fff;border-radius:14px;padding:14px;
 display:flex;justify-content:space-between;margin:12px 15px;
@@ -108,7 +112,9 @@ cursor:pointer;
 </div>
 
 <div class="banner">
-  <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png">
+  <img class="banner-img" src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png">
+  <img class="banner-img" src="https://i.postimg.cc/fR3fcT94/00b97724a750bcbf1b0704efee714b63.jpg">
+  <img class="banner-img" src="https://i.postimg.cc/fR3fcT94/00b97724a750bcbf1b0704efee714b63.jpg">
 </div>
 
 <div class="task">
@@ -131,6 +137,7 @@ cursor:pointer;
     </div>
   </div>
   <div class="start" onclick="location.href='manual-task.html'">Start</div>
+</div>
 
 <!-- BOTTOM NAV -->
 <div class="nav">
@@ -140,6 +147,23 @@ cursor:pointer;
   <a href="service.html">🛎️<br>Service</a>
   <a href="account.html">👤<br>Account</a>
 </div>
+
+<script>
+  let bannerIndex = 0;
+  const banners = document.querySelectorAll(".banner-img");
+
+  function showBanner(i){
+    banners.forEach(img => img.style.display = "none");
+    banners[i].style.display = "block";
+  }
+
+  showBanner(bannerIndex);
+
+  setInterval(() => {
+    bannerIndex = (bannerIndex + 1) % banners.length;
+    showBanner(bannerIndex);
+  }, 3000);
+</script>
 
 </body>
 </html>
