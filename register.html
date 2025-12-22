@@ -37,13 +37,13 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
   <div id="msg"></div>
 </div>
 
-<!-- Load Supabase first -->
+<!-- ✅ Add Supabase JS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
 <script>
-  // ✅ Initialize Supabase after the library is loaded
+  // ✅ Initialize Supabase correctly
   const supabaseUrl = 'https://oetyaatagxshgtzdjidn.supabase.co';
   const supabaseKey = 'sb_publishable_knnuabKcZ6p4DF4CrEwWAw_zg2mc1Wa';
-  const supabase = Supabase.createClient(supabaseUrl, supabaseKey);
+  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
   const blockedPasswords = ["123456","moyin123","moyin1234","moyin12","difficult","difficulty","difficultydifficult"];
   const pwInput = document.getElementById("password");
@@ -73,31 +73,24 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
     msg.style.color="#4caf50"; msg.textContent="Registering...";
 
     try {
-      // ✅ Check if account exists
-      let { data: existingUser, error: checkError } = await supabase
+      // ✅ Insert into Supabase table 'users'
+      const { data, error } = await supabase
         .from('users')
-        .select('*')
-        .eq('phone', phone);
+        .insert([{ phone, password, balance: 200 }]);
 
-      if (checkError) throw checkError;
-
-      if (existingUser.length > 0) {
-        msg.style.color="red"; msg.textContent="Account already exists"; return;
+      if (error) { 
+        msg.style.color="red"; 
+        msg.textContent="Registration failed: " + error.message; 
+        return; 
       }
-
-      // ✅ Insert new user
-      let { data, error } = await supabase
-        .from('users')
-        .insert({ phone, password, balance:200 });
-
-      if (error) throw error;
 
       msg.style.color="#4caf50";
       msg.textContent="Registered successfully! Redirecting...";
       setTimeout(()=> location.href="login.html", 1000);
 
-    } catch(err){
-      msg.style.color="red"; msg.textContent="Error: "+err.message;
+    } catch(err){ 
+      msg.style.color="red"; 
+      msg.textContent="Network error: "+err.message; 
     }
   });
 </script>
