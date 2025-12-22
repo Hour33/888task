@@ -37,75 +37,69 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
   <div id="msg"></div>
 </div>
 
-<!-- ✅ Supabase JS library loaded first -->
+<!-- Load Supabase first -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
-
 <script>
-// Initialize Supabase
-const supabaseUrl = "https://oetyaatagxshgtzdjidn.supabase.co";
-const supabaseKey = "sb_publishable_knnuabKcZ6p4DF4CrEwWAw_zg2mc1Wa";
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  // ✅ Initialize Supabase after the library is loaded
+  const supabaseUrl = 'https://oetyaatagxshgtzdjidn.supabase.co';
+  const supabaseKey = 'sb_publishable_knnuabKcZ6p4DF4CrEwWAw_zg2mc1Wa';
+  const supabase = Supabase.createClient(supabaseUrl, supabaseKey);
 
-// Blocked passwords
-const blockedPasswords = ["123456","moyin123","moyin1234","moyin12","difficult","difficulty","difficultydifficult"];
+  const blockedPasswords = ["123456","moyin123","moyin1234","moyin12","difficult","difficulty","difficultydifficult"];
+  const pwInput = document.getElementById("password");
+  const pwWarning = document.getElementById("pwWarning");
 
-// Show warning if blocked password
-const pwInput = document.getElementById("password");
-const pwWarning = document.getElementById("pwWarning");
-pwInput.addEventListener("input", () => {
-  pwWarning.style.display = blockedPasswords.includes(pwInput.value.toLowerCase()) ? "block":"none";
-});
+  pwInput.addEventListener("input", () => {
+    pwWarning.style.display = blockedPasswords.includes(pwInput.value.toLowerCase()) ? "block":"none";
+  });
 
-// Register button functionality
-document.getElementById("registerBtn").addEventListener("click", async () => {
-  const phone = document.getElementById("phone").value.trim();
-  const password = pwInput.value.trim();
-  const confirmPassword = document.getElementById("confirmPassword").value.trim();
-  const msg = document.getElementById("msg");
-  msg.textContent = "";
+  document.getElementById("registerBtn").addEventListener("click", async () => {
+    const phone = document.getElementById("phone").value.trim();
+    const password = pwInput.value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
+    const msg = document.getElementById("msg");
+    msg.textContent = "";
 
-  if (!phone || !password || !confirmPassword) {
-    msg.style.color="red"; msg.textContent="Please fill all fields"; return;
-  }
-  if (blockedPasswords.includes(password.toLowerCase())) {
-    msg.style.color="red"; msg.textContent="Can't use that figure already tried too many times"; return;
-  }
-  if (password !== confirmPassword) {
-    msg.style.color="red"; msg.textContent="Passwords do not match"; return;
-  }
-
-  msg.style.color="#4caf50"; msg.textContent="Registering...";
-
-  try {
-    // Check if account exists
-    const { data: existingUsers, error: checkError } = await supabase
-      .from("users")
-      .select("*")
-      .eq("phone", phone);
-
-    if (checkError) throw checkError;
-
-    if (existingUsers.length > 0){
-      msg.style.color="red"; msg.textContent="Account already exists"; 
-      return;
+    if (!phone || !password || !confirmPassword) {
+      msg.style.color="red"; msg.textContent="Please fill all fields"; return;
+    }
+    if (blockedPasswords.includes(password.toLowerCase())) {
+      msg.style.color="red"; msg.textContent="Can't use that figure already tried too many times"; return;
+    }
+    if (password !== confirmPassword) {
+      msg.style.color="red"; msg.textContent="Passwords do not match"; return;
     }
 
-    // Insert new user
-    const { data, error } = await supabase
-      .from("users")
-      .insert([{ phone: phone, password: password, balance: 200 }]);
+    msg.style.color="#4caf50"; msg.textContent="Registering...";
 
-    if (error) throw error;
+    try {
+      // ✅ Check if account exists
+      let { data: existingUser, error: checkError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('phone', phone);
 
-    msg.style.color="#4caf50";
-    msg.textContent="Registered successfully! Redirecting...";
-    setTimeout(()=> location.href="login.html", 1000);
+      if (checkError) throw checkError;
 
-  } catch(err){
-    msg.style.color="red"; 
-    msg.textContent="Error: "+err.message;
-  }
-});
+      if (existingUser.length > 0) {
+        msg.style.color="red"; msg.textContent="Account already exists"; return;
+      }
+
+      // ✅ Insert new user
+      let { data, error } = await supabase
+        .from('users')
+        .insert({ phone, password, balance:200 });
+
+      if (error) throw error;
+
+      msg.style.color="#4caf50";
+      msg.textContent="Registered successfully! Redirecting...";
+      setTimeout(()=> location.href="login.html", 1000);
+
+    } catch(err){
+      msg.style.color="red"; msg.textContent="Error: "+err.message;
+    }
+  });
 </script>
 
 </body>
