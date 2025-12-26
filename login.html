@@ -89,12 +89,10 @@
 
 <body>
 
-  <!-- Banner -->
   <div class="banner">
     <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="Hour33 Login Banner">
   </div>
 
-  <!-- White Card Form -->
   <div class="card">
     <h2>Login</h2>
 
@@ -126,13 +124,10 @@
       msg.textContent = "Logging in...";
 
       try {
-        const res = await fetch(SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" }
-        });
-
+        const res = await fetch(SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`);
         const data = await res.json();
-        const users = data.code1 || [];
+
+        const users = data.code2 || [];
         const user = users.find(u => u.phone === phone);
 
         if (!user) {
@@ -147,10 +142,8 @@
           return;
         }
 
-        // ✅ Set logged-in flag first
         localStorage.setItem("loggedIn", "true");
 
-        // ✅ Then redirect to index.html
         msg.style.color = "#4caf50";
         msg.textContent = "Login successful! Redirecting...";
         setTimeout(() => location.href = "index.html", 500);
