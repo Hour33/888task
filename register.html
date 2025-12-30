@@ -38,7 +38,7 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
 </div>
 
 <script>
-const SHEETY_URL = "https://api.sheety.co/f7f2e9490f85889b2a23cbdcf031c17e/code2/code2";
+const SHEETY_URL = "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/code3/code3";
 const blockedPasswords = ["123456","moyin123","moyin1234","moyin12","difficult","difficulty","difficultydifficult"];
 
 const pwInput = document.getElementById("password");
@@ -75,32 +75,28 @@ registerBtn.addEventListener("click", async () => {
     return;
   }
 
-  // 🔒 disable button immediately
   registerBtn.disabled = true;
-
   msg.style.color = "#4caf50";
   msg.textContent = "Registering...";
 
   try {
-    // ✅ check duplicate
     const checkRes = await fetch(
       SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`
     );
     const checkData = await checkRes.json();
 
-    if (checkData.code2 && checkData.code2.length > 0) {
+    if (checkData.code3 && checkData.code3.length > 0) {
       msg.style.color = "red";
       msg.textContent = "Account already exists";
       registerBtn.disabled = false;
       return;
     }
 
-    // ✅ create user
     const createRes = await fetch(SHEETY_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        code2: {
+        code3: {
           phone: phone,
           password: password,
           balance: 200
@@ -128,4 +124,4 @@ registerBtn.addEventListener("click", async () => {
 </script>
 
 </body>
-</html>
+                                                              </html>
