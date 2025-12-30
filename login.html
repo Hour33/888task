@@ -107,7 +107,7 @@
   </div>
 
   <script>
-    const SHEETY_URL = "https://api.sheety.co/f7f2e9490f85889b2a23cbdcf031c17e/code2/code2";
+    const SHEETY_URL = "https://api.sheety.co/9b805411b5ecdb493c774c33fb4e5b61/code3/code3";
 
     document.getElementById('loginBtn').addEventListener('click', async () => {
       const phone = document.getElementById('phone').value.trim();
@@ -124,10 +124,12 @@
       msg.textContent = "Logging in...";
 
       try {
-        const res = await fetch(SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`);
+        const res = await fetch(
+          SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`
+        );
         const data = await res.json();
 
-        const users = data.code2 || [];
+        const users = data.code3 || [];
         const user = users.find(u => u.phone === phone);
 
         if (!user) {
