@@ -79,10 +79,10 @@ registerBtn.addEventListener("click", async () => {
   msg.style.color = "#4caf50";
   msg.textContent = "Registering...";
 
-  try {
-    const checkRes = await fetch(
-      SHEETY_URL + ?filter[phone]=${encodeURIComponent(phone)}
-    );
+  const checkRes = await fetch(
+  SHEETY_URL + ?filter[phone]=${encodeURIComponent(phone)},
+  { mode: "cors" }
+);
     const checkData = await checkRes.json();
 
     if (checkData.betwin1 && checkData.betwin1.length > 0) {
