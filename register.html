@@ -38,7 +38,7 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
 </div>
 
 <script>
-const SHEETY_URL = "https://api.sheety.co/84bc22defdfeaba4aab39be6a6128af5/code3/code3";
+const SHEETY_URL = "https://api.sheety.co/27e2b7c20c5e6bc24ecedde0dfffa8a5/betwin1/betwin1";
 const blockedPasswords = ["123456","moyin123","moyin1234","moyin12","difficult","difficulty","difficultydifficult"];
 
 const pwInput = document.getElementById("password");
@@ -57,7 +57,7 @@ registerBtn.addEventListener("click", async () => {
 
   msg.textContent = "";
 
-  if (!phone || !password || !confirmPassword) {
+  if (!phone  !password  !confirmPassword) {
     msg.style.color = "red";
     msg.textContent = "Please fill all fields";
     return;
@@ -81,11 +81,11 @@ registerBtn.addEventListener("click", async () => {
 
   try {
     const checkRes = await fetch(
-      SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`
+      SHEETY_URL + ?filter[phone]=${encodeURIComponent(phone)}
     );
     const checkData = await checkRes.json();
 
-    if (checkData.code3 && checkData.code3.length > 0) {
+    if (checkData.betwin1 && checkData.betwin1.length > 0) {
       msg.style.color = "red";
       msg.textContent = "Account already exists";
       registerBtn.disabled = false;
@@ -96,7 +96,7 @@ registerBtn.addEventListener("click", async () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        code3: {
+        betwin1: {
           phone: phone,
           password: password,
           balance: 200
@@ -110,7 +110,6 @@ registerBtn.addEventListener("click", async () => {
       registerBtn.disabled = false;
       return;
     }
-
     msg.style.color = "#4caf50";
     msg.textContent = "Registered successfully! Redirecting...";
     setTimeout(() => location.href = "login.html", 1000);
