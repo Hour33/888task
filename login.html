@@ -103,7 +103,8 @@
   </div>
 
   <script>
-    const SHEETY_URL = "https://api.sheety.co/84bc22defdfeaba4aab39be6a6128af5/code3/code3";
+    const SHEETY_URL = "https://api.sheety.co/27e2b7c20c5e6bc24ecedde0dfffa8a5/betwin1/betwin1";
+    const BEARER_TOKEN = "YOUR_SHEETY_BEARER_TOKEN";
 
     document.getElementById('loginBtn').addEventListener('click', async () => {
       const phone = document.getElementById('phone').value.trim();
@@ -121,11 +122,18 @@
 
       try {
         const res = await fetch(
-          SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`
+          SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`,
+          {
+            headers: {
+              "Authorization": `Bearer ${BEARER_TOKEN}`,
+              "Accept": "application/json"
+            }
+          }
         );
+
         const data = await res.json();
 
-        const users = data.code3 || [];
+        const users = data.betwin1 || [];
         const user = users.find(u => u.phone === phone);
 
         if (!user) {
