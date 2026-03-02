@@ -32,7 +32,8 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
 </div>
 
 <script>
-const SHEETY_URL = "https://api.sheety.co/49d6c1155595b9442a1bcccf93019e3c/paigen1/paigen1";
+// Updated Sheety URL
+const SHEETY_URL = "https://api.sheety.co/e77a5eb49cbb696208c1098246baf279/code4/code4";
 const BEARER_TOKEN = "YOUR_SHEETY_BEARER_TOKEN";
 
 document.getElementById('loginBtn').addEventListener('click', async () => {
@@ -61,7 +62,8 @@ headers:{
 );
 
 const data = await res.json();
-const users = data.paigen1 || [];
+// Updated to use 'code4' based on your new API URL
+const users = data.code4 || []; 
 const user = users.find(u=>u.phone===phone);
 
 if(!user){
