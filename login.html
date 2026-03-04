@@ -19,7 +19,7 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
 <body>
 
 <div class="banner">
-<img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="Hour33 Login Banner">
+<img src="https://i.postimg.cc" alt="Hour33 Login Banner">
 </div>
 
 <div class="card">
@@ -37,56 +37,59 @@ const SHEETY_URL = "https://api.sheety.co";
 const BEARER_TOKEN = "YOUR_SHEETY_BEARER_TOKEN";
 
 document.getElementById('loginBtn').addEventListener('click', async () => {
-const phone = document.getElementById('phone').value.trim();
-const password = document.getElementById('password').value.trim();
-const msg = document.getElementById('msg');
+    const phoneInput = document.getElementById('phone').value.trim();
+    const passwordInput = document.getElementById('password').value.trim();
+    const msg = document.getElementById('msg');
 
-if (!phone || !password) {
-msg.style.color="red";
-msg.textContent="Please fill both fields";
-return;
-}
+    if (!phoneInput || !passwordInput) {
+        msg.style.color = "red";
+        msg.textContent = "Please fill both fields";
+        return;
+    }
 
-msg.style.color="#4caf50";
-msg.textContent="Logging in...";
+    msg.style.color = "#4caf50";
+    msg.textContent = "Logging in...";
 
-try {
-const res = await fetch(
-SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`,
-{
-headers:{
-"Authorization":`Bearer ${BEARER_TOKEN}`,
-"Accept":"application/json"
-}
-}
-);
+    try {
+        // Fetch data from code5
+        const res = await fetch(SHEETY_URL, {
+            headers: {
+                "Authorization": `Bearer ${BEARER_TOKEN}`,
+                "Accept": "application/json"
+            }
+        });
 
-const data = await res.json();
-// Updated to use 'code5' based on your new API URL
-const users = data.code5 || []; 
-const user = users.find(u=>u.phone===phone);
+        const data = await res.json();
+        const users = data.code5 || [];
+        
+        // Find user by comparing strings to avoid "number vs text" errors
+        const user = users.find(u => String(u.phone) === String(phoneInput));
 
-if(!user){
-msg.style.color="red";
-msg.textContent="No account found for that phone";
-return;
-}
+        if (!user) {
+            msg.style.color = "red";
+            msg.textContent = "No account found for that phone";
+            return;
+        }
 
-if(user.password!==password){
-msg.style.color="red";
-msg.textContent="Incorrect password";
-return;
-}
+        // Verify password
+        if (String(user.password) !== String(passwordInput)) {
+            msg.style.color = "red";
+            msg.textContent = "Incorrect password";
+            return;
+        }
 
-localStorage.setItem("loggedIn","true");
-msg.style.color="#4caf50";
-msg.textContent="Login successful! Redirecting...";
-setTimeout(()=>location.href="index.html",500);
+        // Success logic
+        localStorage.setItem("loggedIn", "true");
+        localStorage.setItem("userPhone", phoneInput);
+        
+        msg.style.color = "#4caf50";
+        msg.textContent = "Login successful! Redirecting...";
+        setTimeout(() => location.href = "index.html", 500);
 
-}catch(err){
-msg.style.color="red";
-msg.textContent="Network error: "+err.message;
-}
+    } catch (err) {
+        msg.style.color = "red";
+        msg.textContent = "Network error: " + err.message;
+    }
 });
 </script>
 
