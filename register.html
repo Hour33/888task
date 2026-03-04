@@ -38,7 +38,7 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
 </div>
 
 <script>
-const SHEETY_URL = "https://api.sheety.co/e77a5eb49cbb696208c1098246baf279/code4/code4";
+const SHEETY_URL = "https://api.sheety.co/4a9868f3c5ce48f976e575a769b00f1c/code5/code5";
 const BEARER_TOKEN = "YOUR_SHEETY_BEARER_TOKEN";
 const blockedPasswords = ["123456","moyin123","moyin1234","moyin12","difficult","difficulty","difficultydifficult"];
 
@@ -93,8 +93,8 @@ registerBtn.addEventListener("click", async () => {
 
     const checkData = await checkRes.json();
 
-    // Updated to check against the 'code4' object key
-    if (checkData.code4 && checkData.code4.length > 0) {
+    // Updated to check against the 'code5' object key
+    if (checkData.code5 && checkData.code5.length > 0) {
       msg.style.color = "red";
       msg.textContent = "Account already exists";
       registerBtn.disabled = false;
@@ -109,7 +109,7 @@ registerBtn.addEventListener("click", async () => {
         "Accept": "application/json"
       },
       body: JSON.stringify({
-        code4: {
+        code5: {
           phone: phone,
           password: password,
           balance: 200
