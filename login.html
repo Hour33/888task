@@ -1,97 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Login | Hour33</title>
-<style>
-body { font-family: Arial,sans-serif; background:#fff; margin:0; display:flex; flex-direction:column; align-items:center; }
-.banner { width:100%; max-width:500px; margin-top:20px; }
-.banner img { width:100%; border-radius:12px; display:block; }
-.card { background:#fff; padding:25px; border-radius:20px; box-shadow:0 6px 18px rgba(0,0,0,0.1); width:90%; max-width:400px; margin-top:-25px; text-align:center; border:1px solid #ccc; }
-input { width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid #ccc; box-sizing:border-box; }
-button { width:100%; padding:12px; background:#4caf50; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-top:10px; }
-button:hover { background:#43a047; }
-a { color:#1e88e5;text-decoration:none;font-weight:bold; }
-#msg { margin-top:10px; font-size:14px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Hour33</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .banner {
+      width: 100%;
+      max-width: 500px;
+      margin-top: 20px;
+    }
+
+    .banner img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 400px;
+      margin-top: -25px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    .card h2 {
+      color: #222222;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #43a047;
+    }
+
+    a {
+      color: #1e88e5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #msg {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="banner">
-<img src="https://i.postimg.cc" alt="Hour33 Login Banner">
-</div>
+  <div class="banner">
+    <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="Hour33 Login Banner">
+  </div>
 
-<div class="card">
-<h2>Login</h2>
-<input id="phone" type="text" placeholder="Account" />
-<input id="password" type="password" placeholder="Password" />
-<button id="loginBtn">Login</button>
-<p>Don't have an account? <a href="register.html">Register</a></p>
-<div id="msg"></div>
-</div>
+  <div class="card">
+    <h2>Login</h2>
 
-<script>
-// Updated Sheety URL to code5
-const SHEETY_URL = "https://api.sheety.co";
-const BEARER_TOKEN = "YOUR_SHEETY_BEARER_TOKEN";
+    <input id="phone" type="text" placeholder="Account" />
+    <input id="password" type="password" placeholder="Password" />
 
-document.getElementById('loginBtn').addEventListener('click', async () => {
-    const phoneInput = document.getElementById('phone').value.trim();
-    const passwordInput = document.getElementById('password').value.trim();
-    const msg = document.getElementById('msg');
+    <button id="loginBtn">Login</button>
 
-    if (!phoneInput || !passwordInput) {
+    <p>Don't have an account? <a href="register.html">Register</a></p>
+
+    <div id="msg"></div>
+  </div>
+
+  <script>
+    const SHEETY_URL = "https://api.sheety.co/4a9868f3c5ce48f976e575a769b00f1c/code5/code5";
+    const BEARER_TOKEN = "YOUR_SHEETY_BEARER_TOKEN";
+
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const phone = document.getElementById('phone').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const msg = document.getElementById('msg');
+
+      if (!phone || !password) {
         msg.style.color = "red";
         msg.textContent = "Please fill both fields";
         return;
-    }
+      }
 
-    msg.style.color = "#4caf50";
-    msg.textContent = "Logging in...";
+      msg.style.color = "#4caf50";
+      msg.textContent = "Logging in...";
 
-    try {
-        // Fetch data from code5
-        const res = await fetch(SHEETY_URL, {
+      try {
+        const res = await fetch(
+          SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`,
+          {
             headers: {
-                "Authorization": `Bearer ${BEARER_TOKEN}`,
-                "Accept": "application/json"
+              "Authorization": `Bearer ${BEARER_TOKEN}`,
+              "Accept": "application/json"
             }
-        });
+          }
+        );
 
         const data = await res.json();
         const users = data.code5 || [];
-        
-        // Find user by comparing strings to avoid "number vs text" errors
-        const user = users.find(u => String(u.phone) === String(phoneInput));
+        const user = users.find(u => u.phone === phone);
 
         if (!user) {
-            msg.style.color = "red";
-            msg.textContent = "No account found for that phone";
-            return;
+          msg.style.color = "red";
+          msg.textContent = "No account found for that phone";
+          return;
         }
 
-        // Verify password
-        if (String(user.password) !== String(passwordInput)) {
-            msg.style.color = "red";
-            msg.textContent = "Incorrect password";
-            return;
+        if (user.password !== password) {
+          msg.style.color = "red";
+          msg.textContent = "Incorrect password";
+          return;
         }
 
-        // Success logic
         localStorage.setItem("loggedIn", "true");
-        localStorage.setItem("userPhone", phoneInput);
-        
+
         msg.style.color = "#4caf50";
         msg.textContent = "Login successful! Redirecting...";
         setTimeout(() => location.href = "index.html", 500);
 
-    } catch (err) {
+      } catch (err) {
         msg.style.color = "red";
         msg.textContent = "Network error: " + err.message;
-    }
-});
-</script>
+      }
+    });
+  </script>
 
 </body>
 </html>
