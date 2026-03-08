@@ -1,67 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Hour33</title>
+<style>
+body{font-family:Arial;background:#fff;margin:0;display:flex;flex-direction:column;align-items:center}
+.banner{width:100%;max-width:500px;margin-top:20px}
+.banner img{width:100%;border-radius:12px}
+.card{background:#fff;padding:25px;border-radius:20px;box-shadow:0 6px 18px rgba(0,0,0,0.1);width:90%;max-width:400px;margin-top:-25px;text-align:center;border:1px solid #ccc}
+input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:1px solid #ccc}
+button{width:100%;padding:12px;background:#4caf50;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:10px}
+button:hover{background:#43a047}
+#msg{margin-top:10px;font-size:14px}
+</style>
 </head>
 
 <body>
 
+<div class="banner">
+<img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png">
+</div>
+
+<div class="card">
 <h2>Login</h2>
 
-<input type="text" id="phone" placeholder="Phone"><br><br>
-<input type="password" id="password" placeholder="Password"><br><br>
+<input id="phone" type="text" placeholder="Account">
+<input id="password" type="password" placeholder="Password">
 
-<button onclick="login()">Login</button>
+<button id="loginBtn">Login</button>
 
-<p id="msg"></p>
+<p>Don't have an account? <a href="register.html">Register</a></p>
+
+<div id="msg"></div>
+</div>
 
 <script>
-
 const SHEETY_URL="https://api.sheety.co/f7f2e9490f85889b2a23cbdcf031c17e/task2/task2";
+const BEARER_TOKEN="YOUR_SHEETY_BEARER_TOKEN";
 
-async function login(){
+document.getElementById("loginBtn").addEventListener("click",async()=>{
 
-const phone=document.getElementById("phone").value;
-const password=document.getElementById("password").value;
+const phone=document.getElementById("phone").value.trim();
+const password=document.getElementById("password").value.trim();
+const msg=document.getElementById("msg");
 
 if(!phone||!password){
-document.getElementById("msg").innerText="Fill all fields";
+msg.style.color="red";
+msg.textContent="Please fill both fields";
 return;
 }
 
+msg.style.color="#4caf50";
+msg.textContent="Logging in...";
+
 try{
 
-let res=await fetch(SHEETY_URL);
-let data=await res.json();
+const res=await fetch(
+SHEETY_URL+`?filter[phone]=${encodeURIComponent(phone)}`,
+{headers:{Authorization:`Bearer ${BEARER_TOKEN}`,Accept:"application/json"}}
+);
 
-let users=data.task2;
+const data=await res.json();
 
-let user=users.find(u=>u.phone===phone && u.password===password);
+const users=data.task2||[];
+const user=users.find(u=>u.phone===phone);
 
-if(user){
-
-localStorage.setItem("user",phone);
-
-document.getElementById("msg").innerText="Login successful";
-
-setTimeout(()=>{
-window.location.href="index.html";
-},1000);
-
-}else{
-
-document.getElementById("msg").innerText="Invalid login";
-
+if(!user){
+msg.style.color="red";
+msg.textContent="No account found for that phone";
+return;
 }
 
-}catch(e){
-
-document.getElementById("msg").innerText="Network error";
-
+if(user.password!==password){
+msg.style.color="red";
+msg.textContent="Incorrect password";
+return;
 }
 
+localStorage.setItem("loggedIn","true");
+
+msg.style.color="#4caf50";
+msg.textContent="Login successful! Redirecting...";
+setTimeout(()=>location.href="index.html",500);
+
+}catch(err){
+msg.style.color="red";
+msg.textContent="Network error: "+err.message;
 }
 
+});
 </script>
 
 </body>
