@@ -21,120 +21,119 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
 <body>
 
 <div class="banner">
-  <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png" alt="Register Banner">
+<img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png">
 </div>
 
 <div class="card">
-  <h2>Create Account</h2>
+<h2>Create Account</h2>
 
-  <input id="phone" type="text" placeholder="Account" />
-  <input id="password" type="password" placeholder="Password" />
-  <div id="pwWarning" class="password-warning">Can't use that figure already tried too many times</div>
-  <input id="confirmPassword" type="password" placeholder="Confirm Password" />
-  <input type="text" value="30Q4782N" readonly />
-  <button id="registerBtn" type="button">Register</button>
-  <p>Already have an account? <a href="login.html">Login</a></p>
-  <div id="msg"></div>
+<input id="phone" type="text" placeholder="Account" />
+<input id="password" type="password" placeholder="Password" />
+<div id="pwWarning" class="password-warning">Can't use that figure already tried too many times</div>
+<input id="confirmPassword" type="password" placeholder="Confirm Password" />
+<input type="text" value="30Q4782N" readonly />
+
+<button id="registerBtn" type="button">Register</button>
+
+<p>Already have an account? <a href="login.html">Login</a></p>
+<div id="msg"></div>
 </div>
 
 <script>
-const SHEETY_URL = "https://api.sheety.co/4a9868f3c5ce48f976e575a769b00f1c/code5/code5";
-const BEARER_TOKEN = "YOUR_SHEETY_BEARER_TOKEN";
-const blockedPasswords = ["123456","moyin123","moyin1234","moyin12","difficult","difficulty","difficultydifficult"];
+const SHEETY_URL="https://api.sheety.co/063b7e80466382fc37a14b4f5ae358b1/task2/task2";
+const BEARER_TOKEN="YOUR_SHEETY_BEARER_TOKEN";
 
-const pwInput = document.getElementById("password");
-const pwWarning = document.getElementById("pwWarning");
-const registerBtn = document.getElementById("registerBtn");
+const blockedPasswords=["123456","moyin123","moyin1234","moyin12","difficult","difficulty","difficultydifficult"];
 
-pwInput.addEventListener("input", () => {
-  pwWarning.style.display = blockedPasswords.includes(pwInput.value.toLowerCase()) ? "block" : "none";
+const pwInput=document.getElementById("password");
+const pwWarning=document.getElementById("pwWarning");
+const registerBtn=document.getElementById("registerBtn");
+
+pwInput.addEventListener("input",()=>{
+pwWarning.style.display=blockedPasswords.includes(pwInput.value.toLowerCase())?"block":"none";
 });
 
-registerBtn.addEventListener("click", async () => {
-  const phone = document.getElementById("phone").value.trim();
-  const password = pwInput.value.trim();
-  const confirmPassword = document.getElementById("confirmPassword").value.trim();
-  const msg = document.getElementById("msg");
+registerBtn.addEventListener("click",async()=>{
 
-  msg.textContent = "";
+const phone=document.getElementById("phone").value.trim();
+const password=pwInput.value.trim();
+const confirmPassword=document.getElementById("confirmPassword").value.trim();
+const msg=document.getElementById("msg");
 
-  if (!phone || !password || !confirmPassword) {
-    msg.style.color = "red";
-    msg.textContent = "Please fill all fields";
-    return;
-  }
+msg.textContent="";
 
-  if (blockedPasswords.includes(password.toLowerCase())) {
-    msg.style.color = "red";
-    msg.textContent = "Can't use that figure already tried too many times";
-    return;
-  }
+if(!phone||!password||!confirmPassword){
+msg.style.color="red";
+msg.textContent="Please fill all fields";
+return;
+}
 
-  if (password !== confirmPassword) {
-    msg.style.color = "red";
-    msg.textContent = "Passwords do not match";
-    return;
-  }
+if(blockedPasswords.includes(password.toLowerCase())){
+msg.style.color="red";
+msg.textContent="Can't use that figure already tried too many times";
+return;
+}
 
-  registerBtn.disabled = true;
-  msg.style.color = "#4caf50";
-  msg.textContent = "Registering...";
+if(password!==confirmPassword){
+msg.style.color="red";
+msg.textContent="Passwords do not match";
+return;
+}
 
-  try {
-    const checkRes = await fetch(
-      SHEETY_URL + `?filter[phone]=${encodeURIComponent(phone)}`,
-      {
-        headers: {
-          "Authorization": `Bearer ${BEARER_TOKEN}`,
-          "Accept": "application/json"
-        }
-      }
-    );
+registerBtn.disabled=true;
+msg.style.color="#4caf50";
+msg.textContent="Registering...";
 
-    const checkData = await checkRes.json();
+try{
 
-    // Updated to check against the 'code5' object key
-    if (checkData.code5 && checkData.code5.length > 0) {
-      msg.style.color = "red";
-      msg.textContent = "Account already exists";
-      registerBtn.disabled = false;
-      return;
-    }
+const checkRes=await fetch(
+SHEETY_URL+`?filter[phone]=${encodeURIComponent(phone)}`,
+{headers:{Authorization:`Bearer ${BEARER_TOKEN}`,Accept:"application/json"}}
+);
 
-    const createRes = await fetch(SHEETY_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${BEARER_TOKEN}`,
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        code5: {
-          phone: phone,
-          password: password,
-          balance: 200
-        }
-      })
-    });
+const checkData=await checkRes.json();
 
-    if (!createRes.ok) {
-      msg.style.color = "red";
-      msg.textContent = "Registration failed";
-      registerBtn.disabled = false;
-      return;
-    }
+if(checkData.task2 && checkData.task2.length>0){
+msg.style.color="red";
+msg.textContent="Account already exists";
+registerBtn.disabled=false;
+return;
+}
 
-    msg.style.color = "#4caf50";
-    msg.textContent = "Registered successfully! Redirecting...";
-    setTimeout(() => location.href = "login.html", 1000);
+const createRes=await fetch(SHEETY_URL,{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+Authorization:`Bearer ${BEARER_TOKEN}`,
+Accept:"application/json"
+},
+body:JSON.stringify({
+task2:{
+phone:phone,
+password:password,
+balance:200
+}
+})
+});
 
-  } catch (err) {
-    msg.style.color = "red";
-    msg.textContent = "Network error: " + err.message;
-    registerBtn.disabled = false;
-  }
+if(!createRes.ok){
+msg.style.color="red";
+msg.textContent="Registration failed";
+registerBtn.disabled=false;
+return;
+}
+
+msg.style.color="#4caf50";
+msg.textContent="Registered successfully! Redirecting...";
+setTimeout(()=>location.href="login.html",1000);
+
+}catch(err){
+msg.style.color="red";
+msg.textContent="Network error: "+err.message;
+registerBtn.disabled=false;
+}
+
 });
 </script>
-
 </body>
 </html>
