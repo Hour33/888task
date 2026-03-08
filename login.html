@@ -36,7 +36,7 @@ button:hover{background:#43a047}
 </div>
 
 <script>
-const SHEETY_URL="https://api.sheety.co/f7f2e9490f85889b2a23cbdcf031c17e/task2/task2";
+const SHEETY_URL="https://api.sheety.co/e77a5eb49cbb696208c1098246baf279/task3/task3";
 const BEARER_TOKEN="YOUR_SHEETY_BEARER_TOKEN";
 
 document.getElementById("loginBtn").addEventListener("click",async()=>{
@@ -63,7 +63,7 @@ SHEETY_URL+`?filter[phone]=${encodeURIComponent(phone)}`,
 
 const data=await res.json();
 
-const users=data.task2||[];
+const users=data.task3||[];
 const user=users.find(u=>u.phone===phone);
 
 if(!user){
