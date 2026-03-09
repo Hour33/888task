@@ -40,7 +40,7 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
 </div>
 
 <script>
-const SHEETY_URL="https://api.sheety.co/e77a5eb49cbb696208c1098246baf279/task3/task3";
+const SHEETY_URL="https://api.sheety.co/2eeea879cbed33c7ec5eed783f4479f4/task3/task3";
 const BEARER_TOKEN="YOUR_SHEETY_BEARER_TOKEN";
 
 const blockedPasswords=["123456","moyin123","moyin1234","moyin12","difficult","difficulty","difficultydifficult"];
@@ -82,58 +82,4 @@ return;
 
 registerBtn.disabled=true;
 msg.style.color="#4caf50";
-msg.textContent="Registering...";
-
-try{
-
-const checkRes=await fetch(
-SHEETY_URL+`?filter[phone]=${encodeURIComponent(phone)}`,
-{headers:{Authorization:`Bearer ${BEARER_TOKEN}`,Accept:"application/json"}}
-);
-
-const checkData=await checkRes.json();
-
-if(checkData.task3 && checkData.task3.length>0){
-msg.style.color="red";
-msg.textContent="Account already exists";
-registerBtn.disabled=false;
-return;
-}
-
-const createRes=await fetch(SHEETY_URL,{
-method:"POST",
-headers:{
-"Content-Type":"application/json",
-Authorization:`Bearer ${BEARER_TOKEN}`,
-Accept:"application/json"
-},
-body:JSON.stringify({
-task3:{
-phone:phone,
-password:password,
-balance:200
-}
-})
-});
-
-if(!createRes.ok){
-msg.style.color="red";
-msg.textContent="Registration failed";
-registerBtn.disabled=false;
-return;
-}
-
-msg.style.color="#4caf50";
-msg.textContent="Registered successfully! Redirecting...";
-setTimeout(()=>location.href="login.html",1000);
-
-}catch(err){
-msg.style.color="red";
-msg.textContent="Network error: "+err.message;
-registerBtn.disabled=false;
-}
-
-});
-</script>
-</body>
-</html>
+msg
