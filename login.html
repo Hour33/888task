@@ -17,7 +17,6 @@ button:hover{background:#43a047}
 </head>
 
 <body>
-
 <div class="banner">
 <img src="https://i.postimg.cc/Pq66mhjL/file-00000000848c71f4aefb45586e4fb843.png">
 </div>
@@ -36,61 +35,47 @@ button:hover{background:#43a047}
 </div>
 
 <script>
-const SHEETY_URL="https://api.sheety.co/2eeea879cbed33c7ec5eed783f4479f4/task3/task3";
-const BEARER_TOKEN="YOUR_SHEETY_BEARER_TOKEN";
+const backendUrl = "https://hour33-backend.onrender.com/login";
 
-document.getElementById("loginBtn").addEventListener("click",async()=>{
+document.getElementById("loginBtn").addEventListener("click", async () => {
+  const phone = document.getElementById("phone").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const msg = document.getElementById("msg");
+  msg.textContent = "";
 
-const phone=document.getElementById("phone").value.trim();
-const password=document.getElementById("password").value.trim();
-const msg=document.getElementById("msg");
+  if (!phone || !password) {
+    msg.style.color = "red";
+    msg.textContent = "Please fill both fields";
+    return;
+  }
 
-if(!phone||!password){
-msg.style.color="red";
-msg.textContent="Please fill both fields";
-return;
-}
+  msg.style.color = "#4caf50";
+  msg.textContent = "Logging in...";
 
-msg.style.color="#4caf50";
-msg.textContent="Logging in...";
+  try {
+    const res = await fetch(backendUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone, password })
+    });
+    const data = await res.json();
 
-try{
+    if (!data.success) {
+      msg.style.color = "red";
+      msg.textContent = data.message || "Login failed";
+      return;
+    }
 
-const res=await fetch(
-SHEETY_URL+`?filter[phone]=${encodeURIComponent(phone)}`,
-{headers:{Authorization:`Bearer ${BEARER_TOKEN}`,Accept:"application/json"}}
-);
+    localStorage.setItem("loggedIn","true");
+    msg.style.color = "#4caf50";
+    msg.textContent = "Login successful! Redirecting...";
+    setTimeout(() => location.href = "index.html", 500);
 
-const data=await res.json();
-
-const users=data.task3||[];
-const user=users.find(u=>u.phone===phone);
-
-if(!user){
-msg.style.color="red";
-msg.textContent="No account found for that phone";
-return;
-}
-
-if(user.password!==password){
-msg.style.color="red";
-msg.textContent="Incorrect password";
-return;
-}
-
-localStorage.setItem("loggedIn","true");
-
-msg.style.color="#4caf50";
-msg.textContent="Login successful! Redirecting...";
-setTimeout(()=>location.href="index.html",500);
-
-}catch(err){
-msg.style.color="red";
-msg.textContent="Network error: "+err.message;
-}
-
+  } catch(err) {
+    msg.style.color = "red";
+    msg.textContent = "Network error: " + err.message;
+  }
 });
 </script>
-
 </body>
 </html>
