@@ -31,6 +31,7 @@ a { color:#1e88e5;text-decoration:none;font-weight:bold; }
 <input id="password" type="password" placeholder="Password" />
 <div id="pwWarning" class="password-warning">Can't use that figure already tried too many times</div>
 <input id="confirmPassword" type="password" placeholder="Confirm Password" />
+<input type="text" value="30Q4782N" readonly /> <!-- Invitation code, read-only -->
 
 <button id="registerBtn" type="button">Register</button>
 
@@ -54,6 +55,7 @@ registerBtn.addEventListener("click", async () => {
   const phone = document.getElementById("phone").value.trim();
   const password = pwInput.value.trim();
   const confirmPassword = document.getElementById("confirmPassword").value.trim();
+  const invitation = document.querySelector('input[readonly]').value;
   const msg = document.getElementById("msg");
   msg.textContent = "";
 
@@ -83,7 +85,7 @@ registerBtn.addEventListener("click", async () => {
     const res = await fetch(backendUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone, password })
+      body: JSON.stringify({ phone, password, invitation })
     });
     const data = await res.json();
 
